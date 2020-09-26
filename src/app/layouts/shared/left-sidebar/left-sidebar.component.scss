@@ -1,0 +1,35 @@
+
+#left-side-menu-container {
+  height: 100%;
+}
+
+.nav-second-level,
+.nav-third-level {
+  li {
+    width: 100%
+  }
+}
+
+.slideup,
+.slidedown {
+  max-height: 0;
+  overflow-y: hidden;
+  -webkit-transition: max-height 0.25s ease-in-out;
+  -moz-transition: max-height 0.25s ease-in-out;
+  -o-transition: max-height 0.25s ease-in-out;
+  transition: max-height 0.25s ease-in-out;
+}
+
+.slidedown {
+  max-height: 600px;
+}
+
+:host ::ng-deep .scrollbar-track-y {
+  background: transparent;
+}
+
+:host ::ng-deep .scrollbar-thumb {
+  background: rgb(158, 165, 171);
+  width: 8px;
+  opacity: 0.4;
+}

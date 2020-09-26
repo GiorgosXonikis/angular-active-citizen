@@ -1,0 +1,14 @@
+#notification-items {
+  height: 230px;
+}
+
+
+:host ::ng-deep .scrollbar-track-y {
+  background: transparent;
+}
+
+:host ::ng-deep .scrollbar-thumb {
+  background: rgb(158, 165, 171);
+  width: 5px;
+  opacity: 0.4;
+}

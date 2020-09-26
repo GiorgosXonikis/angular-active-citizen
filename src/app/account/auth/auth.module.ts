@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { SignUpComponent } from './signup/sign-up.component';
-import { AuthRoutingModule } from './auth-routing';
+import { AuthRoutingModule } from './auth-routing.module';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { PasswordResetComponent } from './passwordreset/password-reset.component';
 import {LoginComponent} from './login/login.component';
@@ -19,6 +19,7 @@ import {LoginComponent} from './login/login.component';
     ReactiveFormsModule,
     NgbAlertModule,
     // WidgetModule,
+
     AuthRoutingModule
   ]
 })

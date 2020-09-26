@@ -10,7 +10,8 @@ import { ProfileRoutingModule } from './profile-routing.module';
   declarations: [ProfileComponent],
   imports: [
     CommonModule,
-    ChartJSModule,
+    // ChartJSModule,
+
     ProfileRoutingModule
   ]
 })

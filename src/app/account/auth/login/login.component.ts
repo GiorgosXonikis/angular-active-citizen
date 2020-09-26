@@ -43,20 +43,7 @@ export class LoginComponent implements OnInit {
             return;
         }
 
-        this.authService.login(this.f.email.value, this.f.password.value)
-            .pipe(
-                map(response => {
-                    this.authService.token = response.access;
-                    console.log(this.authService.token);
-                    return this.authService.getUserProfile(this.authService.token);
-                }),
-                catchError(() => {
-                    alert('Incorrect Credentials');
-                    return EMPTY;
-                })
-            ).subscribe(() => this.router.navigate(['/'])
-        );
-
+        this.authService.login(this.f.email.value, this.f.password.value).subscribe();
     }
 
     get f(): any {

@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CookieService} from './cookie.service';
 import {IUser} from '../models/interfaces';
-import {tap} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {catchError, finalize, tap} from 'rxjs/operators';
+import {EMPTY, Observable} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthService {
     private _token: string;
 
     constructor(private http: HttpClient,
+                private router: Router,
                 private cookieService: CookieService) {
     }
 
@@ -23,12 +25,17 @@ export class AuthService {
      */
     public login(username: string, password: string): Observable<any> {
         const URL = 'http://localhost:8000/api/token/';
-        return this.http.post<any>(URL, {username, password}).pipe(
-            tap(response => this.getUserProfile(response.access)
-                .subscribe(
-                    userProfile => this.extractUserData(userProfile)
-                ))
-        );
+        return this.http.post<any>(URL, {username, password})
+            .pipe(
+                tap(response => {
+                    this._token = response.access;
+                    this.getUserProfile(this._token).subscribe();
+                }),
+                catchError(() => {
+                    alert('Incorrect Credentials');
+                    return EMPTY;
+                })
+            );
     }
 
     public getUserProfile(token: string): Observable<any> {
@@ -37,7 +44,15 @@ export class AuthService {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
         });
-        return this.http.get(URL, {headers});
+        return this.http.get(URL, {headers})
+            .pipe(
+                tap(userProfile => {
+                    this.extractUserData(userProfile);
+                }),
+                finalize(() => {
+                    this.router.navigate(['/profile']);
+                })
+            );
     }
 
     private extractUserData(user): void {
@@ -51,7 +66,8 @@ export class AuthService {
         this.user.location = user['location'];
         this.user.token = this.token;
         this.user.firstName;
-        console.log(this.user);
+        this.user.token = this._token;
+        this.cookieService.setCookie('loggedInUser', JSON.stringify(this.user), 1);
     }
 
     public getLoggedInUser(): IUser {
