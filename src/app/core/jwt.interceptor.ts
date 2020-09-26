@@ -10,15 +10,6 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        /**Enable when solve CORS */
-        // if (request.headers.get('bool')) {
-        //   return next.handle(request);
-        // }
-
-        // if (request.url === 'http://localhost/api/token') {
-        //     return next.handle(request);
-        // }
-
         // add authorization header with jwt token if available
         const loggedInUser = this.authService.getLoggedInUser();
 
