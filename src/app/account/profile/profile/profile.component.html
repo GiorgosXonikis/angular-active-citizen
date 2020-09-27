@@ -74,8 +74,8 @@
 
             <div class="col-sm-4">
               <div class="text-center mt-sm-0 mt-3 text-sm-right">
-                <button type="button" class="btn btn-light">
-                  <i class="mdi mdi-account-edit mr-1"></i> Edit Profile
+                <button type="button" class="btn btn-light" (click)="updateProfile()" [disabled]="form.pristine">
+                  <i class="mdi mdi-account-edit mr-1"></i> Update Profile
                 </button>
               </div>
             </div> <!-- end col-->
@@ -90,30 +90,38 @@
 
 
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-6" [formGroup]="form">
+
       <!-- Personal-Information -->
       <div class="card">
         <div class="card-body">
           <h4 class="header-title mt-0 mb-3">Bio</h4>
-          <p class="text-muted font-13">
-            Lorem ipsum
-          </p>
+          <input type="text" formControlName="bio" class="text-muted font-13 no-border"/>
 
           <hr />
 
           <div class="text-left">
-            <p class="text-muted"><strong>Full Name :</strong> <span class="ml-2">Michael A. Franklin</span></p>
+            <p class="text-muted"><strong>Name:</strong>
+              <span class="ml-2"><input type="text" formControlName="firstName" class="text-muted font-13 no-border"/></span>
+            </p>
 
-            <p class="text-muted"><strong>Mobile :</strong><span class="ml-2">(+12) 123 1234 567</span></p>
+            <p class="text-muted"><strong>Surname:</strong>
+              <span class="ml-2"><input type="text" formControlName="surname" class="text-muted font-13 no-border"/></span>
+            </p>
 
-            <p class="text-muted"><strong>Email :</strong> <span class="ml-2">coderthemes@gmail.com</span></p>
+            <p class="text-muted"><strong>Email:</strong>
+              <span class="ml-2"><input type="text" formControlName="email" class="text-muted font-13 no-border"/></span>
+            </p>
 
-            <p class="text-muted"><strong>Location :</strong> <span class="ml-2">USA</span></p>
+            <p class="text-muted"><strong>Location:</strong>
+              <span class="ml-2"><input type="text" formControlName="location" class="text-muted font-13 no-border"/></span>
+            </p>
 
             <p class="text-muted"><strong>Languages :</strong>
-              <span class="ml-2"> English, German, Spanish </span>
+              <span class="ml-2"><input type="text" formControlName="languages" class="text-muted font-13 no-border"/></span>
             </p>
-            <p class="text-muted mb-0"><strong>Elsewhere :</strong>
+
+            <p class="text-muted mb-0"><strong>Social Media :</strong>
               <a class="d-inline-block ml-2 text-muted" title="" data-placement="top" data-toggle="tooltip" href=""
                 data-original-title="Facebook"><i class="mdi mdi-facebook"></i></a>
               <a class="d-inline-block ml-2 text-muted" title="" data-placement="top" data-toggle="tooltip" href=""
@@ -131,7 +139,7 @@
       <div class="card text-white bg-info overflow-hidden">
         <div class="card-body">
           <div class="toll-free-box text-center">
-            <h4> <i class="mdi mdi-deskphone"></i> Telephone : 1-234-567-8901</h4>
+            <h4> <i class="mdi mdi-deskphone"></i>Telephone: {{form.get('mobile').value}}</h4>
           </div>
         </div> <!-- end card-body-->
       </div> <!-- end card-->
