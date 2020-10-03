@@ -4,11 +4,11 @@ import {CommonModule} from '@angular/common';
 
 
 @NgModule({
-    declarations: [
-        PreloaderComponent
-    ],
     imports: [
         CommonModule
+    ],
+    declarations: [
+        PreloaderComponent
     ],
     exports: [
         PreloaderComponent

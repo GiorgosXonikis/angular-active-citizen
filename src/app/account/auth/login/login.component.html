@@ -21,9 +21,7 @@
 
             <form class="needs-validation" name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
 
-              <app-ui-preloaders></app-ui-preloaders>
-
-              <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
+              <app-ui-preloader></app-ui-preloader>
 
               <div class="form-group mb-3">
                 <label for="email">Email</label>
@@ -34,7 +32,7 @@
 
                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                   <div *ngIf="f.email.errors.required">Email is required</div>
-                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                  <div *ngIf="f.email.errors['email']">Email must be a valid email address</div>
                 </div>
               </div>
 
