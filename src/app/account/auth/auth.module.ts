@@ -7,6 +7,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { PasswordResetComponent } from './passwordreset/password-reset.component';
 import {LoginComponent} from './login/login.component';
+import {PreLoaderModule} from '../../shared/components/preloader/preloader.module';
 
 @NgModule({
   declarations: [
@@ -14,13 +15,14 @@ import {LoginComponent} from './login/login.component';
     SignUpComponent,
     ConfirmComponent,
     PasswordResetComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgbAlertModule,
-    // WidgetModule,
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgbAlertModule,
+        // WidgetModule,
 
-    AuthRoutingModule
-  ]
+        AuthRoutingModule,
+        PreLoaderModule
+    ]
 })
 export class AuthModule { }

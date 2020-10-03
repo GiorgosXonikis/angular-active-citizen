@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../../core/services/auth.service';
+import {PreloaderService} from '../../../core/services/preloader.service';
 
 @Component({
     selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
                 private router: Router,
-                private authService: AuthService) {
+                private authService: AuthService,
+                private preloaderService: PreloaderService) {
     }
 
     public loginForm = this.formBuilder.group({
@@ -40,6 +42,8 @@ export class LoginComponent implements OnInit {
         if (this.loginForm.invalid) {
             return;
         }
+
+        this.preloaderService.show();
 
         this.authService.login(this.f.email.value, this.f.password.value).subscribe();
     }
