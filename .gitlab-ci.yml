@@ -27,6 +27,7 @@ test:
   stage: test
   script:
     - echo $AWS_ACCESS_KEY_ID
+    - echo $S3_BUCKET
 
 #deploy:
 #  stage: deploy
