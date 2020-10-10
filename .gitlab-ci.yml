@@ -1,10 +1,45 @@
 image: alpine
 
-stages:
-  - test
+variables:
+  S3_BUCKET: "active-citizen-deployment"
 
-test:
-  stage: test
+stages:
+  - build
+#  - test
+  - deploy
+
+build:
+  stage: build
   script:
-    - touch $AWS_ACCESS_KEY_ID.txt
-    - ls
+    - apk add --update nodejs nodejs-npm
+    - npm i -g @angular/cli
+    - ng --version
+    - npm install --save-dev @angular-devkit/build-angular
+    - ng build
+  artifacts:
+    paths:
+      - ./dist
+
+#test:
+#  stage: test
+#  script:
+#    - apk add --update nodejs nodejs-npm
+#    - npm i -g @angular/cli
+#    - ng --version
+#    - npm install --save-dev @angular-devkit/build-angular
+#    - npm install
+#    - ng test --browsers ChromeHeadlessNoSandbox --watch=false
+
+deploy:
+  stage: deploy
+  image:
+    name: banst/awscli
+    entrypoint: [""]
+  script:
+    - aws configure set aws_access_key_id "AKIAWBOPPOIU3BVN6RUQ"
+    - aws configure set aws_secret_access_key "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"
+    - aws configure set region us-east-1
+    - aws configure list
+    - aws s3 cp dist s3://$S3_BUCKET/ --recursive
+
+
