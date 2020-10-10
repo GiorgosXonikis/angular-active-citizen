@@ -7,6 +7,7 @@ build:
   stage: build
   image: alpine
   script:
+    - npm install
     - ng build
   artifacts:
     paths:
