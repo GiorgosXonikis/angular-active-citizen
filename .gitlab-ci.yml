@@ -9,7 +9,7 @@ build:
   script:
     - apk add --update nodejs nodejs-npm
     - ls
-    - npm install
+    - npm i -g @angular/cli
     - ng build
   artifacts:
     paths:
