@@ -53,7 +53,6 @@
     "zone.js": "~0.10.2",
     "fancy-log": "latest",
     "del": "latest",
-    "del": "latest",
     "gulp-zip": "latest"
   },
   "devDependencies": {
