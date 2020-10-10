@@ -1,0 +1,32 @@
+stages:
+  - build
+#  - test
+#  - deploy
+
+build:
+  stage: build
+  image: angular/ngcontainer
+  script:
+    - ng build
+  artifacts:
+    paths:
+      - ./dist
+
+#smoke test:
+#  stage: test
+#  image: openjdk:12-alpine
+#  before_script:
+#    - apk --no-cache add curl
+#  script:
+#    - java -jar ./build/libs/cars-api.jar &
+#    - sleep 30
+#    - curl http://localhost:5000/actuator/health | grep "UP"
+#
+#deploy:
+#  stage: deploy
+#  image:
+#    name: banst/awscli
+#    entrypoint: [""]
+#  script:
+#    - aws configure set region us-east-1
+#    - aws s3 cp ./build/libs/cars-api.jar s3://$S3_BUCKET/cars-api.jar
