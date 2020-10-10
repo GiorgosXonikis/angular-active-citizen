@@ -26,7 +26,7 @@ stages:
 test:
   stage: test
   script:
-    - echo "AWS_ACCESS_KEY_ID"
+    - echo $AWS_ACCESS_KEY_ID
 
 #deploy:
 #  stage: deploy
