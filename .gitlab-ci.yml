@@ -8,7 +8,6 @@ build:
   image: alpine
   script:
     - apk add --update nodejs nodejs-npm
-    - ls
     - npm i -g @angular/cli
     - ng --version
     - npm install --save-dev @angular-devkit/build-angular
