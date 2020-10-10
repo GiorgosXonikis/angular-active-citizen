@@ -5,6 +5,7 @@ import {IUser} from '../models/interfaces';
 import {catchError, finalize, tap} from 'rxjs/operators';
 import {EMPTY, Observable} from 'rxjs';
 import {Router} from '@angular/router';
+import {PreloaderService} from './preloader.service';
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +16,7 @@ export class AuthService {
 
     constructor(private http: HttpClient,
                 private router: Router,
+                private preloaderService: PreloaderService,
                 private cookieService: CookieService) {
     }
 
@@ -23,15 +25,16 @@ export class AuthService {
      * @param username of user
      * @param password password of user
      */
-    public login(username: string, password: string): Observable<any> {
+    public login(email: string, password: string): Observable<any> {
         const URL = 'http://localhost:8000/api/token/';
-        return this.http.post<any>(URL, {username, password})
+        return this.http.post<any>(URL, {email, password})
             .pipe(
                 tap(response => {
                     this._token = response.access;
                     this.getUserProfile(this._token).subscribe();
                 }),
                 catchError(() => {
+                    this.preloaderService.hide();
                     alert('Incorrect Credentials');
                     return EMPTY;
                 })

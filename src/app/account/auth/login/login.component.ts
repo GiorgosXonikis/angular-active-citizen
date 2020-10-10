@@ -11,7 +11,7 @@ import {PreloaderService} from '../../../core/services/preloader.service';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-    submitted = false;
+    renderValidations = false;
     returnUrl: string;
 
     constructor(private formBuilder: FormBuilder,
@@ -22,12 +22,12 @@ export class LoginComponent implements OnInit {
     }
 
     public loginForm = this.formBuilder.group({
-        email: ['gxo@gmail.com', [Validators.required, Validators.email]],
+        // email: ['gxo@gmail.com', [Validators.required, Validators.email]],
+        email: ['gxo', [Validators.required]],
         password: ['gxo', Validators.required],
     });
 
     ngOnInit(): any {
-        this.preloaderService.show();
         // reset login status
         this.authService.logout();
 
@@ -36,9 +36,8 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(): void {
-        this.submitted = true;
-        // stop here if form is invalid
         if (this.loginForm.invalid) {
+            this.renderValidations = true;
             return;
         }
 
