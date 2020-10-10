@@ -5,7 +5,7 @@ stages:
 
 build:
   stage: build
-  image: angular/ngcontainer
+  image: alpine
   script:
     - ng build
   artifacts:
