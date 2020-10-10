@@ -1,5 +1,8 @@
 image: alpine
 
+variables:
+  S3_BUCKET: "active-citizen-deployment"
+
 stages:
   - build
 #  - test
@@ -33,7 +36,8 @@ deploy:
     name: banst/awscli
     entrypoint: [""]
   script:
+    - ls
     - aws configure set region us-east-1
-    - aws s3 cp ./dist s3://active-citizen-deployment/dist
+    - aws s3 cp dist s3://$S3_BUCKET/
 
 
