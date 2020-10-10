@@ -38,6 +38,6 @@ deploy:
   script:
     - ls
     - aws configure set region us-east-1
-    - aws s3 cp dist s3://$S3_BUCKET/
+    - aws s3 cp dist s3://$S3_BUCKET/ --recursive
 
 
