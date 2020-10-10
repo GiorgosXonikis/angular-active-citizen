@@ -2,8 +2,8 @@ image: alpine
 
 stages:
   - build
-  - test
-#  - deploy
+#  - test
+  - deploy
 
 build:
   stage: build
@@ -17,21 +17,23 @@ build:
     paths:
       - ./dist
 
-test:
-  stage: test
-  script:
-    - apk add --update nodejs nodejs-npm
-    - npm i -g @angular/cli
-    - ng --version
-    - npm install --save-dev @angular-devkit/build-angular
-    - npm install
-    - ng test --browsers ChromeHeadlessNoSandbox --watch=false
-
-#deploy:
-#  stage: deploy
-#  image:
-#    name: banst/awscli
-#    entrypoint: [""]
+#test:
+#  stage: test
 #  script:
-#    - aws configure set region us-east-1
-#    - aws s3 cp ./build/libs/cars-api.jar s3://$S3_BUCKET/cars-api.jar
+#    - apk add --update nodejs nodejs-npm
+#    - npm i -g @angular/cli
+#    - ng --version
+#    - npm install --save-dev @angular-devkit/build-angular
+#    - npm install
+#    - ng test --browsers ChromeHeadlessNoSandbox --watch=false
+
+deploy:
+  stage: deploy
+  image:
+    name: banst/awscli
+    entrypoint: [""]
+  script:
+    - aws configure set region us-east-1
+    - aws s3 cp ./dist s3://$S3_BUCKET/dist
+
+
