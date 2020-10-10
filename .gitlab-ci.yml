@@ -1,3 +1,5 @@
+image: alpine
+
 stages:
   - build
   - test
@@ -5,7 +7,6 @@ stages:
 
 build:
   stage: build
-  image: alpine
   script:
     - apk add --update nodejs nodejs-npm
     - npm i -g @angular/cli
@@ -18,14 +19,13 @@ build:
 
 test:
   stage: test
-  image: alpine
   script:
     - apk add --update nodejs nodejs-npm
     - npm i -g @angular/cli
     - ng --version
     - npm install --save-dev @angular-devkit/build-angular
     - npm install
-    - ng test
+    - ng test --browsers ChromeHeadlessNoSandbox --watch=false
 
 #deploy:
 #  stage: deploy
