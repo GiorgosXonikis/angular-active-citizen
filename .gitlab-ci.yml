@@ -34,6 +34,6 @@ deploy:
     entrypoint: [""]
   script:
     - aws configure set region us-east-1
-    - aws s3 cp ./dist s3://$S3_BUCKET/dist
+    - aws s3 cp ./dist s3://active-citizen-deployment/dist
 
 
