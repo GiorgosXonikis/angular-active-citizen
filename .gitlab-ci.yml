@@ -1,44 +1,43 @@
 image: alpine
 
-variables:
-  S3_BUCKET: "active-citizen-deployment"
-
-#stages:
-#  - build
-#  - test
-#  - deploy
-
 stages:
-  - test
+  - build
+#  - test
+  - deploy
 
-#build:
-#  stage: build
+build:
+  stage: build
+  script:
+    - apk add --update nodejs nodejs-npm
+    - npm i -g @angular/cli
+    - ng --version
+    - npm install --save-dev @angular-devkit/build-angular
+    - ng build
+  artifacts:
+    paths:
+      - ./dist
+
+#test:
+#  stage: test
 #  script:
 #    - apk add --update nodejs nodejs-npm
 #    - npm i -g @angular/cli
 #    - ng --version
 #    - npm install --save-dev @angular-devkit/build-angular
-#    - ng build
-#  artifacts:
-#    paths:
-#      - ./dist
+#    - npm install
+#    - ng test --browsers ChromeHeadlessNoSandbox --watch=false
 
-test:
-  stage: test
+deploy:
+  stage: deploy
+  image:
+    name: banst/awscli
+    entrypoint: [""]
   script:
-    - echo $AWS_ACCESS_KEY_ID
-    - echo $S3_BUCKET
-
-#deploy:
-#  stage: deploy
-#  image:
-#    name: banst/awscli
-#    entrypoint: [""]
-#  script:
-#    - aws configure set aws_access_key_id AWS_ACCESS_KEY_ID
-#    - aws configure set aws_secret_access_key AWS_SECRET_ACCESS_KEY
-#    - aws configure set region us-east-1
-#    - aws configure list
-#    - aws s3 cp dist s3://$S3_BUCKET/ --recursive
+    - $ aws s3 rm s3://$S3_BUCKET --recursive
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws configure set region us-east-1
+    - aws configure list
+    - aws s3 cp dist s3://$S3_BUCKET/ --recursive
 
 
