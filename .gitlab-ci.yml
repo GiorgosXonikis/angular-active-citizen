@@ -1,6 +1,6 @@
 stages:
   - build
-#  - test
+  - test
 #  - deploy
 
 build:
@@ -16,16 +16,17 @@ build:
     paths:
       - ./dist
 
-#smoke test:
-#  stage: test
-#  image: openjdk:12-alpine
-#  before_script:
-#    - apk --no-cache add curl
-#  script:
-#    - java -jar ./build/libs/cars-api.jar &
-#    - sleep 30
-#    - curl http://localhost:5000/actuator/health | grep "UP"
-#
+test:
+  stage: test
+  image: alpine
+  script:
+    - apk add --update nodejs nodejs-npm
+    - npm i -g @angular/cli
+    - ng --version
+    - npm install --save-dev @angular-devkit/build-angular
+    - npm install
+    - ng test
+
 #deploy:
 #  stage: deploy
 #  image:
