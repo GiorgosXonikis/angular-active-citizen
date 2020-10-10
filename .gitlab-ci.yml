@@ -7,7 +7,7 @@ build:
   stage: build
   image: alpine
   script:
-    - npm install npm@latest -g
+    - apk add --update nodejs nodejs-npm
     - ls
     - npm install
     - ng build
