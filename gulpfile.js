@@ -8,7 +8,7 @@ const exec = require('child_process').exec;
 const paths = {
     prod_build: 'production_build',
     angular_src: 'src',
-    angular_dist: 'dist/frontend',
+    angular_dist: 'dist',
     zipped_file_name: 'productionBuild.zip'
 };
 
