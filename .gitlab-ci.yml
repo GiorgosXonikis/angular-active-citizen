@@ -10,6 +10,7 @@ build:
     - apk add --update nodejs nodejs-npm
     - ls
     - npm i -g @angular/cli
+    - ng --version
     - ng build
   artifacts:
     paths:
