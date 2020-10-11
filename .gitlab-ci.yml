@@ -1,8 +1,7 @@
 image: alpine
 
 variables:
-  APP_NAME: active-citizen-frontend
-  ARTIFACT_NAME: dist/main.js
+  APP_NAME: active-citizen
 
 stages:
   #  - build
@@ -16,7 +15,7 @@ stages:
 #    - npm i -g @angular/cli
 #    - ng --version
 #    - npm install --save-dev @angular-devkit/build-angular
-#    - ng build
+#    - ng build --prod
 #  artifacts:
 #    paths:
 #      - ./dist
