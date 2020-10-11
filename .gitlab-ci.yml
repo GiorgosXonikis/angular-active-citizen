@@ -2,6 +2,8 @@ image: alpine
 
 variables:
   APP_NAME: active-citizen
+  ENV_NAME: active-citizen-dev
+  BUCKET_NAME: active-citizen-bucket
 
 stages:
   #  - build
@@ -41,12 +43,9 @@ deploy:
     - aws configure set region us-east-1
     - aws configure list
     - aws s3 rm s3://$S3_BUCKET/active-citizen --recursive
-    - pip install awsebcli=="3.14.8"
     - ls
-    - eb use active-citizen-dev
-    - eb open
-#    - aws s3 cp dist s3://$S3_BUCKET/dist --recursive
-#    - aws elasticbeanstalk create-application-version --application-name $APP_NAME --version-label "version-1" --source-bundle S3Bucket=$S3_BUCKET,S3Key=$ARTIFACT_NAME
-#    - aws elasticbeanstalk update-environment --application-name $APP_NAME --environment-name "production" --version-label "version-1"
+    - aws s3 cp ./ s3://$S3_BUCKET/$BUCKET_NAME --recursive
+    - aws elasticbeanstalk create-application-version --application-name $APP_NAME --source-bundle S3Bucket=$S3_BUCKET,S3Key=$BUCKET_NAME
+    - aws elasticbeanstalk update-environment --application-name $APP_NAME --environment-name $ENV_NAME
 
 
