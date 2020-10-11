@@ -3,7 +3,7 @@ image: alpine
 variables:
   APP_NAME: active-citizen
   ENV_NAME: active-citizen-dev
-  BUCKET_NAME: active-citizen-bucket
+  BUCKET_NAME: active-citizen-bucket.zip
 
 stages:
   #  - build
