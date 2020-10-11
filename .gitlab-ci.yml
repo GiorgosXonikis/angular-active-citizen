@@ -45,7 +45,7 @@ deploy:
     - aws s3 rm s3://$S3_BUCKET/active-citizen --recursive
     - ls
     - aws s3 cp ./ s3://$S3_BUCKET/$BUCKET_NAME --recursive
-    - aws elasticbeanstalk create-application-version --application-name $APP_NAME --source-bundle S3Bucket=$S3_BUCKET,S3Key=$BUCKET_NAME
-    - aws elasticbeanstalk update-environment --application-name $APP_NAME --environment-name $ENV_NAME
+#    - aws elasticbeanstalk create-application-version --application-name $APP_NAME --source-bundle S3Bucket=$S3_BUCKET,S3Key=$BUCKET_NAME
+    - aws elasticbeanstalk update-environment --application-name $APP_NAME --environment-name $ENV_NAME --version-label "test_version_label"
 
 
