@@ -5,8 +5,8 @@ variables:
   ARTIFACT_NAME: dist/main.js
 
 stages:
-#  - build
-#  - test
+  #  - build
+  #  - test
   - deploy
 
 #build:
@@ -42,8 +42,9 @@ deploy:
     - aws configure set region us-east-1
     - aws configure list
     - aws s3 rm s3://$S3_BUCKET/active-citizen --recursive
-    - pip install awsebcli
+    - pip install awsebcli=="3.14.8"
     - ls
+    - eb open
 #    - aws s3 cp dist s3://$S3_BUCKET/dist --recursive
 #    - aws elasticbeanstalk create-application-version --application-name $APP_NAME --version-label "version-1" --source-bundle S3Bucket=$S3_BUCKET,S3Key=$ARTIFACT_NAME
 #    - aws elasticbeanstalk update-environment --application-name $APP_NAME --environment-name "production" --version-label "version-1"
