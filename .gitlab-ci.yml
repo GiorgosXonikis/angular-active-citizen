@@ -45,8 +45,8 @@ deploy:
     - git config --global user.email "georgios.xonikis@gmail.com"
     - git config --global user.name "gxo"
     - git init
-    - git add .
-    - git commit -m "Elastic Beanstalk application"
+#    - git add .
+#    - git commit -m "Elastic Beanstalk application"
     - pip install awsebcli=="3.14.8"
     - eb deploy
 #    - aws s3 rm s3://$S3_BUCKET/active-citizen --recursive
