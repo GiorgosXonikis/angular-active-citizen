@@ -48,7 +48,7 @@ deploy:
 #    - git add .
 #    - git commit -m "Elastic Beanstalk application"
     - pip install awsebcli=="3.14.8"
-    - eb deploy
+    - eb deploy active-citizen-dev
 #    - aws s3 rm s3://$S3_BUCKET/active-citizen --recursive
 #    - ls
 #    - aws s3 cp ./ s3://$S3_BUCKET/$BUCKET_NAME --recursive
