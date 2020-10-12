@@ -42,7 +42,7 @@ deploy:
     - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
     - aws configure set region us-east-1
     - aws configure list
-    - pip install awsebcli
+    - pip install awsebcli=="3.14.8"
     - eb list
     - eb deploy
 #    - aws s3 rm s3://$S3_BUCKET/active-citizen --recursive
