@@ -38,23 +38,16 @@ deploy:
     name: banst/awscli
     entrypoint: [""]
   script:
-    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-    - aws configure set region us-east-1
-    - apk add git
-    - git config --global user.email "georgios.xonikis@gmail.com"
-    - git config --global user.name "gxo"
-    - git init
-    - git checkout app-containerized
-#    - git add .
-#    - git commit -m "Elastic Beanstalk application"
-    - pip install awsebcli=="3.14.8"
-    - eb deploy active-citizen-dev
-#    - aws s3 rm s3://$S3_BUCKET/active-citizen --recursive
-#    - ls
-#    - aws s3 cp ./ s3://$S3_BUCKET/$BUCKET_NAME --recursive
-#    - echo $BUCKET_NAME
-#    - aws elasticbeanstalk create-application-version --application-name $APP_NAME --source-bundle S3Bucket=$S3_BUCKET,S3Key=$BUCKET_NAME --version-label $CI_PIPELINE_ID
-#    - aws elasticbeanstalk update-environment --application-name $APP_NAME --environment-name $ENV_NAME --version-label $CI_PIPELINE_ID
+    - echo $CI_COMMIT_BRANCH
+#    - apk add git
+#    - git config --global user.email "georgios.xonikis@gmail.com"
+#    - git config --global user.name "gxo"
+#    - git init
+#    - git checkout app-containerized
+#    - pip install awsebcli=="3.14.8"
+#    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+#    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+#    - aws configure set region us-east-1
+#    - eb deploy $ENV_NAME
 
 
