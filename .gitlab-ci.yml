@@ -42,6 +42,8 @@ deploy:
     - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
     - aws configure set region us-east-1
     - apk add git
+    - git config --global user.email "georgios.xonikis@gmail.com"
+    - git config --global user.name "gxo"
     - git init
     - git add .
     - git commit -m "Elastic Beanstalk application"
