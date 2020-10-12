@@ -43,6 +43,7 @@ deploy:
     - printf "[eb-cli]\naws_access_key_id = %s\naws_secret_access_key = %s\n" "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
     - touch ~/.aws/config
     - printf "[profile eb-cli]\nregion=us-east-1\noutput=json" >> ~/.aws/config
+    - pip install awsebcli=="3.14.8"
     - eb deploy active-citizen-dev
 
 #    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
