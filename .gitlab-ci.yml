@@ -38,16 +38,15 @@ deploy:
     name: banst/awscli
     entrypoint: [""]
   script:
-    - echo $CI_COMMIT_BRANCH
-#    - apk add git
-#    - git config --global user.email "georgios.xonikis@gmail.com"
-#    - git config --global user.name "gxo"
-#    - git init
-#    - git checkout app-containerized
-#    - pip install awsebcli=="3.14.8"
-#    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-#    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-#    - aws configure set region us-east-1
-#    - eb deploy $ENV_NAME
+    - apk add git
+    - git config --global user.email "georgios.xonikis@gmail.com"
+    - git config --global user.name "gxo"
+    - git init
+    - git checkout $CI_COMMIT_BRANCH
+    - pip install awsebcli=="3.14.8"
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws configure set region us-east-1
+    - eb deploy $ENV_NAME
 
 
