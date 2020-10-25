@@ -1,0 +1,52 @@
+image: alpine
+
+variables:
+  APP_NAME: active-citizen
+  ENV_NAME: active-citizen-dev
+
+stages:
+  #  - build
+  #  - test
+  - deploy
+
+#build:
+#  stage: build
+#  script:
+#    - apk add --update nodejs nodejs-npm
+#    - npm i -g @angular/cli
+#    - ng --version
+#    - npm install --save-dev @angular-devkit/build-angular
+#    - ng build --prod
+#  artifacts:
+#    paths:
+#      - ./dist
+
+#test:
+#  stage: test
+#  script:
+#    - apk add --update nodejs nodejs-npm
+#    - npm i -g @angular/cli
+#    - ng --version
+#    - npm install --save-dev @angular-devkit/build-angular
+#    - npm install
+#    - ng test --browsers ChromeHeadlessNoSandbox --watch=false
+
+deploy:
+  stage: deploy
+  image:
+    name: banst/awscli
+    entrypoint: [""]
+  script:
+    - apk add git
+    - git config --global user.email "georgios.xonikis@gmail.com"
+    - git config --global user.name "gxo"
+    - git init
+    - git checkout $CI_COMMIT_BRANCH
+    - pip install awsebcli=="3.14.8"
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws configure set region us-east-1
+    - aws s3 rm s3://$S3_BUCKET/$APP_NAME --recursive
+    - eb deploy $ENV_NAME
+
+

@@ -36,6 +36,7 @@
     "chart.js": "^2.9.3",
     "core-js": "^3.6.5",
     "frappe-gantt": "^0.5.0",
+    "gulp": "^4.0.2",
     "metismenujs": "^1.1.0",
     "ng-apexcharts": "^1.1.0",
     "ng-click-outside": "^6.0.0",
@@ -45,10 +46,14 @@
     "ngx-drag-drop": "^2.0.0",
     "ngx-dropzone": "^2.1.2",
     "ngx-mask": "^9.1.2",
+    "npx": "^10.2.2",
     "rxjs": "^6.5.5",
     "simplebar-angular": "^3.0.0-beta.4",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "fancy-log": "latest",
+    "del": "latest",
+    "gulp-zip": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.2",
