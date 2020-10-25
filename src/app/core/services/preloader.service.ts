@@ -10,12 +10,11 @@ export class PreloaderService {
     public preloader$ = this.preloaderSubject.asObservable();
 
     public show() {
-        console.log('Show');
+        console.log('SHOW');
         this.preloaderSubject.next(true);
     }
 
     public hide() {
-        console.log('Hide');
         this.preloaderSubject.next(false);
     }
 

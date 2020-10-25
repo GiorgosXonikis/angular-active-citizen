@@ -22,8 +22,7 @@ export class LoginComponent implements OnInit {
     }
 
     public loginForm = this.formBuilder.group({
-        // email: ['gxo@gmail.com', [Validators.required, Validators.email]],
-        email: ['gxo', [Validators.required]],
+        email: ['gxo@gmail.com', [Validators.required, Validators.email]],
         password: ['gxo', Validators.required],
     });
 
@@ -46,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.authService.login(this.f.email.value, this.f.password.value).subscribe();
     }
 
-    get f(): any {
+    public get f(): any {
         return this.loginForm.controls;
     }
 

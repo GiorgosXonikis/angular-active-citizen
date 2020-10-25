@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../../core/services/auth.service';
-import {IUser} from '../../../core/models/interfaces';
-import {FormBuilder, Validators} from '@angular/forms';
+import {AuthService} from '../../core/services/auth.service';
+import {FormBuilder} from '@angular/forms';
+import {User} from '../../shared/models/auth';
 
 @Component({
     selector: 'app-profile',
@@ -10,7 +10,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
 
-    public user: IUser;
+    public user: User;
 
     public form = this.formBuilder.group({
         bio: [{value: 'Lorem Ipsum', disabled: false}],

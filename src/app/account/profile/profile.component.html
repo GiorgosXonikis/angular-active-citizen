@@ -1,0 +1,156 @@
+<!-- NavBar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a class="navbar-brand" href="#">Profile</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Log out</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+<!-- Profile -->
+<div class="container-fluid">
+    <div class="row justify-content-center py-2">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body profile-user-box">
+
+                  <!-- Avatar -->
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="media">
+                              <span class="float-left m-2 mr-4">
+                                <img src="assets/images/users/avatar-2.jpg"
+                                     style="height: 100px;" alt="" class="rounded-circle img-thumbnail">
+                              </span>
+
+                                <div class="media-body">
+                                    <h4 class="mt-1 mb-1">{{user.firstName}} {{user.lastName}}</h4>
+                                    <p class="font-13 text-muted-50"> {{user.username}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                      <!-- Update Profile Button -->
+                        <div class="col-sm-4">
+                            <div class="text-center mt-sm-0 mt-3 text-sm-right">
+                                <button type="button" class="btn btn-light" (click)="updateProfile()"
+                                        [disabled]="form.pristine">
+                                    <i class="mdi mdi-account-edit mr-1"></i> Update Profile
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <!-- Personal-Information -->
+    <div class="row justify-content-center">
+        <div class="col-md-6" [formGroup]="form">
+            <div class="card">
+                <div class="card-body">
+
+                    <!-- Bio -->
+                    <h4 class="header-title mt-0 mb-3">Bio</h4>
+                    <input type="text" formControlName="bio" class="text-muted font-13 no-border"/>
+
+                    <hr/>
+
+                    <div class="text-left">
+
+                        <!-- Name -->
+                        <p class="text-muted"><strong>Name:</strong>
+                            <span class="ml-2">
+                              <input type="text" formControlName="firstName" class="text-muted font-13 no-border"/>
+                            </span>
+                        </p>
+
+                        <!-- Surname -->
+                        <p class="text-muted"><strong>Surname:</strong>
+                            <span class="ml-2">
+                              <input type="text" formControlName="surname" class="text-muted font-13 no-border"/>
+                            </span>
+                        </p>
+
+                        <!-- Email -->
+                        <p class="text-muted"><strong>Email:</strong>
+                            <span class="ml-2">
+                              <input type="text" formControlName="email" class="text-muted font-13 no-border"/>
+                            </span>
+                        </p>
+
+                        <!-- Location -->
+                        <p class="text-muted"><strong>Location:</strong>
+                            <span class="ml-2">
+                              <input type="text" formControlName="location" class="text-muted font-13 no-border"/>
+                            </span>
+                        </p>
+
+                        <!-- Languages -->
+                        <p class="text-muted"><strong>Languages :</strong>
+                            <span class="ml-2">
+                              <input type="text" formControlName="languages" class="text-muted font-13 no-border"/>
+                            </span>
+                        </p>
+
+                        <!-- Social Media -->
+                        <p class="text-muted mb-0"><strong>Social Media :</strong>
+                            <a class="d-inline-block ml-2 text-muted" title="" data-placement="top"
+                               data-toggle="tooltip" href=""
+                               data-original-title="Facebook">
+                                <i class="mdi mdi-facebook"></i>
+                            </a>
+                            <a class="d-inline-block ml-2 text-muted" title="" data-placement="top"
+                               data-toggle="tooltip" href=""
+                               data-original-title="Twitter">
+                                <i class="mdi mdi-twitter"></i>
+                            </a>
+                            <a class="d-inline-block ml-2 text-muted" title="" data-placement="top"
+                               data-toggle="tooltip" href=""
+                               data-original-title="Skype">
+                                <i class="mdi mdi-skype"></i>
+                            </a>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Telephone number box-->
+            <div class="card text-white bg-info overflow-hidden">
+                <div class="card-body">
+                    <div class="toll-free-box text-center">
+                        <h4>
+                            <i class="mdi mdi-deskphone"></i>Telephone: {{form.get('mobile').value}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
