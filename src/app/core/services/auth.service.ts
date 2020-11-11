@@ -24,7 +24,7 @@ export class AuthService {
     }
 
     public login(email: string, password: string): Observable<any> {
-        const URL = 'http://localhost:8000/api/token/';
+        const URL = 'http://localhost:8000/auth/login/';
         return this.http.post<any>(URL, {email, password})
             .pipe(
                 tap(response => {
