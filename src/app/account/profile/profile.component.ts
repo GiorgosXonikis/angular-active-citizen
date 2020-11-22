@@ -13,24 +13,37 @@ export class ProfileComponent implements OnInit {
     public user: User;
 
     public form = this.formBuilder.group({
-        bio: [{value: 'Lorem Ipsum', disabled: false}],
-        firstName: [{value: 'George', disabled: false}],
-        surname: [{value: 'Xonikis', disabled: false}],
-        mobile: [{value: '+41 12345678', disabled: false}],
-        email: [{value: 'george@gmail.com', disabled: false}],
-        location: [{value: 'Zurich', disabled: false}],
-        languages: [{value: 'English, Greek', disabled: false}],
+        bio: [{value: null, disabled: false}],
+        firstName: [{value: null, disabled: false}],
+        lastName: [{value: null, disabled: false}],
+        phone: [{value: null, disabled: false}],
+        email: [{value: null, disabled: false}],
+        location: [{value: null, disabled: false}],
+        languages: [{value: null, disabled: false}],
     });
 
     constructor(private authService: AuthService, private formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
-        this.user = this.authService.user;
+        this.user = this.authService.authUser.user;
+        this.patchFormValues();
     }
 
     public updateProfile() {
         console.log(this.form.value);
+    }
+
+    private patchFormValues() {
+        this.form.patchValue({
+            bio: this.user.profile.bio,
+            firstName: this.user.firstName,
+            lastName: this.user.lastName,
+            phone: this.user.profile.phone,
+            email: this.user.email,
+            location: this.user.profile.location,
+            languages: this.user.profile.languages,
+        })
     }
 
 }

@@ -17,18 +17,17 @@ export class LoginComponent implements OnInit {
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
                 private router: Router,
-                private authService: AuthService,
-                private preloaderService: PreloaderService) {
+                private authService: AuthService) {
     }
 
     public loginForm = this.formBuilder.group({
-        email: ['gxo@gmail.com', [Validators.required, Validators.email]],
-        password: ['gxo', Validators.required],
+        email: ['admin@gmail.com', [Validators.required, Validators.email]],
+        password: ['admin', Validators.required],
     });
 
     ngOnInit(): any {
         // reset login status
-        this.authService.logout();
+        // this.authService.logout();
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -40,9 +39,10 @@ export class LoginComponent implements OnInit {
             return;
         }
 
-        this.preloaderService.show();
-
-        this.authService.login(this.f.email.value, this.f.password.value).subscribe();
+        this.authService.login(this.f.email.value, this.f.password.value)
+            .subscribe(() => {
+                this.router.navigateByUrl('/profile');
+            });
     }
 
     public get f(): any {
