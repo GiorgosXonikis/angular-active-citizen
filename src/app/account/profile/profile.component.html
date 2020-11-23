@@ -50,7 +50,8 @@
                       <!-- Update Profile Button -->
                         <div class="col-sm-4">
                             <div class="text-center mt-sm-0 mt-3 text-sm-right">
-                                <button type="button" class="btn btn-light" (click)="updateProfile()"
+                                <button type="button" class="btn btn-light"
+                                        (click)="updateProfile()"
                                         [disabled]="form.pristine">
                                     <i class="mdi mdi-account-edit mr-1"></i> Update Profile
                                 </button>
@@ -85,9 +86,9 @@
                         </p>
 
                         <!-- Surname -->
-                        <p class="text-muted"><strong>Surname:</strong>
+                        <p class="text-muted"><strong>Last Name:</strong>
                             <span class="ml-2">
-                              <input type="text" formControlName="surname" class="text-muted font-13 no-border"/>
+                              <input type="text" formControlName="lastName" class="text-muted font-13 no-border"/>
                             </span>
                         </p>
 
@@ -140,7 +141,7 @@
                 <div class="card-body">
                     <div class="toll-free-box text-center">
                         <h4>
-                            <i class="mdi mdi-deskphone"></i>Telephone: {{form.get('mobile').value}}
+                            <i class="mdi mdi-deskphone"></i>Telephone: {{form.get('phone').value}}
                         </h4>
                     </div>
                 </div>

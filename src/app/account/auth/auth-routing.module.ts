@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SignUpComponent } from './signup/sign-up.component';
-import { ConfirmComponent } from './confirm/confirm.component';
-import { PasswordResetComponent } from './passwordreset/password-reset.component';
 import {LoginComponent} from './login/login.component';
+import {SignUpComponent} from './sign-up/sign-up.component';
+import {PasswordResetComponent} from './password-reset/password-reset.component';
+import {ConfirmSignUpComponent} from './sign-up/confirm/confirm-sign-up.component';
 
 const routes: Routes = [
     {
@@ -15,8 +15,8 @@ const routes: Routes = [
         component: SignUpComponent
     },
     {
-        path: 'confirm',
-        component: ConfirmComponent
+        path: 'signup-confirm/:email/:validation-code',
+        component: ConfirmSignUpComponent
     },
     {
         path: 'reset-password',
