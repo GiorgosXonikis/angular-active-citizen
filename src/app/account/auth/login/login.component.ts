@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../../core/services/auth.service';
-import {PreloaderService} from '../../../core/services/preloader.service';
 
 @Component({
     selector: 'app-login',
@@ -21,8 +19,8 @@ export class LoginComponent implements OnInit {
     }
 
     public loginForm = this.formBuilder.group({
-        email: ['admin@gmail.com', [Validators.required, Validators.email]],
-        password: ['admin', Validators.required],
+        email: ['giorgos.xonikis@gmail.com', [Validators.required, Validators.email]],
+        password: ['gioxon1985', Validators.required],
     });
 
     ngOnInit(): any {

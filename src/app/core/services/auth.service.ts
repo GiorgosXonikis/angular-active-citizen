@@ -52,6 +52,19 @@ export class AuthService {
             );
     }
 
+    public confirmSignUp(email: string, validationCode): Observable<any> {
+        this.preloader.show();
+
+        const payload = {
+            'email': email,
+            'validation_code': validationCode
+        };
+        return this.http.post(`${this.mainUrl}/signup/confirm/`, payload)
+            .pipe(
+                finalize(() => this.preloader.hide())
+            );
+    }
+
     public getLoggedInUser(): AuthUser {
         if (!this.authUser) {
             this.authUser = JSON.parse(this.cookieService.getCookie('loggedInUser'));
