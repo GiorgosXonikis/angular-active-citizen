@@ -2,7 +2,7 @@ describe('Login page', () => {
 
     it('should contain correct welcome title', function () {
         cy.visit('/auth/login');
-        cy.contains('Welcome to Active Citizen');
+        cy.contains('Active Citizen');
     });
 
     it('should contain correct subtitle', function () {
@@ -19,20 +19,28 @@ describe('Login page', () => {
         // fill out a form field
         cy.get('input[name="email"]')
             .clear()
-            .type('gxo@gmail.com')
-            .get('input[name="password"]')
+            .type('admin@gmail.com');
+
+        cy.get('input[name="password"]')
             .clear()
-            .type('gxo');
+            .type('admin');
 
         cy.get('button[name=submit]').click().then(response => console.log(response));
+        cy.contains('Profile');
+    });
 
-        // cy.request('POST', 'http://localhost:8000/auth/login', { name: 'Jane' })
-        //     .then((response) => {
-        //         response.body is automatically serialized into JSON
-                // expect(response.body).to.have.property('name', 'Jane') // true
-            // })
-
+    it('should POST login', () => {
+        cy.request('POST', 'http://localhost:8000/auth/login/',
+            {
+                email: 'admin@gmail.com',
+                password: 'admin'
+            })
+            .then((response) => {
+                // response.body is automatically serialized into JSON
+                expect(response.body).to.have.have.keys(['access_token', 'refresh_token', 'user'])
+            })
     });
 
 
 });
+
