@@ -1,0 +1,8 @@
+# Enable the NodeSource repository
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+
+# Install node and npm
+sudo apt install nodejs
+
+# Install Angular
+npm install -g @angular/cli
