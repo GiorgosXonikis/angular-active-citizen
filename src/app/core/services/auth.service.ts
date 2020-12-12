@@ -46,7 +46,7 @@ export class AuthService {
             'password': password,
             'password_repeat': passwordRepeat
         };
-        return this.http.post(`${this.mainUrl}/signup/`, payload)
+        return this.http.post(`${this.mainUrl}/auth/signup/`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );
@@ -59,7 +59,7 @@ export class AuthService {
             'email': email,
             'validation_code': validationCode
         };
-        return this.http.post(`${this.mainUrl}/signup/confirm/`, payload)
+        return this.http.post(`${this.mainUrl}/auth/signup/confirm/`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );
