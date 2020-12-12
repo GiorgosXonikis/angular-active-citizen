@@ -10,6 +10,8 @@ import {AuthService} from '../../../../core/services/auth.service';
 export class ConfirmSignUpComponent implements OnInit {
 
     public confirmedSuccessfully: boolean = false;
+    public confirmationError = {errorCode: null, label: null};
+
     private _email: string;
     private _validationCode: string;
 
@@ -18,14 +20,29 @@ export class ConfirmSignUpComponent implements OnInit {
         this.activatedRoute.params.subscribe(
             _params => {
                 this._email = _params['email'];
-                this._validationCode = _params['validation-code']
+                this._validationCode = _params['validation-code'];
             }
-        )
+        );
     }
 
     ngOnInit() {
-        this.authService.confirmSignUp(this._email, this._validationCode)
-            .subscribe(() => this.confirmedSuccessfully = true)
+        this.confirmSignUp();
     }
 
+    private confirmSignUp() {
+        this.authService.confirmSignUp(this._email, this._validationCode)
+            .subscribe({
+                    next: () => this.confirmedSuccessfully = true,
+                    error: _error => {
+                        if (_error.error['active_error']) {
+                            this.confirmationError.errorCode = 'active_error';
+                            this.confirmationError.label = 'Account already activated';
+                        } else if (_error.error['code_error']) {
+                            this.confirmationError.errorCode = 'code_error';
+                            this.confirmationError.label = 'Activation code is not valid';
+                        }
+                    }
+                }
+            );
+    }
 }

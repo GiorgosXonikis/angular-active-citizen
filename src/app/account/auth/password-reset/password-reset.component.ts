@@ -1,56 +1,47 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
+import {AuthService} from '../../../core/services/auth.service';
+
+export enum PasswordResetStepEnum {
+    Form = 0,
+    Success = 1,
+    Error = 2
+}
 
 @Component({
-  selector: 'app-password-reset',
-  templateUrl: './password-reset.component.html',
-  styleUrls: ['./password-reset.component.scss']
+    selector: 'app-password-reset',
+    templateUrl: './password-reset.component.html',
+    styleUrls: ['./password-reset.component.scss']
 })
-export class PasswordResetComponent implements OnInit, AfterViewInit {
+export class PasswordResetComponent {
+    public renderValidations = false;
+    public passwordResetStep = PasswordResetStepEnum.Form;
+    public passwordResetStepEnum = PasswordResetStepEnum;
+    public error: string;
 
-  resetForm: FormGroup;
-  submitted = false;
-  error = '';
-  success = '';
-  loading = false;
-
-  constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router) { }
-
-  ngOnInit(): void {
-
-    this.resetForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+    public resetForm = this.formBuilder.group({
+        email: ['', [Validators.required, Validators.email]],
     });
-  }
 
-  ngAfterViewInit(): void {
-    // document.body.classList.add('authentication-bg');
-  }
-
-  // convenience getter for easy access to form fields
-  get f(): any { return this.resetForm.controls; }
-
-  /**
-   * On submit form
-   */
-  onSubmit(): void {
-    this.success = '';
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.resetForm.invalid) {
-      return;
+    constructor(private formBuilder: FormBuilder,
+                private authService: AuthService) {
     }
 
-    this.loading = true;
+    public get f(): any {
+        return this.resetForm.controls;
+    }
 
-    console.log(this.resetForm.value);
-    setTimeout(() => {
-      this.loading = false;
-      this.success = 'We have sent you an email containing a link to reset your password';
-    }, 1000);
-  }
+    public onSubmit(): void {
+        if (this.resetForm.invalid) {
+            this.renderValidations = true;
+            return;
+        }
+
+        this.authService.passwordReset(this.f.email.value)
+            .subscribe({
+                next: () => this.passwordResetStep = PasswordResetStepEnum.Success,
+                error: () => this.passwordResetStep = PasswordResetStepEnum.Error
+            });
+
+    }
 }

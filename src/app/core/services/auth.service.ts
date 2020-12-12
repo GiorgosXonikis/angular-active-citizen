@@ -38,6 +38,15 @@ export class AuthService {
             );
     }
 
+    public logout(): Observable<any> {
+        // remove user from local storage to log user out
+        this.cookieService.deleteCookie('loggedInUser');
+        this.authUser.user = null;
+
+        // delete user's token from db
+        return this.http.post(`${this.mainUrl}/auth/logout/`, {});
+    }
+
     public signUp(email: string, password: string, passwordRepeat: string): Observable<any> {
         this.preloader.show();
 
@@ -61,7 +70,20 @@ export class AuthService {
             'validation_code': validationCode
         };
 
-        return this.http.post(`${this.mainUrl}/auth/signup/confirm/`, payload)
+        return this.http.post(`${this.mainUrl}/signup/confirm/`, payload)
+            .pipe(
+                finalize(() => this.preloader.hide())
+            );
+    }
+
+    public passwordReset(email: string): Observable<any> {
+        this.preloader.show();
+
+        const payload = {
+            'email': email
+        };
+
+        return this.http.post(`${this.mainUrl}/auth/password/reset/`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );
@@ -84,15 +106,6 @@ export class AuthService {
 
     public set token(value: string) {
         this.authUser.accessToken = value;
-    }
-
-    /**
-     * Logout the user
-     */
-    public logout(): void {
-        // remove user from local storage to log user out
-        this.cookieService.deleteCookie('loggedInUser');
-        this.authUser.user = null;
     }
 
 

@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
-import {PasswordResetComponent} from './password-reset/password-reset.component';
 import {ConfirmSignUpComponent} from './sign-up/confirm/confirm-sign-up.component';
+import {PasswordResetComponent} from './password-reset/password-reset.component';
+import {ConfirmPasswordResetComponent} from './password-reset/confirm/confirm-password-reset.component';
 
 const routes: Routes = [
     {
@@ -19,8 +20,12 @@ const routes: Routes = [
         component: ConfirmSignUpComponent
     },
     {
-        path: 'reset-password',
+        path: 'password/reset',
         component: PasswordResetComponent
+    },
+    {
+        path: 'password/reset/confirm/:uid/:token',
+        component: ConfirmPasswordResetComponent
     },
 ];
 
@@ -28,4 +33,5 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {
+}

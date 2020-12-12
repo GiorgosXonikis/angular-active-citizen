@@ -34,6 +34,10 @@ export class ProfileComponent implements OnInit {
         console.log(this.form.value);
     }
 
+    public logout() {
+        this.authService.logout().subscribe();
+    }
+
     private patchFormValues() {
         this.form.patchValue({
             bio: this.user.profile.bio,

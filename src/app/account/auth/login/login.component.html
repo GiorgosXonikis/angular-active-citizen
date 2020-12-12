@@ -7,7 +7,6 @@
                     <!-- Logo -->
                     <div class="card-header pt-4 pb-4 text-center bg-primary">
                         <a routerLink="/">
-                            <!-- <span><img src="assets/images/logo.png" alt="" height="18"></span>-->
                             <h3 style="color: white">Active Citizen</h3>
                         </a>
                     </div>
@@ -20,11 +19,14 @@
                         </div>
 
                         <!-- Sign in Form -->
-                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"
-                              class="needs-validation" name="loginForm" novalidate>
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="needs-validation" name="loginForm">
 
                             <!-- Preloader Spinner -->
                             <app-ui-preloader></app-ui-preloader>
+
+                            <ngb-alert type="danger" class="text-center" *ngIf="renderValidations" [dismissible]="false">
+                                Check your form for errors
+                            </ngb-alert>
 
                             <!-- Email -->
                             <div class="form-group mb-3">
@@ -45,7 +47,7 @@
                             <div class="form-group mb-3">
 
                                 <!-- Reset Password -->
-                                <a routerLink="/auth/reset-password" class="text-muted float-right">
+                                <a routerLink="/auth/password/reset" class="text-muted float-right">
                                     <small>Forgot your password?</small>
                                 </a>
 
@@ -53,12 +55,13 @@
 
                                 <input type="password" formControlName="password" class="form-control"
                                        [ngClass]="{ 'is-invalid': renderValidations && f.password.errors }"
-                                       id="password" name="password"
+                                       id="password"
+                                       name="password"
                                        placeholder="Password"/>
 
                                 <!-- Password Validators -->
-                                <div *ngIf="renderValidations && f.password.errors" class="invalid-feedback">
-                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                <div *ngIf="renderValidations && f.password.errors?.required" class="invalid-feedback">
+                                    Password is required
                                 </div>
 
                             </div>

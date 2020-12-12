@@ -57,7 +57,7 @@
                                            [ngClass]="{ 'is-invalid': renderValidations && f.password.errors }"
                                            placeholder="Provide strong password"/>
                                     <div *ngIf="renderValidations && f.password.errors" class="invalid-feedback">
-                                        <div *ngIf="f.password.errors.required">Field is required</div>
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
                                     </div>
                                 </div>
 
@@ -72,7 +72,7 @@
                                            placeholder="Repeat your password"/>
                                     <div *ngIf="renderValidations && f.passwordRepeat.errors?.required"
                                          class="invalid-feedback">
-                                        Field is required
+                                        Password repeat is required
                                     </div>
                                     <div *ngIf="renderValidations && form.getError('passwordMatchError')"
                                          class="invalid-feedback">

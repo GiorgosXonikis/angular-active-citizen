@@ -10,7 +10,6 @@ export class PreloaderService {
     public preloader$ = this.preloaderSubject.asObservable();
 
     public show() {
-        console.log('SHOW');
         this.preloaderSubject.next(true);
     }
 

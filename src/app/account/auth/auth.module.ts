@@ -6,8 +6,9 @@ import {AuthRoutingModule} from './auth-routing.module';
 import {LoginComponent} from './login/login.component';
 import {PreLoaderModule} from '../../shared/components/preloader/preloader.module';
 import {SignUpComponent} from './sign-up/sign-up.component';
-import {PasswordResetComponent} from './password-reset/password-reset.component';
 import {ConfirmSignUpComponent} from './sign-up/confirm/confirm-sign-up.component';
+import {PasswordResetComponent} from './password-reset/password-reset.component';
+import {ConfirmPasswordResetComponent} from './password-reset/confirm/confirm-password-reset.component';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import {ConfirmSignUpComponent} from './sign-up/confirm/confirm-sign-up.componen
         LoginComponent,
         SignUpComponent,
         ConfirmSignUpComponent,
-        PasswordResetComponent
+        PasswordResetComponent,
+        ConfirmPasswordResetComponent
     ],
 })
 export class AuthModule {
