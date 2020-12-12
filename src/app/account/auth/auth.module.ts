@@ -14,8 +14,6 @@ import {ConfirmSignUpComponent} from './sign-up/confirm/confirm-sign-up.componen
         CommonModule,
         ReactiveFormsModule,
         NgbAlertModule,
-        // WidgetModule,
-
         AuthRoutingModule,
         PreLoaderModule
     ],
