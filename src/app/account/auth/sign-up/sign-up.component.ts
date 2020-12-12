@@ -1,21 +1,19 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
-import {PreloaderService} from '../../../core/services/preloader.service';
 
 @Component({
     selector: 'app-sign-up',
     templateUrl: './sign-up.component.html',
     styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit, AfterViewInit {
+export class SignUpComponent implements OnInit {
     public renderValidations = false;
     public registrationSuccessful = false;
 
 
     constructor(private formBuilder: FormBuilder,
-                private authService: AuthService,
-                private preloader: PreloaderService) {
+                private authService: AuthService) {
     }
 
     public form = this.formBuilder.group({
@@ -26,14 +24,10 @@ export class SignUpComponent implements OnInit, AfterViewInit {
         // password: ['', Validators.required],
         // passwordRepeat: ['', Validators.required],
     }, {
-        validators: [this.passwordsMatch()]
+        validators: [this.passwordsMatchValidator()]
     });
 
     ngOnInit(): void {
-    }
-
-    ngAfterViewInit(): void {
-        // document.body.classList.add('authentication-bg');
     }
 
     onSubmit(): void {
@@ -54,7 +48,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
         return this.form.controls;
     }
 
-    private passwordsMatch() {
+    private passwordsMatchValidator() {
         return function (fg: FormGroup): ValidationErrors | null {
             const password = fg.get('password').value;
             const passwordRepeat = fg.get('passwordRepeat').value;
@@ -62,6 +56,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
             if (password === passwordRepeat) {
                 return null;
             }
+
             return {
                 ['passwordMatchError']: 'Passwords do not match'
             };
