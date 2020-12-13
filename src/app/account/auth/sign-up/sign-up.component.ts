@@ -11,7 +11,6 @@ export class SignUpComponent implements OnInit {
     public renderValidations = false;
     public registrationSuccessful = false;
 
-
     constructor(private formBuilder: FormBuilder,
                 private authService: AuthService) {
     }

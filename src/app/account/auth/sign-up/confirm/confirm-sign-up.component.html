@@ -58,26 +58,26 @@
                 <div class="col-lg-12">
                     <div class="card ribbon-box">
 
-                        <div *ngIf="confirmationError?.errorCode === 'code_error'" class="card-body">
+                        <div *ngIf="error?.code === 'code_error'" class="card-body">
                             <div class="ribbon ribbon-danger float-right">
                                 <i class="mdi mdi-access-point mr-1"></i>Error
                             </div>
                             <h5 class="text-danger float-left mt-0">Account unable to confirmed</h5>
                             <div class="ribbon-content">
                                 <p class="mb-0">
-                                    {{confirmationError?.label}}
+                                    {{error?.text}}
                                 </p>
                             </div>
                         </div>
 
-                        <div *ngIf="confirmationError?.errorCode === 'active_error'" class="card-body">
+                        <div *ngIf="error?.code === 'active_error'" class="card-body">
                             <div class="ribbon ribbon-success float-right">
                                 <i class="mdi mdi-access-point mr-1"></i>Success
                             </div>
                             <h5 class="text-success float-left mt-0">Please sign-in</h5>
                             <div class="ribbon-content">
                                 <p class="mb-0">
-                                    {{confirmationError?.label}}
+                                    {{error?.text}}
                                 </p>
                             </div>
                         </div>

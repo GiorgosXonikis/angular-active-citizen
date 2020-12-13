@@ -30,20 +30,16 @@ export class AuthService {
             .pipe(
                 map(_response => <AuthUser>this._converter.deserialize(_response, AuthUser)),
                 tap(_authUser => this.authUser = _authUser),
-                catchError(() => {
-                    alert('Incorrect Credentials');
-                    return EMPTY;
-                }),
                 finalize(() => this.preloader.hide())
             );
     }
 
     public logout(): Observable<any> {
-        // remove user from local storage to log user out
+        /** Remove user from local storage to log user out */
         this.cookieService.deleteCookie('loggedInUser');
         this.authUser.user = null;
 
-        // delete user's token from db
+        /** Delete user's token from db */
         return this.http.post(`${this.mainUrl}/auth/logout/`, {});
     }
 

@@ -11,6 +11,7 @@ import {AuthService} from '../../../core/services/auth.service';
 export class LoginComponent implements OnInit {
     renderValidations = false;
     returnUrl: string;
+    error = {code: '', text: ''};
 
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     });
 
     ngOnInit(): any {
-        // get return url from route parameters or default to '/'
+        /** Get return url from route parameters or default to '/' */
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
@@ -35,8 +36,13 @@ export class LoginComponent implements OnInit {
         }
 
         this.authService.login(this.f.email.value, this.f.password.value)
-            .subscribe(() => {
-                this.router.navigateByUrl('/profile');
+            .subscribe({
+                next: () => this.router.navigateByUrl('/profile'),
+                error: () => {
+                    console.log('error');
+                    this.error.code = 'incorrect_credentials';
+                    this.error.text = 'Incorrect credentials';
+                }
             });
     }
 

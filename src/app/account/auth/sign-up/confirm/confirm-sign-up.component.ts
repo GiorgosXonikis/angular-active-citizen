@@ -10,7 +10,7 @@ import {AuthService} from '../../../../core/services/auth.service';
 export class ConfirmSignUpComponent implements OnInit {
 
     public confirmedSuccessfully: boolean = false;
-    public confirmationError = {errorCode: null, label: null};
+    public error = {code: null, text: null};
 
     private _email: string;
     private _validationCode: string;
@@ -35,11 +35,11 @@ export class ConfirmSignUpComponent implements OnInit {
                     next: () => this.confirmedSuccessfully = true,
                     error: _error => {
                         if (_error.error['active_error']) {
-                            this.confirmationError.errorCode = 'active_error';
-                            this.confirmationError.label = 'Account already activated';
+                            this.error.code = 'active_error';
+                            this.error.text = 'Account already activated';
                         } else if (_error.error['code_error']) {
-                            this.confirmationError.errorCode = 'code_error';
-                            this.confirmationError.label = 'Activation code is not valid';
+                            this.error.code = 'code_error';
+                            this.error.text = 'Activation code is not valid';
                         }
                     }
                 }

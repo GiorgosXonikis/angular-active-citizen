@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
 
-export enum PasswordResetStepEnum {
+export enum viewStateEnum {
     Form = 0,
     Success = 1,
     Error = 2
@@ -15,8 +15,8 @@ export enum PasswordResetStepEnum {
 })
 export class PasswordResetComponent {
     public renderValidations = false;
-    public passwordResetStep = PasswordResetStepEnum.Form;
-    public passwordResetStepEnum = PasswordResetStepEnum;
+    public viewState = viewStateEnum.Form;
+    public viewStateEnum = viewStateEnum;
     public error: string;
 
     public resetForm = this.formBuilder.group({
@@ -39,8 +39,8 @@ export class PasswordResetComponent {
 
         this.authService.passwordReset(this.f.email.value)
             .subscribe({
-                next: () => this.passwordResetStep = PasswordResetStepEnum.Success,
-                error: () => this.passwordResetStep = PasswordResetStepEnum.Error
+                next: () => this.viewState = viewStateEnum.Success,
+                error: () => this.viewState = viewStateEnum.Error
             });
 
     }
