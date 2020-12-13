@@ -17,7 +17,7 @@ export class PasswordResetComponent {
     public renderValidations = false;
     public viewState = viewStateEnum.Form;
     public viewStateEnum = viewStateEnum;
-    public error: string;
+    public error = {code: '', text: ''};
 
     public resetForm = this.formBuilder.group({
         email: ['', [Validators.required, Validators.email]],
@@ -40,7 +40,11 @@ export class PasswordResetComponent {
         this.authService.passwordReset(this.f.email.value)
             .subscribe({
                 next: () => this.viewState = viewStateEnum.Success,
-                error: () => this.viewState = viewStateEnum.Error
+                error: () => {
+                    this.error.code = 'email_in_use';
+                    this.error.text = 'There is no account related with this email';
+                    this.viewState = this.viewStateEnum.Error;
+                }
             });
 
     }

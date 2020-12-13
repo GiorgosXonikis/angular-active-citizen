@@ -33,11 +33,11 @@ export class ConfirmSignUpComponent implements OnInit {
         this.authService.confirmSignUp(this._email, this._validationCode)
             .subscribe({
                     next: () => this.confirmedSuccessfully = true,
-                    error: _error => {
-                        if (_error.error['active_error']) {
+                    error: _response => {
+                        if (_response.error['active_error']) {
                             this.error.code = 'active_error';
                             this.error.text = 'Account already activated';
-                        } else if (_error.error['code_error']) {
+                        } else if (_response.error['code_error']) {
                             this.error.code = 'code_error';
                             this.error.text = 'Activation code is not valid';
                         }

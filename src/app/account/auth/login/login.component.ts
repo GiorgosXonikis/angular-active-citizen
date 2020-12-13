@@ -9,9 +9,9 @@ import {AuthService} from '../../../core/services/auth.service';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-    renderValidations = false;
-    returnUrl: string;
-    error = {code: '', text: ''};
+    public renderValidations = false;
+    public returnUrl: string;
+    public error = {code: '', text: ''};
 
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
             .subscribe({
                 next: () => this.router.navigateByUrl('/profile'),
                 error: () => {
-                    console.log('error');
                     this.error.code = 'incorrect_credentials';
                     this.error.text = 'Incorrect credentials';
                 }

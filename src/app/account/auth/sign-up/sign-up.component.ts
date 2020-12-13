@@ -2,6 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
 
+export enum viewStateEnum {
+    Form = 0,
+    Success = 1,
+    Error = 2
+}
+
 @Component({
     selector: 'app-sign-up',
     templateUrl: './sign-up.component.html',
@@ -9,7 +15,9 @@ import {AuthService} from '../../../core/services/auth.service';
 })
 export class SignUpComponent implements OnInit {
     public renderValidations = false;
-    public registrationSuccessful = false;
+    public error = {code: '', text: ''};
+    public viewState = viewStateEnum.Form;
+    public viewStateEnum = viewStateEnum;
 
     constructor(private formBuilder: FormBuilder,
                 private authService: AuthService) {
@@ -38,7 +46,14 @@ export class SignUpComponent implements OnInit {
         this.authService.signUp(this.f.email.value, this.f.password.value, this.f.passwordRepeat.value)
             .subscribe(
                 {
-                    next: () => this.registrationSuccessful = true
+                    next: () => this.viewState = viewStateEnum.Success,
+                    error: _response => {
+                        if (_response.error.email) {
+                            this.error.code = 'email_in_use';
+                            this.error.text = 'Email already in use';
+                            this.viewState = this.viewStateEnum.Error;
+                        }
+                    }
                 }
             );
     }
