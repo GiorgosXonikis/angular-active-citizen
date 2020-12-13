@@ -8,7 +8,6 @@ import {AuthService} from '../../../../core/services/auth.service';
     styleUrls: ['./confirm-sign-up.component.scss']
 })
 export class ConfirmSignUpComponent implements OnInit {
-
     public confirmedSuccessfully: boolean = false;
     public error = {code: null, text: null};
 
