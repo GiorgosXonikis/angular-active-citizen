@@ -37,7 +37,7 @@ export class PasswordResetComponent {
             return;
         }
 
-        this.authService.passwordReset(this.f.email.value)
+        this.authService.resetPassword(this.f.email.value)
             .subscribe({
                 next: () => this.viewState = viewStateEnum.Success,
                 error: () => {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {AuthService} from '../../../../core/services/auth.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-confirm-password-reset',
@@ -9,19 +10,23 @@ import {AuthService} from '../../../../core/services/auth.service';
 })
 export class ConfirmPasswordResetComponent implements OnInit {
     public renderValidations = false;
-    public registrationSuccessful = false;
+    private _uid: string;
+    private _token: string;
 
     constructor(private formBuilder: FormBuilder,
+                private activatedRoute: ActivatedRoute,
                 private authService: AuthService) {
+        this.activatedRoute.params.subscribe(
+            _params => {
+                this._uid = _params['uid'];
+                this._token = _params['token'];
+            }
+        );
     }
 
     public form = this.formBuilder.group({
-        email: ['giorgos.xonikis@gmail.com', [Validators.required, Validators.email]],
         password: ['gioxon1985', Validators.required],
         passwordRepeat: ['gioxon1985', Validators.required],
-        // email: ['', [Validators.required, Validators.email]],
-        // password: ['', Validators.required],
-        // passwordRepeat: ['', Validators.required],
     }, {
         validators: [this.passwordsMatchValidator()]
     });
@@ -35,12 +40,8 @@ export class ConfirmPasswordResetComponent implements OnInit {
             return;
         }
 
-        this.authService.signUp(this.f.email.value, this.f.password.value, this.f.passwordRepeat.value)
-            .subscribe(
-                {
-                    next: () => this.registrationSuccessful = true
-                }
-            );
+        this.authService.changePassword(this.f.password.value, this.f.passwordRepeat.value, this._uid, this._token).subscribe();
+
     }
 
     public get f(): any {

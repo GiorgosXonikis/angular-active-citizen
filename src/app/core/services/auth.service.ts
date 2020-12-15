@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CookieService} from './cookie.service';
 import {catchError, finalize, map, tap} from 'rxjs/operators';
 import {EMPTY, Observable} from 'rxjs';
@@ -72,7 +72,7 @@ export class AuthService {
             );
     }
 
-    public passwordReset(email: string): Observable<any> {
+    public resetPassword(email: string): Observable<any> {
         this.preloader.show();
 
         const payload = {
@@ -80,6 +80,22 @@ export class AuthService {
         };
 
         return this.http.post(`${this.mainUrl}/auth/password/reset/`, payload)
+            .pipe(
+                finalize(() => this.preloader.hide())
+            );
+    }
+
+    public changePassword(newPassword: string, repeatPassword: string, uid: string, token: string): Observable<any> {
+        this.preloader.show();
+
+        const payload = {
+            'new_password1': newPassword,
+            'new_password2': repeatPassword,
+            'uid': uid,
+            'token': token
+        };
+
+        return this.http.post(`${this.mainUrl}/auth/password/reset/confirm/`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );

@@ -39,6 +39,9 @@ export class ConfirmSignUpComponent implements OnInit {
                         } else if (_response.error['code_error']) {
                             this.error.code = 'code_error';
                             this.error.text = 'Activation code is not valid';
+                        } else {
+                            this.error.code = 'server_error';
+                            this.error.text = 'Server Error';
                         }
                     }
                 }
