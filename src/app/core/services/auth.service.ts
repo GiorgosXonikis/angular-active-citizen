@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {CookieService} from './cookie.service';
-import {catchError, finalize, map, tap} from 'rxjs/operators';
-import {EMPTY, Observable} from 'rxjs';
+import {finalize, map, tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {PreloaderService} from './preloader.service';
 import {AuthUser} from '../../shared/models/auth';
@@ -107,18 +107,5 @@ export class AuthService {
         }
         return this.authUser;
     }
-
-    public get token(): string {
-        if (!this.authUser.accessToken) {
-            this.authUser.accessToken = JSON.parse(this.cookieService.getCookie('loggedInUser'));
-            return this.authUser.accessToken;
-        }
-        return this.authUser.accessToken;
-    }
-
-    public set token(value: string) {
-        this.authUser.accessToken = value;
-    }
-
 
 }
