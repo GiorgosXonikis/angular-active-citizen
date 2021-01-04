@@ -16,7 +16,7 @@ const routes: Routes = [
         component: SignUpComponent
     },
     {
-        path: 'signup/confirm/:email/:validation-code',
+        path: 'signup/activate/:email/:activation-code',
         component: ConfirmSignUpComponent
     },
     {

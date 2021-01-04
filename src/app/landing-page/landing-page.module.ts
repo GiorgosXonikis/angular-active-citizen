@@ -1,18 +1,19 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
-import {HomeComponent} from './home/home.component';
 import {RouterModule} from '@angular/router';
+import {LandingPageComponent} from './landing-page.component';
 
 
 @NgModule({
-    declarations: [HomeComponent],
+    declarations: [
+        LandingPageComponent
+    ],
     imports: [
         CommonModule,
         NgbDropdownModule,
         RouterModule
     ]
 })
-export class LandingModule {
+export class LandingPageModule {
 }

@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CommonModule} from '@angular/common';
-import {LandingModule} from './landing/landing.module';
+import {LandingPageModule} from './landing-page/landing-page.module';
 import {AccountModule} from './account/account.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
@@ -23,7 +23,7 @@ import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
         NgbAlertModule,
 
         // App Modules
-        LandingModule,
+        LandingPageModule,
         AccountModule
     ],
     providers: [

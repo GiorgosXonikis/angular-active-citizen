@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
     }
 
     public logout() {
-        // this.authService.logout().subscribe();
+        this.authService.logout().subscribe();
     }
 
     private patchFormValues() {

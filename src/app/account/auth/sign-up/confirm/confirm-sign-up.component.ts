@@ -12,14 +12,14 @@ export class ConfirmSignUpComponent implements OnInit {
     public error = {code: null, text: null};
 
     private _email: string;
-    private _validationCode: string;
+    private _activationCode: string;
 
     constructor(private activatedRoute: ActivatedRoute,
                 private authService: AuthService) {
         this.activatedRoute.params.subscribe(
             _params => {
                 this._email = _params['email'];
-                this._validationCode = _params['validation-code'];
+                this._activationCode = _params['activation-code'];
             }
         );
     }
@@ -29,16 +29,15 @@ export class ConfirmSignUpComponent implements OnInit {
     }
 
     private activate() {
-        this.authService.activate(this._email, this._validationCode)
+        this.authService.activate(this._email, this._activationCode)
             .subscribe({
                     next: () => this.confirmedSuccessfully = true,
                     error: _response => {
-                        if (_response.error['active_error']) {
-                            this.error.code = 'active_error';
+                        this.error.code = _response.error.code;
+                        if (this.error.code === 'active_error') {
                             this.error.text = 'Account already activated';
-                        } else if (_response.error['code_error']) {
-                            this.error.code = 'code_error';
-                            this.error.text = 'Activation code is not valid';
+                        } else if (this.error.code === 'email_or_activation_code_error') {
+                            this.error.text = 'Invalid email or activation code';
                         } else {
                             this.error.code = 'server_error';
                             this.error.text = 'Server Error. Please try again in a while.';

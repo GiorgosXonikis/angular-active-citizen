@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../core/services/auth.service';
+import {AuthService} from '../core/services/auth.service';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+    selector: 'app-landing-page',
+    templateUrl: './landing-page.component.html',
+    styleUrls: ['./landing-page.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class LandingPageComponent implements OnInit {
 
     constructor(private authService: AuthService) {
     }

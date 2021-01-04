@@ -40,15 +40,15 @@ export class AuthService {
             );
     }
 
-    activate(email: string, validationCode): Observable<any> {
+    activate(email: string, activationCode: string): Observable<any> {
         this.preloader.show();
 
         const payload = {
-            'email': email,
-            'validation_code': validationCode
+            email,
+            activationCode
         };
 
-        return this.http.post(`${this.mainUrl}/${AuthEndpoints.activate}/`, payload)
+        return this.http.patch(`${this.mainUrl}/${AuthEndpoints.activate}`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );
@@ -63,7 +63,7 @@ export class AuthService {
                     const {accessToken, user} = <Auth>this._converter.deserialize(_auth, Auth);
                     this.accessToken = accessToken;
                     this.user = user;
-                    this.cookieService.setCookie('loggedInUser', JSON.stringify(user), 7);
+                    this.cookieService.setCookie('user', JSON.stringify(user), 7);
                     return this.user;
                 }),
                 finalize(() => this.preloader.hide())
@@ -71,11 +71,11 @@ export class AuthService {
     }
 
     logout(): Observable<any> {
-        /** Remove user from local storage to log user out */
-        this.cookieService.deleteCookie('loggedInUser');
+        /** Remove user from cookies */
+        this.cookieService.deleteCookie('user');
         this.user = null;
 
-        /** Delete user's token from db */
+        /** Disable user's token in backend */
         return this.http.post(`${this.mainUrl}/${AuthEndpoints.logout}/`, {});
     }
 
@@ -92,9 +92,9 @@ export class AuthService {
             );
     }
 
-    public getLoggedInUser(): User {
+    public getUser(): User {
         if (!this.user) {
-            this.user = JSON.parse(this.cookieService.getCookie('loggedInUser'));
+            this.user = JSON.parse(this.cookieService.getCookie('user'));
         }
         return this.user;
     }

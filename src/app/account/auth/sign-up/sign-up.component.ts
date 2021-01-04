@@ -25,8 +25,8 @@ export class SignUpComponent implements OnInit {
 
     public form = this.formBuilder.group({
         email: ['giorgos.xonikis@gmail.com', [Validators.required, Validators.email]],
-        password: ['gioxon1985', Validators.required],
-        passwordRepeat: ['gioxon1985', Validators.required],
+        password: ['Gioxon1985', Validators.required],
+        passwordRepeat: ['Gioxon1985', Validators.required],
         // email: ['', [Validators.required, Validators.email]],
         // password: ['', Validators.required],
         // passwordRepeat: ['', Validators.required],
@@ -48,8 +48,8 @@ export class SignUpComponent implements OnInit {
                 {
                     next: () => this.viewState = viewStateEnum.Success,
                     error: _response => {
-                        if (_response.error.email) {
-                            this.error.code = 'email_in_use';
+                        if (_response.error.code === 'email_exists') {
+                            this.error.code = 'email_exists';
                             this.error.text = 'Email already in use';
                             this.viewState = this.viewStateEnum.Error;
                         }
