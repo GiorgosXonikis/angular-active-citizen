@@ -20,7 +20,7 @@ export class ConfirmPasswordResetComponent implements OnInit {
     public viewStateEnum = viewStateEnum;
     public error = {code: '', text: ''};
 
-    private _uid: string;
+    private _email: string;
     private _token: string;
 
     constructor(private formBuilder: FormBuilder,
@@ -28,15 +28,15 @@ export class ConfirmPasswordResetComponent implements OnInit {
                 private userService: UserService) {
         this.activatedRoute.params.subscribe(
             _params => {
-                this._uid = _params['uid'];
+                this._email = _params['email'];
                 this._token = _params['token'];
             }
         );
     }
 
     public form = this.formBuilder.group({
-        password: ['gioxon1985', Validators.required],
-        passwordRepeat: ['gioxon1985', Validators.required],
+        password: ['Gioxon1985', Validators.required],
+        passwordRepeat: ['Gioxon1985', Validators.required],
     }, {
         validators: [this.passwordsMatchValidator()]
     });
@@ -50,12 +50,12 @@ export class ConfirmPasswordResetComponent implements OnInit {
             return;
         }
 
-        this.userService.changePassword(this.f.password.value, this.f.passwordRepeat.value, this._uid, this._token)
+        this.userService.changePassword(this.f.password.value, this.f.passwordRepeat.value, this._email, this._token)
             .subscribe({
                 next: () => this.viewState = viewStateEnum.Success,
                 error: () => {
                     this.error.code = 'server_error';
-                    this.error.text = `Server Error. \n Please try again in a while.`;
+                    this.error.text = `Server Error.\nPlease try again in a while.`;
                     this.viewState = this.viewStateEnum.Error;
                 }
             });

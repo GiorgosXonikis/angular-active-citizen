@@ -1,5 +1,5 @@
 import {Observable} from 'rxjs';
-import {UserEndpoints} from '../../../environments/api-endpoints';
+import {AuthEndpoints} from '../../../environments/api-endpoints';
 import {finalize} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
@@ -21,17 +21,17 @@ export class UserService {
                 private preloader: PreloaderService) {
     }
 
-    changePassword(newPassword: string, repeatPassword: string, uid: string, token: string): Observable<any> {
+    changePassword(newPassword: string, passwordRepeat: string, email: string, token: string): Observable<any> {
         this.preloader.show();
 
         const payload = {
-            'new_password1': newPassword,
-            'new_password2': repeatPassword,
-            'uid': uid,
-            'token': token
+            newPassword,
+            passwordRepeat,
+            email,
+            token
         };
 
-        return this.http.post(`${this.mainUrl}/${UserEndpoints.changePassword}/`, payload)
+        return this.http.post(`${this.mainUrl}/${AuthEndpoints.confirmPasswordReset}/`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );

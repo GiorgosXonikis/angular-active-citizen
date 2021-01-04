@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
 
@@ -13,7 +13,7 @@ export enum viewStateEnum {
     templateUrl: './sign-up.component.html',
     styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
     public renderValidations = false;
     public error = {code: '', text: ''};
     public viewState = viewStateEnum.Form;
@@ -27,15 +27,9 @@ export class SignUpComponent implements OnInit {
         email: ['giorgos.xonikis@gmail.com', [Validators.required, Validators.email]],
         password: ['Gioxon1985', Validators.required],
         passwordRepeat: ['Gioxon1985', Validators.required],
-        // email: ['', [Validators.required, Validators.email]],
-        // password: ['', Validators.required],
-        // passwordRepeat: ['', Validators.required],
     }, {
         validators: [this.passwordsMatchValidator()]
     });
-
-    ngOnInit(): void {
-    }
 
     onSubmit(): void {
         if (this.form.invalid) {
@@ -43,7 +37,7 @@ export class SignUpComponent implements OnInit {
             return;
         }
 
-        this.authService.signUp(this.f.email.value, this.f.password.value, this.f.passwordRepeat.value)
+        this.authService.signUp(this.f.email.value, this.f.password.value)
             .subscribe(
                 {
                     next: () => this.viewState = viewStateEnum.Success,

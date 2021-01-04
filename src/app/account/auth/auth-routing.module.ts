@@ -24,7 +24,7 @@ const routes: Routes = [
         component: PasswordResetComponent
     },
     {
-        path: 'password/reset/confirm/:uid/:token',
+        path: 'password/reset/confirm/:email/:token',
         component: ConfirmPasswordResetComponent
     },
 ];

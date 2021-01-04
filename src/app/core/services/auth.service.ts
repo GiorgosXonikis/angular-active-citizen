@@ -25,35 +25,6 @@ export class AuthService {
                 private cookieService: CookieService) {
     }
 
-    signUp(email: string, password: string, passwordRepeat: string): Observable<any> {
-        this.preloader.show();
-
-        const payload = {
-            'email': email,
-            'password': password,
-            'password_repeat': passwordRepeat
-        };
-
-        return this.http.post(`${this.mainUrl}/${AuthEndpoints.signUp}/`, payload)
-            .pipe(
-                finalize(() => this.preloader.hide())
-            );
-    }
-
-    activate(email: string, activationCode: string): Observable<any> {
-        this.preloader.show();
-
-        const payload = {
-            email,
-            activationCode
-        };
-
-        return this.http.patch(`${this.mainUrl}/${AuthEndpoints.activate}`, payload)
-            .pipe(
-                finalize(() => this.preloader.hide())
-            );
-    }
-
     login(email: string, password: string): Observable<User> {
         this.preloader.show();
 
@@ -79,14 +50,38 @@ export class AuthService {
         return this.http.post(`${this.mainUrl}/${AuthEndpoints.logout}/`, {});
     }
 
-    resetPassword(email: string): Observable<any> {
+    signUp(email: string, password: string): Observable<any> {
         this.preloader.show();
 
         const payload = {
-            'email': email
+            email,
+            password,
         };
 
-        return this.http.post(`${this.mainUrl}/${AuthEndpoints.resetPassword}/`, payload)
+        return this.http.post(`${this.mainUrl}/${AuthEndpoints.signUp}/`, payload)
+            .pipe(
+                finalize(() => this.preloader.hide())
+            );
+    }
+
+    activate(email: string, activationCode: string): Observable<any> {
+        this.preloader.show();
+
+        const payload = {
+            email,
+            activationCode
+        };
+
+        return this.http.patch(`${this.mainUrl}/${AuthEndpoints.activate}`, payload)
+            .pipe(
+                finalize(() => this.preloader.hide())
+            );
+    }
+
+    passwordReset(email: string): Observable<any> {
+        this.preloader.show();
+
+        return this.http.post(`${this.mainUrl}/${AuthEndpoints.passwordReset}/`, {email})
             .pipe(
                 finalize(() => this.preloader.hide())
             );

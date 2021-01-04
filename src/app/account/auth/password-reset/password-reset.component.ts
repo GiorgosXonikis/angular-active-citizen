@@ -37,11 +37,11 @@ export class PasswordResetComponent {
             return;
         }
 
-        this.authService.resetPassword(this.f.email.value)
+        this.authService.passwordReset(this.f.email.value)
             .subscribe({
                 next: () => this.viewState = viewStateEnum.Success,
                 error: () => {
-                    this.error.code = 'email_in_use';
+                    this.error.code = 'invalid_credentials';
                     this.error.text = 'There is no account related with this email';
                     this.viewState = this.viewStateEnum.Error;
                 }

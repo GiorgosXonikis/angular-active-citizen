@@ -3,8 +3,8 @@ export const AuthEndpoints = {
     activate: 'auth/signup/activate',
     login: 'auth/login',
     logout: 'auth/logout',
-    resetPassword: 'auth/password-reset',
-    resetPasswordConfirm: 'auth/password-reset/confirm'
+    passwordReset: 'auth/password-reset',
+    confirmPasswordReset: 'auth/password-reset/confirm'
 }
 
 export const UserEndpoints = {
