@@ -31,9 +31,16 @@
             <!-- right menu -->
             <ul class="navbar-nav ml-auto align-items-center">
                 <li class="nav-item mr-0">
-                    <a routerLink="/auth/login" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
-                        Sign In
-                    </a>
+                    <ng-template [ngIf]="!isUserLoggedIn" [ngIfElse]="welcomeUser">
+                        <a routerLink="/auth/login" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
+                            Sign In
+                        </a>
+                    </ng-template>
+                    <ng-template #welcomeUser>
+                        <a routerLink="/profile" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
+                            Welcome {{userAbbreviation}}
+                        </a>
+                    </ng-template>
                 </li>
             </ul>
 

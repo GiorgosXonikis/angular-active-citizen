@@ -1,7 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
-import {AuthService} from '../../../../core/services/auth.service';
 import {ActivatedRoute} from '@angular/router';
+import {UserService} from '../../../../core/services/user.service';
+
+export enum viewStateEnum {
+    Form = 0,
+    Success = 1,
+    Error = 2
+}
 
 @Component({
     selector: 'app-confirm-password-reset',
@@ -10,12 +16,16 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ConfirmPasswordResetComponent implements OnInit {
     public renderValidations = false;
+    public viewState = viewStateEnum.Form;
+    public viewStateEnum = viewStateEnum;
+    public error = {code: '', text: ''};
+
     private _uid: string;
     private _token: string;
 
     constructor(private formBuilder: FormBuilder,
                 private activatedRoute: ActivatedRoute,
-                private authService: AuthService) {
+                private userService: UserService) {
         this.activatedRoute.params.subscribe(
             _params => {
                 this._uid = _params['uid'];
@@ -40,8 +50,15 @@ export class ConfirmPasswordResetComponent implements OnInit {
             return;
         }
 
-        this.authService.changePassword(this.f.password.value, this.f.passwordRepeat.value, this._uid, this._token).subscribe();
-
+        this.userService.changePassword(this.f.password.value, this.f.passwordRepeat.value, this._uid, this._token)
+            .subscribe({
+                next: () => this.viewState = viewStateEnum.Success,
+                error: () => {
+                    this.error.code = 'server_error';
+                    this.error.text = `Server Error. \n Please try again in a while.`;
+                    this.viewState = this.viewStateEnum.Error;
+                }
+            });
     }
 
     public get f(): any {

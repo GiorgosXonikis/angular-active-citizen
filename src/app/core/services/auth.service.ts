@@ -1,49 +1,31 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {CookieService} from './cookie.service';
-import {finalize, map, tap} from 'rxjs/operators';
+import {finalize, map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {Router} from '@angular/router';
 import {PreloaderService} from './preloader.service';
-import {AuthUser} from '../../shared/models/auth';
 import {JsonConvert} from 'json2typescript';
+import {AuthEndpoints} from '../../../environments/api-endpoints';
+import {environment} from '../../../environments/environment';
+import {Auth, User} from '../../shared/models/auth';
+
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    public authUser: AuthUser;
+    public accessToken: string;
+    public user: User;
 
     private _converter = new JsonConvert();
-    private readonly mainUrl = 'http://localhost:8000';
+    private readonly mainUrl = environment.host;
 
     constructor(private http: HttpClient,
-                private router: Router,
                 private preloader: PreloaderService,
                 private cookieService: CookieService) {
     }
 
-    public login(email: string, password: string): Observable<AuthUser> {
-        this.preloader.show();
-
-        return this.http.post<AuthUser>(`${this.mainUrl}/auth/login/`, {email, password})
-            .pipe(
-                map(_response => <AuthUser>this._converter.deserialize(_response, AuthUser)),
-                tap(_authUser => this.authUser = _authUser),
-                finalize(() => this.preloader.hide())
-            );
-    }
-
-    public logout(): Observable<any> {
-        /** Remove user from local storage to log user out */
-        this.cookieService.deleteCookie('loggedInUser');
-        this.authUser.user = null;
-
-        /** Delete user's token from db */
-        return this.http.post(`${this.mainUrl}/auth/logout/`, {});
-    }
-
-    public signUp(email: string, password: string, passwordRepeat: string): Observable<any> {
+    signUp(email: string, password: string, passwordRepeat: string): Observable<any> {
         this.preloader.show();
 
         const payload = {
@@ -52,13 +34,13 @@ export class AuthService {
             'password_repeat': passwordRepeat
         };
 
-        return this.http.post(`${this.mainUrl}/signup/`, payload)
+        return this.http.post(`${this.mainUrl}/${AuthEndpoints.signUp}/`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );
     }
 
-    public confirmSignUp(email: string, validationCode): Observable<any> {
+    activate(email: string, validationCode): Observable<any> {
         this.preloader.show();
 
         const payload = {
@@ -66,46 +48,55 @@ export class AuthService {
             'validation_code': validationCode
         };
 
-        return this.http.post(`${this.mainUrl}/signup/confirm/`, payload)
+        return this.http.post(`${this.mainUrl}/${AuthEndpoints.activate}/`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );
     }
 
-    public resetPassword(email: string): Observable<any> {
+    login(email: string, password: string): Observable<User> {
+        this.preloader.show();
+
+        return this.http.post<Auth>(`${this.mainUrl}/${AuthEndpoints.login}/`, {email, password})
+            .pipe(
+                map(_auth => {
+                    const {accessToken, user} = <Auth>this._converter.deserialize(_auth, Auth);
+                    this.accessToken = accessToken;
+                    this.user = user;
+                    this.cookieService.setCookie('loggedInUser', JSON.stringify(user), 7);
+                    return this.user;
+                }),
+                finalize(() => this.preloader.hide())
+            );
+    }
+
+    logout(): Observable<any> {
+        /** Remove user from local storage to log user out */
+        this.cookieService.deleteCookie('loggedInUser');
+        this.user = null;
+
+        /** Delete user's token from db */
+        return this.http.post(`${this.mainUrl}/${AuthEndpoints.logout}/`, {});
+    }
+
+    resetPassword(email: string): Observable<any> {
         this.preloader.show();
 
         const payload = {
             'email': email
         };
 
-        return this.http.post(`${this.mainUrl}/auth/password/reset/`, payload)
+        return this.http.post(`${this.mainUrl}/${AuthEndpoints.resetPassword}/`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );
     }
 
-    public changePassword(newPassword: string, repeatPassword: string, uid: string, token: string): Observable<any> {
-        this.preloader.show();
-
-        const payload = {
-            'new_password1': newPassword,
-            'new_password2': repeatPassword,
-            'uid': uid,
-            'token': token
-        };
-
-        return this.http.post(`${this.mainUrl}/auth/password/reset/confirm/`, payload)
-            .pipe(
-                finalize(() => this.preloader.hide())
-            );
-    }
-
-    public getLoggedInUser(): AuthUser {
-        if (!this.authUser) {
-            this.authUser = JSON.parse(this.cookieService.getCookie('loggedInUser'));
+    public getLoggedInUser(): User {
+        if (!this.user) {
+            this.user = JSON.parse(this.cookieService.getCookie('loggedInUser'));
         }
-        return this.authUser;
+        return this.user;
     }
 
 }

@@ -12,12 +12,14 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authService.getLoggedInUser();
+        console.log(user);
         if (user) {
             return true;
         }
 
-        // We store the query parameters object so when the user Log In to redirect to this url
-        // Check in Login Component object params
+        /** We store the query parameters object so when the user Log In to redirect to this url.
+         *  Check in Login Component object params.
+         */
         this.router.navigate(['/login'],
             {
                 queryParams: {triedToAccessURL: state.url}

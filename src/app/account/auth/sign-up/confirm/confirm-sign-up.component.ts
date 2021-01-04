@@ -25,11 +25,11 @@ export class ConfirmSignUpComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.confirmSignUp();
+        this.activate();
     }
 
-    private confirmSignUp() {
-        this.authService.confirmSignUp(this._email, this._validationCode)
+    private activate() {
+        this.authService.activate(this._email, this._validationCode)
             .subscribe({
                     next: () => this.confirmedSuccessfully = true,
                     error: _response => {
@@ -41,7 +41,7 @@ export class ConfirmSignUpComponent implements OnInit {
                             this.error.text = 'Activation code is not valid';
                         } else {
                             this.error.code = 'server_error';
-                            this.error.text = 'Server Error';
+                            this.error.text = 'Server Error. Please try again in a while.';
                         }
                     }
                 }

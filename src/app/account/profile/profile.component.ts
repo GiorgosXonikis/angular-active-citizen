@@ -9,7 +9,6 @@ import {User} from '../../shared/models/auth';
     styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
     public user: User;
 
     public form = this.formBuilder.group({
@@ -26,7 +25,7 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.user = this.authService.authUser.user;
+        this.user = this.authService.user;
         this.patchFormValues();
     }
 
@@ -35,18 +34,18 @@ export class ProfileComponent implements OnInit {
     }
 
     public logout() {
-        this.authService.logout().subscribe();
+        // this.authService.logout().subscribe();
     }
 
     private patchFormValues() {
         this.form.patchValue({
-            bio: this.user.profile.bio,
+            bio: this.user.bio,
             firstName: this.user.firstName,
             lastName: this.user.lastName,
-            phone: this.user.profile.phone,
+            phone: this.user.phone,
             email: this.user.email,
-            location: this.user.profile.location,
-            languages: this.user.profile.languages,
+            location: this.user.location,
+            languages: this.user.languages,
         })
     }
 
