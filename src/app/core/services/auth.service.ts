@@ -34,8 +34,8 @@ export class AuthService {
                     const {accessToken, user} = <Auth>this._converter.deserialize(_auth, Auth);
                     this.accessToken = accessToken;
                     this.user = user;
-                    this.cookieService.setCookie('user', JSON.stringify(user), 7);
-                    this.cookieService.setCookie('accessToken', JSON.stringify(accessToken), 7);
+                    const activeCitizen = {user, accessToken}
+                    this.cookieService.setCookie('activeCitizen', JSON.stringify(activeCitizen), 7);
                     return this.user;
                 }),
                 finalize(() => this.preloader.hide())
@@ -44,8 +44,7 @@ export class AuthService {
 
     logout(): Observable<any> {
         /** Remove user from cookies */
-        this.cookieService.deleteCookie('user');
-        this.cookieService.deleteCookie('accessToken');
+        this.cookieService.deleteCookie('activeCitizen');
         this.user = null;
 
         /** Disable user's token in backend */
@@ -91,14 +90,16 @@ export class AuthService {
 
     public getUser(): User {
         if (!this.user) {
-            this.user = JSON.parse(this.cookieService.getCookie('user'));
+            const activeCitizen = JSON.parse(this.cookieService.getCookie('activeCitizen'));
+            this.user = activeCitizen.user;
         }
         return this.user;
     }
 
     public getAccessToken(): string {
         if (!this.accessToken) {
-            this.accessToken = JSON.parse(this.cookieService.getCookie('accessToken'));
+            const activeCitizen = JSON.parse(this.cookieService.getCookie('activeCitizen'));
+            this.accessToken = activeCitizen.accessToken;
         }
         return this.accessToken;
     }
