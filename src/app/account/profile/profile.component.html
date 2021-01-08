@@ -34,23 +34,21 @@
     <div class="row justify-content-center py-2">
         <div class="col-sm-6">
             <div class="card">
-                <div class="card-body profile-user-box">
+                <div class="card-body">
 
-                  <!-- Avatar -->
+                    <!-- Avatar -->
                     <div class="row">
                         <div class="col-sm-8">
-                            <div class="media">
                               <span class="float-left m-2 mr-4">
                                 <img src="assets/images/users/avatar-2.jpg"
                                      style="height: 100px;" alt="avatar" class="rounded-circle img-thumbnail">
                               </span>
-                                <div class="media-body">
-                                    <h4 class="mt-1 mb-1">{{user.firstName}} {{user.lastName}}</h4>
-                                </div>
+                            <div class="media-body">
+                                <h4 class="mt-1 mb-1">{{user.firstName}} {{user.lastName}}</h4>
                             </div>
                         </div>
 
-                      <!-- Update Profile Button -->
+                        <!-- Update Profile Button -->
                         <div class="col-sm-4">
                             <div class="text-center mt-sm-0 mt-3 text-sm-right">
                                 <button type="button" class="btn btn-light"
@@ -67,7 +65,7 @@
         </div>
     </div>
 
-  <!-- Personal-Information -->
+    <!-- Personal Information -->
     <div class="row justify-content-center">
         <div class="col-md-6" [formGroup]="form">
             <div class="card">
@@ -75,7 +73,7 @@
 
                     <!-- Bio -->
                     <h4 class="header-title mt-0 mb-3">Bio</h4>
-                    <input type="text" formControlName="bio" class="text-muted font-13 no-border"/>
+                    <input type="text" formControlName="bio"/>
                     <hr/>
 
                     <div class="text-left">
@@ -83,53 +81,47 @@
                         <!-- Name -->
                         <p><strong>Name:</strong>
                             <span class="ml-2">
-                              <input type="text" formControlName="firstName" class="text-muted font-13 no-border"/>
+                              <input type="text" formControlName="firstName"/>
                             </span>
                         </p>
 
                         <!-- Surname -->
                         <p class="text-muted"><strong>Last Name:</strong>
                             <span class="ml-2">
-                              <input type="text" formControlName="lastName" class="text-muted font-13 no-border"/>
+                              <input type="text" formControlName="lastName"/>
                             </span>
                         </p>
 
                         <!-- Email -->
                         <p class="text-muted"><strong>Email:</strong>
                             <span class="ml-2">
-                              <input type="text" formControlName="email" class="text-muted font-13 no-border"/>
+                              <input type="text" formControlName="email"/>
                             </span>
                         </p>
 
                         <!-- Location -->
                         <p class="text-muted"><strong>Location:</strong>
                             <span class="ml-2">
-                              <input type="text" formControlName="location" class="text-muted font-13 no-border"/>
+                              <input type="text" formControlName="location"/>
                             </span>
                         </p>
 
                         <!-- Languages -->
                         <p class="text-muted"><strong>Languages :</strong>
                             <span class="ml-2">
-                              <input type="text" formControlName="languages" class="text-muted font-13 no-border"/>
+                              <input type="text" formControlName="languages"/>
                             </span>
                         </p>
 
                         <!-- Social Media -->
                         <p class="text-muted mb-0"><strong>Social Media :</strong>
-                            <a class="d-inline-block ml-2 text-muted" data-placement="top"
-                               data-toggle="tooltip" href=""
-                               data-original-title="Facebook">
+                            <a class="d-inline-block ml-2 text-muted">
                                 <i class="mdi mdi-facebook"></i>
                             </a>
-                            <a class="d-inline-block ml-2 text-muted" data-placement="top"
-                               data-toggle="tooltip" href=""
-                               data-original-title="Twitter">
+                            <a class="d-inline-block ml-2 text-muted">
                                 <i class="mdi mdi-twitter"></i>
                             </a>
-                            <a class="d-inline-block ml-2 text-muted" data-placement="top"
-                               data-toggle="tooltip" href=""
-                               data-original-title="Skype">
+                            <a class="d-inline-block ml-2 text-muted">
                                 <i class="mdi mdi-skype"></i>
                             </a>
                         </p>
@@ -152,6 +144,7 @@
 
         </div>
     </div>
+
 </div>
 
 

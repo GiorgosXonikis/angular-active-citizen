@@ -1,3 +1,21 @@
+@import "/src/assets/scss/colors";
+
 .no-border {
   border: white;
 }
+
+input {
+  color: $gray-600;
+  font-size: 13px;
+  border: white;
+  width: 400px;
+}
+
+input:focus{
+  outline: none;
+}
+
+input:disabled{
+  background-color: white;
+}
+

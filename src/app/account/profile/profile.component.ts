@@ -12,13 +12,13 @@ export class ProfileComponent implements OnInit {
     public user: User;
 
     public form = this.formBuilder.group({
-        bio: [{value: null, disabled: false}],
-        firstName: [{value: null, disabled: false}],
-        lastName: [{value: null, disabled: false}],
-        phone: [{value: null, disabled: false}],
-        email: [{value: null, disabled: false}],
-        location: [{value: null, disabled: false}],
-        languages: [{value: null, disabled: false}],
+        bio: [{value: null, disabled: true}],
+        firstName: [{value: null, disabled: true}],
+        lastName: [{value: null, disabled: true}],
+        phone: [{value: null, disabled: true}],
+        email: [{value: null, disabled: true}],
+        location: [{value: null, disabled: true}],
+        languages: [{value: null, disabled: true}],
     });
 
     constructor(private authService: AuthService, private formBuilder: FormBuilder) {
