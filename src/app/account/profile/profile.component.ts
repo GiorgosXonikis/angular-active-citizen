@@ -12,33 +12,30 @@ export class ProfileComponent implements OnInit {
     public user: User;
 
     public form = this.formBuilder.group({
-        bio: [{value: null, disabled: true}],
-        firstName: [{value: null, disabled: true}],
-        lastName: [{value: null, disabled: true}],
-        phone: [{value: null, disabled: true}],
-        email: [{value: null, disabled: true}],
-        location: [{value: null, disabled: true}],
-        languages: [{value: null, disabled: true}],
+        bio: [null],
+        firstName: [null],
+        lastName: [null],
+        phone: [null],
+        email: [null],
+        location: [null],
+        languages: [null],
     });
 
     constructor(private authService: AuthService, private formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
+        this.form.disable();
         this.user = this.authService.user;
         this.patchFormValues();
     }
 
-    public updateProfile() {
-        console.log(this.form.value);
+    public update() {
+        this.form.disable();
     }
 
-    public editProfile() {
-        for (let control of Object.keys(this.form.controls)) {
-            this.form.get(control).enable();
-        }
-        console.log(this.form.controls);
-        console.log(Object.keys(this.form.controls));
+    public edit() {
+        this.form.enable();
     }
 
     public logout() {
@@ -54,7 +51,7 @@ export class ProfileComponent implements OnInit {
             email: this.user.email,
             location: this.user.location,
             languages: this.user.languages,
-        })
+        });
     }
 
 }
