@@ -38,9 +38,14 @@ export class LoginComponent implements OnInit {
         this.authService.login(this.f.email.value, this.f.password.value)
             .subscribe({
                 next: () => this.router.navigateByUrl('/profile'),
-                error: () => {
-                    this.error.code = 'incorrect_credentials';
-                    this.error.text = 'Incorrect credentials';
+                error: (err) => {
+                    if (err.error.statusCode === 401) {
+                        this.error.code = 'incorrect_credentials';
+                        this.error.text = 'Incorrect credentials';
+                    } else {
+                        this.error.code = 'server_error';
+                        this.error.text = 'Server error. Please try again in a while.';
+                    }
                 }
             });
     }
