@@ -46,7 +46,7 @@
                         <!-- Update Profile Button -->
                         <div class="col-sm-4">
                             <div class="text-center mt-sm-0 mt-3 text-sm-right">
-                                <button type="button" class="btn btn-light"
+                                <button type="button" class="btn btn-dark"
                                         [disabled]="form.enabled"
                                         (click)="edit()">
                                     <i class="mdi mdi-account-edit mr-1"></i>
@@ -58,7 +58,7 @@
                         <!-- Update Profile Button -->
                         <div *ngIf="form.enabled" class="col-sm-4 ml-auto">
                             <div class="text-center mt-sm-0 mt-3 text-sm-right">
-                                <button type="button" class="btn btn-light"
+                                <button type="button" class="btn btn-dark"
                                         (click)="update()">
                                     {{form.dirty ? 'Update' : 'Cancel'}}
                                 </button>
@@ -153,8 +153,4 @@
     </div>
 
 </div>
-
-
-
-
 
