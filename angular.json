@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/scss/app-creative.scss"
+              "src/assets/scss/app-creative.scss",
+              "src/assets/scss/icons.scss"
             ],
             "scripts": []
           },

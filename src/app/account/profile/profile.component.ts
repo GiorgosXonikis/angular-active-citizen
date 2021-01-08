@@ -33,6 +33,14 @@ export class ProfileComponent implements OnInit {
         console.log(this.form.value);
     }
 
+    public editProfile() {
+        for (let control of Object.keys(this.form.controls)) {
+            this.form.get(control).enable();
+        }
+        console.log(this.form.controls);
+        console.log(Object.keys(this.form.controls));
+    }
+
     public logout() {
         this.authService.logout().subscribe();
     }
