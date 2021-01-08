@@ -5,7 +5,7 @@ import {finalize, map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {PreloaderService} from './preloader.service';
 import {JsonConvert} from 'json2typescript';
-import {AuthEndpoints} from '../../../environments/api-endpoints';
+import {AuthEndpoints, UserEndpoints} from '../../../environments/api-endpoints';
 import {environment} from '../../../environments/environment';
 import {Auth, User} from '../../shared/models/auth';
 
@@ -47,7 +47,7 @@ export class AuthService {
         this.user = null;
 
         /** Disable user's token in backend */
-        return this.http.post(`${this.mainUrl}/${AuthEndpoints.logout}/`, {});
+        return this.http.post(`${this.mainUrl}/${UserEndpoints.logout}/`, {});
     }
 
     signUp(email: string, password: string): Observable<any> {
