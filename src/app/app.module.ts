@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -9,6 +9,7 @@ import {LandingPageModule} from './landing-page/landing-page.module';
 import {AccountModule} from './account/account.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
+import {AuthService, initialiseUserProviderFactory} from './core/services/auth.service';
 
 @NgModule({
     declarations: [
@@ -22,12 +23,22 @@ import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
         NgbModule,
         NgbAlertModule,
 
-        // App Modules
+        /** App Modules */
         LandingPageModule,
         AccountModule
     ],
     providers: [
-        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptor,
+            multi: true
+        },
+        {
+            provide: APP_INITIALIZER,
+            multi: true,
+            useFactory: initialiseUserProviderFactory,
+            deps: [AuthService]
+        }
     ],
     bootstrap: [AppComponent]
 })

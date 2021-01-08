@@ -35,6 +35,7 @@ export class AuthService {
                     this.accessToken = accessToken;
                     this.user = user;
                     this.cookieService.setCookie('user', JSON.stringify(user), 7);
+                    this.cookieService.setCookie('accessToken', JSON.stringify(accessToken), 7);
                     return this.user;
                 }),
                 finalize(() => this.preloader.hide())
@@ -44,6 +45,7 @@ export class AuthService {
     logout(): Observable<any> {
         /** Remove user from cookies */
         this.cookieService.deleteCookie('user');
+        this.cookieService.deleteCookie('accessToken');
         this.user = null;
 
         /** Disable user's token in backend */
@@ -94,4 +96,20 @@ export class AuthService {
         return this.user;
     }
 
+    public getAccessToken(): string {
+        if (!this.accessToken) {
+            this.accessToken = JSON.parse(this.cookieService.getCookie('accessToken'));
+        }
+        return this.accessToken;
+    }
+
+    public initialiseUser() {
+        this.getUser();
+        this.getAccessToken();
+    }
+
+}
+
+export function initialiseUserProviderFactory(authService: AuthService) {
+    return () => authService.initialiseUser();
 }
