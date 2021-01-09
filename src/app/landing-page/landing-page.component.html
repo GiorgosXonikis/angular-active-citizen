@@ -1,271 +1,275 @@
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg py-lg-3 navbar-dark">
-    <div class="container">
+<ng-container *ngIf="userAbbreviation">
 
-        <!-- Navbar Toggle-->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg py-lg-3 navbar-dark">
+        <div class="container">
 
-        <!-- Menu -->
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <!-- Navbar Toggle-->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <!-- Left menu -->
-            <ul class="navbar-nav mr-auto align-items-center">
-                <li class="nav-item mx-lg-2">
-                    <a class="nav-link active" href="">Home</a>
-                </li>
-                <li class="nav-item mx-lg-2">
-                    <a class="nav-link" href="">FAQs</a>
-                </li>
-                <li class="nav-item mx-lg-2">
-                    <a class="nav-link" routerLink="/auth/signup">Sign Up</a>
-                </li>
-            </ul>
+            <!-- Menu -->
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-            <!-- Right menu -->
-            <ul class="navbar-nav ml-auto align-items-center">
-                <li class="nav-item mr-0">
-                    <ng-template [ngIf]="!isUserLoggedIn" [ngIfElse]="welcomeUser">
-                        <a routerLink="/auth/login" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
-                            Sign In
-                        </a>
-                    </ng-template>
-                    <ng-template #welcomeUser>
-                        <a routerLink="/profile" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
-                            Welcome {{userAbbreviation}}
-                        </a>
-                    </ng-template>
-                </li>
-            </ul>
+                <!-- Left menu -->
+                <ul class="navbar-nav mr-auto align-items-center">
+                    <li class="nav-item mx-lg-2">
+                        <a class="nav-link active" href="">Home</a>
+                    </li>
+                    <li class="nav-item mx-lg-2">
+                        <a class="nav-link" href="">FAQs</a>
+                    </li>
+                    <li class="nav-item mx-lg-2">
+                        <a class="nav-link" routerLink="/auth/signup">Sign Up</a>
+                    </li>
+                </ul>
+
+                <!-- Right menu -->
+                <ul class="navbar-nav ml-auto align-items-center">
+                    <li class="nav-item mr-0">
+                        <ng-template [ngIf]="!isUserLoggedIn" [ngIfElse]="welcomeUser">
+                            <a routerLink="/auth/login" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
+                                Sign In
+                            </a>
+                        </ng-template>
+                        <ng-template #welcomeUser>
+                            <a routerLink="/profile" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
+                                Welcome {{userAbbreviation}}
+                            </a>
+                        </ng-template>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5">
+                    <div class="mt-md-4">
+                        <div>
+                            <span class="text-white-50 ml-1">Welcome to Active Citizen</span>
+                        </div>
+                        <h2 class="text-white font-weight-normal mb-4 mt-3 hero-title">
+                            Engaging People to Care About their Communities
+                        </h2>
+
+                        <p class="mb-4 font-16 text-white-50">
+                            In Active Citizen you can post the issue that your local community needs to take care.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-5 offset-md-2">
+                    <div class="text-md-right mt-3 mt-md-0">
+                        <img src="assets/images/startup.svg" alt="" class="img-fluid"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h1 class="mt-0"><i class="mdi mdi-infinity"></i></h1>
+                        <h3>Browse your <span class="text-primary">community</span></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="text-center p-3">
+                        <h4 class="mt-3">West District</h4>
+                        <p class="text-muted mt-2 mb-0">City 1</p>
+                        <p class="text-muted mt-2 mb-0">City 2</p>
+                        <p class="text-muted mt-2 mb-0">City 3</p>
+                        <p class="text-muted mt-2 mb-0">City 4</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="text-center p-3">
+                        <h4 class="mt-3">North District</h4>
+                        <p class="text-muted mt-2 mb-0">City 1</p>
+                        <p class="text-muted mt-2 mb-0">City 2</p>
+                        <p class="text-muted mt-2 mb-0">City 3</p>
+                        <p class="text-muted mt-2 mb-0">City 4</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="text-center p-3">
+                        <h4 class="mt-3">South District</h4>
+                        <p class="text-muted mt-2 mb-0">City 1</p>
+                        <p class="text-muted mt-2 mb-0">City 2</p>
+                        <p class="text-muted mt-2 mb-0">City 3</p>
+                        <p class="text-muted mt-2 mb-0">City 4</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="text-center p-3">
+                        <h4 class="mt-3">East District</h4>
+                        <p class="text-muted mt-2 mb-0">City 1</p>
+                        <p class="text-muted mt-2 mb-0">City 2</p>
+                        <p class="text-muted mt-2 mb-0">City 3</p>
+                        <p class="text-muted mt-2 mb-0">City 4</p>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
-    </div>
-</nav>
+    </section>
 
-<!-- Hero -->
-<section class="hero-section">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-5">
-                <div class="mt-md-4">
+    <!-- FAQ -->
+    <section class="bg-light-lighten py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h1 class="mt-0"><i class="mdi mdi-frequently-asked-questions"></i></h1>
+                        <h3>Frequently Asked <span class="text-primary">Questions</span></h3>
+                        <p class="text-muted mt-2">Here are some of the basic types of questions. For more
+                            <br>information please contact us.</p>
+
+                        <button type="button" class="btn btn-success btn-sm mt-2"><i class="mdi mdi-email-outline mr-1"></i>
+                            Email us your question
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-lg-5 offset-lg-1">
+                    <!-- Question/Answer -->
                     <div>
-                        <span class="text-white-50 ml-1">Welcome to Active Citizen</span>
+                        <div class="faq-question-q-box">Q.</div>
+                        <h4 class="faq-question text-body">How can I post my request?</h4>
+                        <p class="faq-answer mb-4 pb-1 text-muted">
+                            You can post your request like this. For a demo <br>
+                            click <a href="https://themes.getbootstrap.com/licenses/" target="_blank">here</a>.</p>
                     </div>
-                    <h2 class="text-white font-weight-normal mb-4 mt-3 hero-title">
-                        Engaging People to Care About their Communities
-                    </h2>
 
-                    <p class="mb-4 font-16 text-white-50">
-                        In Active Citizen you can post the issue that your local community needs to take care.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-5 offset-md-2">
-                <div class="text-md-right mt-3 mt-md-0">
-                    <img src="assets/images/startup.svg" alt="" class="img-fluid"/>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+                    <!-- Question/Answer -->
+                    <div>
+                        <div class="faq-question-q-box">Q.</div>
+                        <h4 class="faq-question text-body">Do I have to pay a subscription?</h4>
+                        <p class="faq-answer mb-4 pb-1 text-muted">You are definitely not. This is a free of charge service.</p>
+                    </div>
 
-<!-- Community -->
-<section class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="text-center">
-                    <h1 class="mt-0"><i class="mdi mdi-infinity"></i></h1>
-                    <h3>Browse your <span class="text-primary">community</span></h3>
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="text-center p-3">
-                    <h4 class="mt-3">West District</h4>
-                    <p class="text-muted mt-2 mb-0">City 1</p>
-                    <p class="text-muted mt-2 mb-0">City 2</p>
-                    <p class="text-muted mt-2 mb-0">City 3</p>
-                    <p class="text-muted mt-2 mb-0">City 4</p>
-                </div>
-            </div>
+                <div class="col-lg-5">
+                    <!-- Question/Answer -->
+                    <div>
+                        <div class="faq-question-q-box">Q.</div>
+                        <h4 class="faq-question text-body">Is this platform used by my local authority?</h4>
+                        <p class="faq-answer mb-4 pb-1 text-muted">They can if they want to. This platform give them
+                            to opportunity to interact with their citizens.
+                        </p>
+                    </div>
 
-            <div class="col-lg-3">
-                <div class="text-center p-3">
-                    <h4 class="mt-3">North District</h4>
-                    <p class="text-muted mt-2 mb-0">City 1</p>
-                    <p class="text-muted mt-2 mb-0">City 2</p>
-                    <p class="text-muted mt-2 mb-0">City 3</p>
-                    <p class="text-muted mt-2 mb-0">City 4</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3">
-                <div class="text-center p-3">
-                    <h4 class="mt-3">South District</h4>
-                    <p class="text-muted mt-2 mb-0">City 1</p>
-                    <p class="text-muted mt-2 mb-0">City 2</p>
-                    <p class="text-muted mt-2 mb-0">City 3</p>
-                    <p class="text-muted mt-2 mb-0">City 4</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3">
-                <div class="text-center p-3">
-                    <h4 class="mt-3">East District</h4>
-                    <p class="text-muted mt-2 mb-0">City 1</p>
-                    <p class="text-muted mt-2 mb-0">City 2</p>
-                    <p class="text-muted mt-2 mb-0">City 3</p>
-                    <p class="text-muted mt-2 mb-0">City 4</p>
+                    <!-- Question/Answer -->
+                    <div>
+                        <div class="faq-question-q-box">Q.</div>
+                        <h4 class="faq-question text-body">Is it possible to upload a photo?</h4>
+                        <p class="faq-answer mb-4 pb-1 text-muted">Yes, you can. Actually, it is recommended to do that.</p>
+                    </div>
                 </div>
             </div>
 
         </div>
+    </section>
 
-    </div>
-</section>
-
-<!-- FAQ -->
-<section class="bg-light-lighten py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="text-center">
-                    <h1 class="mt-0"><i class="mdi mdi-frequently-asked-questions"></i></h1>
-                    <h3>Frequently Asked <span class="text-primary">Questions</span></h3>
-                    <p class="text-muted mt-2">Here are some of the basic types of questions. For more
-                        <br>information please contact us.</p>
-
-                    <button type="button" class="btn btn-success btn-sm mt-2"><i class="mdi mdi-email-outline mr-1"></i>
-                        Email us your question
-                    </button>
+    <!-- Contact -->
+    <section class="py-5 border-top border-bottom border-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h3>Get In <span class="text-primary">Touch</span></h3>
+                        <p class="text-muted mt-2">Please fill out the following form and we will get back to you shortly.
+                            For more
+                            <br>information please contact us.</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row mt-5">
-            <div class="col-lg-5 offset-lg-1">
-                <!-- Question/Answer -->
-                <div>
-                    <div class="faq-question-q-box">Q.</div>
-                    <h4 class="faq-question text-body">How can I post my request?</h4>
-                    <p class="faq-answer mb-4 pb-1 text-muted">
-                        You can post your request like this. For a demo <br>
-                        click <a href="https://themes.getbootstrap.com/licenses/" target="_blank">here</a>.</p>
-                </div>
+            <div class="row align-items-center mt-3 justify-content-center">
 
-                <!-- Question/Answer -->
-                <div>
-                    <div class="faq-question-q-box">Q.</div>
-                    <h4 class="faq-question text-body">Do I have to pay a subscription?</h4>
-                    <p class="faq-answer mb-4 pb-1 text-muted">You are definitely not. This is a free of charge service.</p>
-                </div>
-
-            </div>
-
-            <div class="col-lg-5">
-                <!-- Question/Answer -->
-                <div>
-                    <div class="faq-question-q-box">Q.</div>
-                    <h4 class="faq-question text-body">Is this platform used by my local authority?</h4>
-                    <p class="faq-answer mb-4 pb-1 text-muted">They can if they want to. This platform give them
-                        to opportunity to interact with their citizens.
-                    </p>
-                </div>
-
-                <!-- Question/Answer -->
-                <div>
-                    <div class="faq-question-q-box">Q.</div>
-                    <h4 class="faq-question text-body">Is it possible to upload a photo?</h4>
-                    <p class="faq-answer mb-4 pb-1 text-muted">Yes, you can. Actually, it is recommended to do that.</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<!-- Contact -->
-<section class="py-5 border-top border-bottom border-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="text-center">
-                    <h3>Get In <span class="text-primary">Touch</span></h3>
-                    <p class="text-muted mt-2">Please fill out the following form and we will get back to you shortly.
-                        For more
-                        <br>information please contact us.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row align-items-center mt-3 justify-content-center">
-
-            <div class="col-md-6">
-                <form>
-                    <div class="row mt-4">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="fullname">Your Name</label>
-                                <input class="form-control form-control-light" type="text" id="fullname"
-                                       placeholder="Name...">
+                <div class="col-md-6">
+                    <form>
+                        <div class="row mt-4">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="fullname">Your Name</label>
+                                    <input class="form-control form-control-light" type="text" id="fullname"
+                                           placeholder="Name...">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="emailaddress">Your Email</label>
+                                    <input class="form-control form-control-light" type="email" required=""
+                                           id="emailaddress" placeholder="Enter you email...">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="emailaddress">Your Email</label>
-                                <input class="form-control form-control-light" type="email" required=""
-                                       id="emailaddress" placeholder="Enter you email...">
+
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="subject">Your Subject</label>
+                                    <input class="form-control form-control-light" type="text" id="subject"
+                                           placeholder="Enter subject...">
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row mt-1">
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label for="subject">Your Subject</label>
-                                <input class="form-control form-control-light" type="text" id="subject"
-                                       placeholder="Enter subject...">
+                        <div class="row mt-1">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="comments">Message</label>
+                                    <textarea id="comments" rows="4" class="form-control form-control-light"
+                                              placeholder="Type your message here..."></textarea>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row mt-1">
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label for="comments">Message</label>
-                                <textarea id="comments" rows="4" class="form-control form-control-light"
-                                          placeholder="Type your message here..."></textarea>
+                        <div class="row pb-5 mt-2">
+                            <div class="col-12 text-right">
+                                <button class="btn btn-primary">Send a Message <i
+                                        class="mdi mdi-telegram ml-1"></i></button>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row pb-5 mt-2">
-                        <div class="col-12 text-right">
-                            <button class="btn btn-primary">Send a Message <i
-                                    class="mdi mdi-telegram ml-1"></i></button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- START FOOTER -->
-<!--<footer class="bg-dark pt-1">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-lg-12">-->
-<!--                <div class="mt-3">-->
-<!--                    <p class="text-white-50 mt-4 text-center mb-2">© 2020 - 2021 gxo</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</footer>-->
-<!-- END FOOTER -->
+    <!-- START FOOTER -->
+    <!--<footer class="bg-dark pt-1">-->
+    <!--    <div class="container">-->
+    <!--        <div class="row">-->
+    <!--            <div class="col-lg-12">-->
+    <!--                <div class="mt-3">-->
+    <!--                    <p class="text-white-50 mt-4 text-center mb-2">© 2020 - 2021 gxo</p>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</footer>-->
+    <!-- END FOOTER -->
+
+</ng-container>

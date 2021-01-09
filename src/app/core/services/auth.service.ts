@@ -101,7 +101,3 @@ export class AuthService {
     }
 
 }
-
-export function initialiseAuthProviderFactory(authService: AuthService) {
-    return () => authService.getAccessToken();
-}

@@ -1,12 +1,13 @@
 import {Observable} from 'rxjs';
 import {AuthEndpoints, UserEndpoints} from '../../../environments/api-endpoints';
-import {finalize} from 'rxjs/operators';
+import {finalize, tap} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {PreloaderService} from './preloader.service';
 import {environment} from '../../../environments/environment';
 import {User} from '../../shared/models/auth';
 import {CookieService} from './cookie.service';
+import {AuthService} from './auth.service';
 
 
 @Injectable({
@@ -17,6 +18,7 @@ export class UserService {
 
     constructor(private http: HttpClient,
                 private cookiesService: CookieService,
+                private authService: AuthService,
                 private preloader: PreloaderService) {
     }
 
@@ -25,6 +27,7 @@ export class UserService {
 
         return this.http.get<User>(`${this.mainUrl}/${UserEndpoints.profile}/`)
             .pipe(
+                tap(_user => this.authService.user = _user),
                 finalize(() => this.preloader.hide())
             );
     }

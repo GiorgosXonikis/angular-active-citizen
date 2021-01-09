@@ -34,7 +34,6 @@ export class ProfileComponent implements OnInit {
             age: [null],
             sex: [null],
             phone: [null],
-            email: [null],
             location: [null],
             languages: [null],
         });

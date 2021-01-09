@@ -42,9 +42,8 @@
                                     <img src="assets/images/users/avatar-2.jpg"
                                          style="height: 100px;" alt="avatar" class="rounded-circle img-thumbnail">
                                   </span>
-                                <div class="media-body">
-                                    <h4 class="mt-1 mb-1">{{form.get('firstName').value}} {{form.get('lastName').value}}</h4>
-                                </div>
+                                    <h4 class="pt-4 mb-0">{{form.get('firstName').value}} {{form.get('lastName').value}}</h4>
+                                    <h5 style="width: 450px;">{{user.email}}</h5>
                             </div>
 
                             <!-- Update Profile Button -->
@@ -114,13 +113,6 @@
                             <p class="text-muted"><strong>Sex:</strong>
                                 <span class="ml-2">
                                   <input type="text" formControlName="sex"/>
-                                </span>
-                            </p>
-
-                            <!-- Email -->
-                            <p class="text-muted"><strong>Email:</strong>
-                                <span class="ml-2">
-                                  <input type="text" formControlName="email"/>
                                 </span>
                             </p>
 
