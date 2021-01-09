@@ -56,10 +56,16 @@ export class ProfileComponent implements OnInit {
     public saveUser(): void {
         this.form.disable();
 
+        if (this.form.pristine) {
+            return;
+        }
+
         /** Extract form values */
         this.formsService.formToModel(this.form, this.user);
 
-        this.userService.patchUser(this.user).subscribe(console.log);
+        this.userService.patchUser(this.user).subscribe(
+            () => this.form.markAsPristine()
+        );
     }
 
     public logout(): void {
