@@ -155,13 +155,15 @@
                     </div>
                 </div>
 
-                <!-- Telephone number box-->
+                <!-- Phone number box-->
                 <div class="card text-white bg-info overflow-hidden">
                     <div class="card-body">
                         <div class="toll-free-box text-center">
                             <h4>
                                 <i class="mdi mdi-deskphone"></i>
-                                Telephone: {{form.get('phone').value}}
+                                Telephone:
+                                <input type="text" formControlName="phone"
+                                       style="background: transparent; color: white; font-size: 18px; font-weight: bold">
                             </h4>
                         </div>
                     </div>
@@ -169,7 +171,6 @@
 
             </div>
         </div>
-
     </div>
 
 </ng-container>
