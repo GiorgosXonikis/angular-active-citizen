@@ -8,7 +8,7 @@ input {
   color: $gray-600;
   font-size: 13px;
   border: white;
-  width: 400px;
+  width: 300px;
 }
 
 input:focus{
@@ -21,4 +21,16 @@ input:disabled{
 
 input:enabled {
   font-style: italic;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

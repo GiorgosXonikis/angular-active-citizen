@@ -9,7 +9,7 @@ import {LandingPageModule} from './landing-page/landing-page.module';
 import {AccountModule} from './account/account.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
-import {AuthService, initialiseUserProviderFactory} from './core/services/auth.service';
+import {AuthService, initialiseAuthProviderFactory} from './core/services/auth.service';
 
 @NgModule({
     declarations: [
@@ -36,7 +36,7 @@ import {AuthService, initialiseUserProviderFactory} from './core/services/auth.s
         {
             provide: APP_INITIALIZER,
             multi: true,
-            useFactory: initialiseUserProviderFactory,
+            useFactory: initialiseAuthProviderFactory,
             deps: [AuthService]
         }
     ],

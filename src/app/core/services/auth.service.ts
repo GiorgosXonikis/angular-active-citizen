@@ -34,7 +34,7 @@ export class AuthService {
                     const {accessToken, user} = <Auth>this._converter.deserialize(_auth, Auth);
                     this.accessToken = accessToken;
                     this.user = user;
-                    const activeCitizen = {user, accessToken}
+                    const activeCitizen = {accessToken};
                     this.cookieService.setCookie('activeCitizen', JSON.stringify(activeCitizen), 7);
                     return this.user;
                 }),
@@ -43,12 +43,16 @@ export class AuthService {
     }
 
     logout(): Observable<any> {
-        /** Remove user from cookies */
-        this.cookieService.deleteCookie('activeCitizen');
-        this.user = null;
-
-        /** Disable user's token in backend */
-        return this.http.post(`${this.mainUrl}/${UserEndpoints.logout}/`, {});
+        /** Disable the access token in backend */
+        return this.http.post(`${this.mainUrl}/${UserEndpoints.logout}/`, {})
+            .pipe(
+                finalize(() => {
+                    /** Delete cookie as well as both user and access token from memory */
+                    this.cookieService.deleteCookie('activeCitizen');
+                    this.user = null;
+                    this.accessToken = null;
+                })
+            );
     }
 
     signUp(email: string, password: string): Observable<any> {
@@ -88,29 +92,16 @@ export class AuthService {
             );
     }
 
-    public getUser(): User {
-        if (!this.user) {
-            const activeCitizen = JSON.parse(this.cookieService.getCookie('activeCitizen'));
-            this.user = activeCitizen.user;
-        }
-        return this.user;
-    }
-
     public getAccessToken(): string {
         if (!this.accessToken) {
             const activeCitizen = JSON.parse(this.cookieService.getCookie('activeCitizen'));
-            this.accessToken = activeCitizen.accessToken;
+            return this.accessToken = activeCitizen ? activeCitizen.accessToken : null;
         }
         return this.accessToken;
     }
 
-    public initialiseUser() {
-        this.getUser();
-        this.getAccessToken();
-    }
-
 }
 
-export function initialiseUserProviderFactory(authService: AuthService) {
-    return () => authService.initialiseUser();
+export function initialiseAuthProviderFactory(authService: AuthService) {
+    return () => authService.getAccessToken();
 }

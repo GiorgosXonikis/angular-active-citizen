@@ -1,57 +1,70 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../core/services/auth.service';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {User} from '../../shared/models/auth';
+import {UserService} from '../../core/services/user.service';
+import {FormsService} from '../../core/services/form-service/forms.service';
 
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.scss']
+    styleUrls: ['./profile.component.scss'],
+    providers: [FormsService]
 })
 export class ProfileComponent implements OnInit {
     public user: User;
+    public form: FormGroup;
 
-    public form = this.formBuilder.group({
-        bio: [null],
-        firstName: [null],
-        lastName: [null],
-        phone: [null],
-        email: [null],
-        location: [null],
-        languages: [null],
-    });
-
-    constructor(private authService: AuthService, private formBuilder: FormBuilder) {
+    constructor(private authService: AuthService,
+                private userService: UserService,
+                private formBuilder: FormBuilder,
+                private formsService: FormsService<User>) {
     }
 
     ngOnInit() {
+        this.createForm();
+        this.getUser();
+    }
+
+    private createForm(): void {
+        this.form = this.formBuilder.group({
+            bio: [null],
+            firstName: [null],
+            lastName: [null],
+            age: [null],
+            sex: [null],
+            phone: [null],
+            email: [null],
+            location: [null],
+            languages: [null],
+        });
+
         this.form.disable();
-        this.user = this.authService.user;
-        this.patchFormValues();
     }
 
-    public update() {
+    private getUser(): void {
+        this.userService.getUser().subscribe(
+            _user => {
+                this.user = this.authService.user = _user;
+
+                /** Patch model values to form */
+                this.formsService.modelToForm(this.user, this.form);
+            }
+        );
+    }
+
+    public saveUser(): void {
         this.form.disable();
+
+        /** Extract form values */
+        this.formsService.formToModel(this.form, this.user);
+
+        this.userService.patchUser(this.user).subscribe(console.log);
     }
 
-    public edit() {
-        this.form.enable();
-    }
-
-    public logout() {
+    public logout(): void {
         this.authService.logout().subscribe();
     }
 
-    private patchFormValues() {
-        this.form.patchValue({
-            bio: this.user.bio,
-            firstName: this.user.firstName,
-            lastName: this.user.lastName,
-            phone: this.user.phone,
-            email: this.user.email,
-            location: this.user.location,
-            languages: this.user.languages,
-        });
-    }
-
 }
+
