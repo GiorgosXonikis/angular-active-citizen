@@ -9,10 +9,10 @@ export class AppInitializerService {
                 private userService: UserService) {
     }
 
-    init() {
+    async init(): Promise<void> {
         this.authService.getAccessToken();
 
-        this.userService.getUser().subscribe();
+        await this.userService.getUser().toPromise();
     }
 }
 
