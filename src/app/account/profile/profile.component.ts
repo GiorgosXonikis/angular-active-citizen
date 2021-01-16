@@ -1,9 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AuthService} from '../../core/services/auth.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {User} from '../../shared/models/auth';
 import {UserService} from '../../core/services/user.service';
 import {FormsService} from '../../core/services/form-service/forms.service';
+import {AuthService} from '../../core/services/auth-service/auth.service';
 
 @Component({
     selector: 'app-profile',

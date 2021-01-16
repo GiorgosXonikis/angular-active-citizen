@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {CookieService} from './cookie.service';
 import {finalize, map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {PreloaderService} from './preloader.service';
 import {JsonConvert} from 'json2typescript';
-import {AuthEndpoints, UserEndpoints} from '../../../environments/api-endpoints';
-import {environment} from '../../../environments/environment';
-import {Auth, User} from '../../shared/models/auth';
+import {Auth, User} from '../../../shared/models/auth';
+import {environment} from '../../../../environments/environment';
+import {PreloaderService} from '../preloader.service';
+import {CookieService} from '../cookie.service';
+import {AuthEndpoints, UserEndpoints} from '../../../../environments/api-endpoints';
 
 
 @Injectable({

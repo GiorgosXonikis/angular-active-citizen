@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {UserService} from '../../../../core/services/user.service';
 import {FormValidators} from '../../../../shared/forms/validators/form-validators';
-import {AuthService} from '../../../../core/services/auth.service';
+import {AuthService} from '../../../../core/services/auth-service/auth.service';
 
 export enum viewStateEnum {
     Form = 0,

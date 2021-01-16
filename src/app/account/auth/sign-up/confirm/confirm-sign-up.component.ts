@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {AuthService} from '../../../../core/services/auth.service';
+import {AuthService} from '../../../../core/services/auth-service/auth.service';
 
 @Component({
     selector: 'app-confirm-sign-up',
