@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from '../../core/services/auth.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {User} from '../../shared/models/auth';
@@ -14,6 +14,7 @@ import {FormsService} from '../../core/services/form-service/forms.service';
 export class ProfileComponent implements OnInit {
     public user: User;
     public form: FormGroup;
+    @ViewChild('bio') bio: ElementRef;
 
     constructor(private authService: AuthService,
                 private userService: UserService,
@@ -24,6 +25,30 @@ export class ProfileComponent implements OnInit {
     ngOnInit() {
         this.createForm();
         this.getUser();
+    }
+
+    saveUser(): void {
+        this.form.disable();
+
+        if (this.form.pristine) {
+            return;
+        }
+
+        /** Extract form values */
+        this.formsService.formToModel(this.form, this.user);
+
+        this.userService.patchUser(this.user).subscribe(
+            () => this.form.markAsPristine()
+        );
+    }
+
+    logout(): void {
+        this.authService.logout().subscribe();
+    }
+
+    enableForm() {
+        this.form.enable();
+        this.bio.nativeElement.focus();
     }
 
     private createForm(): void {
@@ -50,25 +75,6 @@ export class ProfileComponent implements OnInit {
                 this.formsService.modelToForm(this.user, this.form);
             }
         );
-    }
-
-    public saveUser(): void {
-        this.form.disable();
-
-        if (this.form.pristine) {
-            return;
-        }
-
-        /** Extract form values */
-        this.formsService.formToModel(this.form, this.user);
-
-        this.userService.patchUser(this.user).subscribe(
-            () => this.form.markAsPristine()
-        );
-    }
-
-    public logout(): void {
-        this.authService.logout().subscribe();
     }
 
 }

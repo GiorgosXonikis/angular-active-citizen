@@ -42,25 +42,21 @@
                                     <img src="assets/images/users/avatar-2.jpg"
                                          style="height: 100px;" alt="avatar" class="rounded-circle img-thumbnail">
                                   </span>
-                                    <h4 class="pt-4 mb-0">{{form.get('firstName').value}} {{form.get('lastName').value}}</h4>
-                                    <h5 style="width: 450px;">{{user.email}}</h5>
+                                <h4 class="pt-4 mb-0">{{form.get('firstName').value}} {{form.get('lastName').value}}</h4>
+                                <h5 style="width: 450px;">{{user.email}}</h5>
                             </div>
 
                             <!-- Update Profile Button -->
                             <div class="col-sm-4">
                                 <div class="text-center mt-sm-0 mt-3 text-sm-right">
                                     <button type="button" class="btn btn-dark"
-                                            [disabled]="form.enabled"
-                                            (click)="form.enable()">
+                                            (click)="form.enabled ? form.disable() : enableForm()">
                                         <i class="mdi mdi-account-edit mr-1"></i>
                                         Edit Profile
                                     </button>
                                 </div>
-                            </div>
 
-                            <!-- Update Profile Button -->
-                            <div *ngIf="form.enabled" class="col-sm-4 ml-auto">
-                                <div class="text-center mt-sm-0 mt-3 text-sm-right">
+                                <div *ngIf="form.enabled" class="text-center pt-4 text-sm-right">
                                     <button type="button" class="btn btn-dark"
                                             (click)="saveUser()">
                                         {{form.dirty ? 'Update' : 'Cancel'}}
@@ -69,7 +65,6 @@
                             </div>
 
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -83,7 +78,7 @@
 
                         <!-- Bio -->
                         <h4 class="header-title mt-0 mb-3">Bio</h4>
-                        <input type="text" formControlName="bio"/>
+                        <input #bio type="text" formControlName="bio"/>
                         <hr/>
 
                         <div class="text-left">
@@ -144,10 +139,15 @@
                             </p>
 
                         </div>
+
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Phone number box-->
+        <!-- Phone Number -->
+        <div class="row justify-content-center">
+            <div class="col-md-6" [formGroup]="form">
                 <div class="card text-white bg-info overflow-hidden">
                     <div class="card-body">
                         <div class="toll-free-box text-center">
@@ -163,6 +163,9 @@
 
             </div>
         </div>
+
+        <!-- Password-->
+        <app-change-password></app-change-password>
     </div>
 
 </ng-container>

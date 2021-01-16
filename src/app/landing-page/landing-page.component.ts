@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from '../core/services/auth.service';
 
 @Component({
@@ -6,12 +6,9 @@ import {AuthService} from '../core/services/auth.service';
     templateUrl: './landing-page.component.html',
     styleUrls: ['./landing-page.component.scss']
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent {
 
     constructor(private authService: AuthService) {
-    }
-
-    ngOnInit() {
     }
 
     get isUserLoggedIn(): boolean {
@@ -19,6 +16,10 @@ export class LandingPageComponent implements OnInit {
     }
 
     get userAbbreviation(): string {
+        if (!this.isUserLoggedIn) {
+            return null;
+        }
+
         const user = this.authService.user;
         return user.firstName || user.lastName || user.email;
     }

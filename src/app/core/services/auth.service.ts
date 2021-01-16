@@ -92,6 +92,22 @@ export class AuthService {
             );
     }
 
+    confirmPasswordReset(newPassword: string, passwordRepeat: string, email: string, token: string): Observable<any> {
+        this.preloader.show();
+
+        const payload = {
+            newPassword,
+            passwordRepeat,
+            email,
+            token
+        };
+
+        return this.http.post(`${this.mainUrl}/${AuthEndpoints.confirmPasswordReset}/`, payload)
+            .pipe(
+                finalize(() => this.preloader.hide())
+            );
+    }
+
     public getAccessToken(): string {
         if (!this.accessToken) {
             const activeCitizen = JSON.parse(this.cookieService.getCookie('activeCitizen'));

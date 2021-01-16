@@ -29,7 +29,8 @@
             ],
             "styles": [
               "src/assets/scss/app-creative.scss",
-              "src/assets/scss/icons.scss"
+              "src/assets/scss/icons.scss",
+              "src/styles.scss"
             ],
             "scripts": []
           },

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
+import {FormValidators} from '../../../shared/forms/validators/form-validators';
 
 export enum viewStateEnum {
     Form = 0,
@@ -28,7 +29,7 @@ export class SignUpComponent {
         password: ['Gioxon1985', Validators.required],
         passwordRepeat: ['Gioxon1985', Validators.required],
     }, {
-        validators: [this.passwordsMatchValidator()]
+        validators: [FormValidators.passwordsMatchValidator()]
     });
 
     onSubmit(): void {
@@ -54,21 +55,6 @@ export class SignUpComponent {
 
     public get f(): any {
         return this.form.controls;
-    }
-
-    private passwordsMatchValidator() {
-        return function (fg: FormGroup): ValidationErrors | null {
-            const password = fg.get('password').value;
-            const passwordRepeat = fg.get('passwordRepeat').value;
-
-            if (password === passwordRepeat) {
-                return null;
-            }
-
-            return {
-                ['passwordMatchError']: 'Passwords do not match'
-            };
-        };
     }
 
 }

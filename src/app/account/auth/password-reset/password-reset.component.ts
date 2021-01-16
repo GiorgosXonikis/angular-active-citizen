@@ -19,7 +19,7 @@ export class PasswordResetComponent {
     public viewStateEnum = viewStateEnum;
     public error = {code: '', text: ''};
 
-    public resetForm = this.formBuilder.group({
+    public form = this.formBuilder.group({
         email: ['', [Validators.required, Validators.email]],
     });
 
@@ -28,11 +28,11 @@ export class PasswordResetComponent {
     }
 
     public get f(): any {
-        return this.resetForm.controls;
+        return this.form.controls;
     }
 
     public onSubmit(): void {
-        if (this.resetForm.invalid) {
+        if (this.form.invalid) {
             this.renderValidations = true;
             return;
         }

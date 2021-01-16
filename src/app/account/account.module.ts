@@ -5,10 +5,12 @@ import {ProfileComponent} from './profile/profile.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {PreLoaderModule} from '../shared/components/preloader/preloader.module';
+import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 
 @NgModule({
     declarations: [
-        ProfileComponent
+        ProfileComponent,
+        ChangePasswordComponent
     ],
     imports: [
         AuthModule,

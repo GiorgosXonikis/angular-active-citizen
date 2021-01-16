@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../../../core/services/auth.service';
 
 @Component({
-    selector: 'app-confirm',
+    selector: 'app-confirm-sign-up',
     templateUrl: './confirm-sign-up.component.html',
     styleUrls: ['./confirm-sign-up.component.scss']
 })
@@ -25,10 +25,10 @@ export class ConfirmSignUpComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.activate();
+        this.activateAccount();
     }
 
-    private activate() {
+    private activateAccount() {
         this.authService.activate(this._email, this._activationCode)
             .subscribe({
                     next: () => this.confirmedSuccessfully = true,

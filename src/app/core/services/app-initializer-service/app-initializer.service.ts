@@ -10,7 +10,11 @@ export class AppInitializerService {
     }
 
     async init(): Promise<void> {
-        this.authService.getAccessToken();
+        const accessToken = this.authService.getAccessToken();
+
+        if (!accessToken) {
+            return;
+        }
 
         await this.userService.getUser().toPromise();
     }

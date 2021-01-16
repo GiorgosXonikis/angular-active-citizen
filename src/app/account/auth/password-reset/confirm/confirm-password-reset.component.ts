@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../../../../core/services/user.service';
+import {FormValidators} from '../../../../shared/forms/validators/form-validators';
+import {AuthService} from '../../../../core/services/auth.service';
 
 export enum viewStateEnum {
     Form = 0,
@@ -14,7 +16,7 @@ export enum viewStateEnum {
     templateUrl: './confirm-password-reset.component.html',
     styleUrls: ['./confirm-password-reset.component.scss']
 })
-export class ConfirmPasswordResetComponent implements OnInit {
+export class ConfirmPasswordResetComponent {
     public renderValidations = false;
     public viewState = viewStateEnum.Form;
     public viewStateEnum = viewStateEnum;
@@ -25,7 +27,7 @@ export class ConfirmPasswordResetComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
                 private activatedRoute: ActivatedRoute,
-                private userService: UserService) {
+                private authService: AuthService) {
         this.activatedRoute.params.subscribe(
             _params => {
                 this._email = _params['email'];
@@ -38,11 +40,8 @@ export class ConfirmPasswordResetComponent implements OnInit {
         password: ['Gioxon1985', Validators.required],
         passwordRepeat: ['Gioxon1985', Validators.required],
     }, {
-        validators: [this.passwordsMatchValidator()]
+        validators: [FormValidators.passwordsMatchValidator()]
     });
-
-    ngOnInit(): void {
-    }
 
     onSubmit(): void {
         if (this.form.invalid) {
@@ -50,7 +49,7 @@ export class ConfirmPasswordResetComponent implements OnInit {
             return;
         }
 
-        this.userService.changePassword(this.f.password.value, this.f.passwordRepeat.value, this._email, this._token)
+        this.authService.confirmPasswordReset(this.f.password.value, this.f.passwordRepeat.value, this._email, this._token)
             .subscribe({
                 next: () => this.viewState = viewStateEnum.Success,
                 error: () => {
@@ -63,21 +62,6 @@ export class ConfirmPasswordResetComponent implements OnInit {
 
     public get f(): any {
         return this.form.controls;
-    }
-
-    private passwordsMatchValidator() {
-        return function (fg: FormGroup): ValidationErrors | null {
-            const password = fg.get('password').value;
-            const passwordRepeat = fg.get('passwordRepeat').value;
-
-            if (password === passwordRepeat) {
-                return null;
-            }
-
-            return {
-                ['passwordMatchError']: 'Passwords do not match'
-            };
-        };
     }
 
 }

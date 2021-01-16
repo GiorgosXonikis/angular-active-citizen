@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
             });
     }
 
-    public get f(): any {
+    get f(): any {
         return this.loginForm.controls;
     }
 

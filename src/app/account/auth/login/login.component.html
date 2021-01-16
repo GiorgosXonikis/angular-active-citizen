@@ -40,7 +40,7 @@
                                            id="email" name="email" type="email" formControlName="email"
                                            placeholder="example@provider.com"/>
 
-                                    <div *ngIf="renderValidations && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="renderValidations && f.email.errors" class="invalid-field">
                                         <div *ngIf="f.email.errors.required">Email is required</div>
                                         <div *ngIf="f.email.errors['email']">Email must be a valid email address</div>
                                     </div>
@@ -63,8 +63,7 @@
                                            placeholder="Password"/>
 
                                     <!-- Password Validators -->
-                                    <div *ngIf="renderValidations && f.password.errors?.required"
-                                         class="invalid-feedback">
+                                    <div *ngIf="renderValidations && f.password.errors?.required" class="invalid-field">
                                         Password is required
                                     </div>
 

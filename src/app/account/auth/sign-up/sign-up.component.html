@@ -40,7 +40,7 @@
                                        class="form-control"
                                        [ngClass]="{ 'is-invalid': renderValidations && f.email.errors }"
                                        placeholder="example@provider.com"/>
-                                <div *ngIf="renderValidations && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="renderValidations && f.email.errors" class="invalid-field">
                                     <div *ngIf="f.email.errors.required">Email is required</div>
                                     <div *ngIf="f.email.getError('email')">Email must be a valid email address</div>
                                 </div>
@@ -55,7 +55,7 @@
                                        class="form-control"
                                        [ngClass]="{ 'is-invalid': renderValidations && f.password.errors }"
                                        placeholder="Provide strong password"/>
-                                <div *ngIf="renderValidations && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="renderValidations && f.password.errors" class="invalid-field">
                                     <div *ngIf="f.password.errors.required">Password is required</div>
                                 </div>
                             </div>
@@ -69,12 +69,10 @@
                                        class="form-control"
                                        [ngClass]="{ 'is-invalid': renderValidations && (f.passwordRepeat.errors || form.getError('passwordMatchError'))}"
                                        placeholder="Repeat your password"/>
-                                <div *ngIf="renderValidations && f.passwordRepeat.errors?.required"
-                                     class="invalid-feedback">
+                                <div *ngIf="renderValidations && f.passwordRepeat.errors?.required" class="invalid-field">
                                     Password repeat is required
                                 </div>
-                                <div *ngIf="renderValidations && form.getError('passwordMatchError')"
-                                     class="invalid-feedback">
+                                <div *ngIf="renderValidations && form.getError('passwordMatchError')" class="invalid-field">
                                     Passwords do not match
                                 </div>
                             </div>
