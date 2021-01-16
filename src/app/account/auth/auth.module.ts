@@ -9,6 +9,9 @@ import {PasswordResetComponent} from './password-reset/password-reset.component'
 import {ConfirmPasswordResetComponent} from './password-reset/confirm/confirm-password-reset.component';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
+import {CardErrorModule} from '../../shared/components/card-error/card-error.module';
+import {CardSuccessModule} from '../../shared/components/card-success/card-success.module';
+import {SignInLinkModule} from '../../shared/components/sign-in-link/sign-in-link.module';
 
 @NgModule({
     imports: [
@@ -16,7 +19,10 @@ import {ReactiveFormsModule} from '@angular/forms';
         AuthRoutingModule,
         PreLoaderModule,
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        CardErrorModule,
+        CardSuccessModule,
+        SignInLinkModule
     ],
     declarations: [
         LoginComponent,

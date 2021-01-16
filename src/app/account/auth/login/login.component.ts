@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../../core/services/auth.service';
 
@@ -9,9 +9,10 @@ import {AuthService} from '../../../core/services/auth.service';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-    public renderValidations = false;
-    public returnUrl: string;
-    public error = {code: '', text: ''};
+    form: FormGroup;
+    renderValidations = false;
+    returnUrl: string;
+    error = {code: '', text: ''};
 
     constructor(private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
@@ -19,18 +20,15 @@ export class LoginComponent implements OnInit {
                 private authService: AuthService) {
     }
 
-    public loginForm = this.formBuilder.group({
-        email: ['giorgos.xonikis@gmail.com', [Validators.required, Validators.email]],
-        password: ['Gioxon1985', Validators.required],
-    });
-
     ngOnInit(): any {
+        this.createForm();
+        
         /** Get return url from route parameters or default to '/' */
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     onSubmit(): void {
-        if (this.loginForm.invalid) {
+        if (this.form.invalid) {
             this.renderValidations = true;
             return;
         }
@@ -50,8 +48,15 @@ export class LoginComponent implements OnInit {
             });
     }
 
+    private createForm() {
+        this.form = this.formBuilder.group({
+            email: ['giorgos.xonikis@gmail.com', [Validators.required, Validators.email]],
+            password: ['Gioxon1985', Validators.required],
+        });
+    }
+
     get f(): any {
-        return this.loginForm.controls;
+        return this.form.controls;
     }
 
 }

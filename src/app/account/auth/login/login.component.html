@@ -20,7 +20,7 @@
                             </div>
 
                             <!-- Sign in Form -->
-                            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="needs-validation"
+                            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation"
                                   name="loginForm">
 
                                 <!-- Preloader Spinner -->
@@ -100,27 +100,13 @@
 
 <!------------------------------- On Login Error ------------------------------>
 <ng-template #onError>
-    <div class="card-body p-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="card ribbon-box">
-                    <div class="card-body">
-                        <div class="ribbon ribbon-danger float-right">
-                            <i class="mdi mdi-access-point mr-1"></i>Error
-                        </div>
-                        <h5 class="text-danger float-left mt-0">Login unsuccessful</h5>
-                        <div class="ribbon-content">
-                            <p class="mb-0">
-                                {{error.text}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <app-card-error [title]="'Error'"
+                    [subTitle]="'Login unsuccessful'"
+                    [body]="error.text">
 
         <div class="form-group text-center">
             <button name="submit" class="btn btn-primary" (click)="error.code=null">Try again</button>
         </div>
-    </div>
+
+    </app-card-error>
 </ng-template>

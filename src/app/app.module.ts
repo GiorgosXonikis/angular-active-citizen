@@ -13,7 +13,7 @@ import {AppInitializerService, initializeApp} from './core/services/app-initiali
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports: [
         BrowserModule,
