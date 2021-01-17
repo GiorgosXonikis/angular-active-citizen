@@ -54,6 +54,8 @@
     "ngx-dropzone": "^2.1.2",
     "ngx-mask": "^9.1.2",
     "npx": "^10.2.2",
+    "process": "^0.11.10",
+    "puppeteer": "^5.5.0",
     "rxjs": "^6.5.5",
     "simplebar-angular": "^3.0.0-beta.4",
     "tslib": "^2.0.0",
