@@ -9,17 +9,17 @@ stages:
   - test
   - deploy
 
-build:
-  stage: build
-  script:
-    - apk add --update nodejs nodejs-npm
-    - npm i -g @angular/cli
-    - ng --version
-    - npm install --save-dev @angular-devkit/build-angular
-    - ng build --prod
-  artifacts:
-    paths:
-      - ./dist
+#build:
+#  stage: build
+#  script:
+#    - apk add --update nodejs nodejs-npm
+#    - npm i -g @angular/cli
+#    - ng --version
+#    - npm install --save-dev @angular-devkit/build-angular
+#    - ng build --prod
+#  artifacts:
+#    paths:
+#      - ./dist
 
 test:
   stage: test
