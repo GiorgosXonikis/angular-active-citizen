@@ -25,7 +25,7 @@ stages:
 test:
   stage: test
   script:
-    - RUN apk add --no-cache  chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.10/main
+    - apk add --no-cache  chromium --repository=http://dl-cdn.alpinelinux.org/alpine/v3.10/main
     - export CHROME_BIN='/usr/bin/chromium'
 #    - apk add --update nodejs nodejs-npm
 #    - npm i -g @angular/cli
