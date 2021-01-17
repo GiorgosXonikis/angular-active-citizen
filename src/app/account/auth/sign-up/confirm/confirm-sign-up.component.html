@@ -16,7 +16,6 @@
                                           [subTitle]="'Email confirmed successfully'"
                                           [body]="'Please click on the link below to sign in'">
 
-
                             <!-- Already User -->
                             <app-sign-in-link></app-sign-in-link>
 
@@ -33,7 +32,6 @@
 <ng-template #_unsuccessful>
 
     <app-card-error *ngIf="error?.code === 'email_or_activation_code_error' || error?.code === 'server_error'"
-                    [title]="'Error'"
                     [subTitle]="'Account unable to be confirmed'"
                     [body]="error?.text">
     </app-card-error>

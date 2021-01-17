@@ -1,5 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {ConfirmPasswordResetComponent} from './confirm-password-reset';
+import {ConfirmPasswordResetComponent} from './confirm-password-reset.component';
+import {CommonTestingModules} from '../../../../tests/common-testing.modules';
 
 
 describe('ConfirmPasswordResetComponent', () => {
@@ -8,6 +9,7 @@ describe('ConfirmPasswordResetComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [CommonTestingModules],
             declarations: [ConfirmPasswordResetComponent]
         })
             .compileComponents();

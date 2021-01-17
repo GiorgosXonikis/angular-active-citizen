@@ -23,7 +23,7 @@
                         <form [formGroup]="form" (ngSubmit)="onSubmit()" name="form">
 
                             <!-- Preloader -->
-                            <app-ui-preloader></app-ui-preloader>
+                            <app-preloader></app-preloader>
 
                             <!-- Error -->
                             <ngb-alert type="danger" class="text-center" *ngIf="renderValidations"
@@ -100,7 +100,6 @@
 
                     <!------------------------------- View 3 - On Error ------------------------------>
                     <app-card-error *ngIf="viewState === viewStateEnum.Error"
-                                    [title]="'Error'"
                                     [subTitle]="'Sign up unsuccessful'"
                                     [body]="error.text">
 

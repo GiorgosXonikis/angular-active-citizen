@@ -24,7 +24,7 @@
                                   name="loginForm">
 
                                 <!-- Preloader Spinner -->
-                                <app-ui-preloader></app-ui-preloader>
+                                <app-preloader></app-preloader>
 
                                 <ngb-alert type="danger" class="text-center" *ngIf="renderValidations"
                                            [dismissible]="false">
@@ -100,8 +100,7 @@
 
 <!------------------------------- On Login Error ------------------------------>
 <ng-template #onError>
-    <app-card-error [title]="'Error'"
-                    [subTitle]="'Login unsuccessful'"
+    <app-card-error [subTitle]="'Login unsuccessful'"
                     [body]="error.text">
 
         <div class="form-group text-center">

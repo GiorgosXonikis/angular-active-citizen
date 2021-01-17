@@ -1,25 +1,28 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PasswordResetComponent } from './password-reset.component';
+import {PasswordResetComponent} from './password-reset.component';
+import {CommonTestingModules} from '../../../tests/common-testing.modules';
 
-describe('PasswordresetComponent', () => {
-  let component: PasswordResetComponent;
-  let fixture: ComponentFixture<PasswordResetComponent>;
+describe('PasswordResetComponent', () => {
+    let component: PasswordResetComponent;
+    let fixture: ComponentFixture<PasswordResetComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PasswordResetComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [CommonTestingModules],
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PasswordResetComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+            declarations: [PasswordResetComponent]
+        })
+            .compileComponents();
+    }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(PasswordResetComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

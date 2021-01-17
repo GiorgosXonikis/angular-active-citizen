@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CardErrorComponent implements OnInit {
 
-    @Input() title: string;
+    @Input() title: string = 'Error';
     @Input() subTitle: string;
     @Input() body: string;
 
