@@ -30,7 +30,7 @@ test:
     - ng --version
     - npm install --save-dev @angular-devkit/build-angular
     - npm install
-    - ng test --browsers ChromeNoSandbox --watch=false
+    - ng test --watch=false
 
 deploy:
   stage: deploy
