@@ -15,6 +15,27 @@ module.exports = function (config) {
         client: {
             clearContext: false // leave Jasmine Spec Runner output visible in browser
         },
+        customLaunchers: {
+            ChromeHeadlessNoSandbox: {      //Custom Launcher for headless Chrome
+                base: 'Chrome',
+                flags: [
+                    '--headless',
+                    '--disable-gpu',
+                    '--no-sandbox',
+                    '--remote-debugging-port=9222',
+                    '--disable-dev-shm-usage'
+                ]
+            }
+        },
+        specReporter: {
+            maxLogLines: 10,             // limit number of lines logged per test
+            suppressErrorSummary: false, // do not print error summary
+            suppressFailed: false,      // do not print information about failed tests
+            suppressPassed: false,      // do not print information about passed tests
+            suppressSkipped: true,      // do not print information about skipped tests
+            showSpecTiming: true,      // print the time elapsed for each spec
+            failFast: false              // test would finish with error when a first fail occurs.
+        },
         coverageIstanbulReporter: {
             dir: require('path').join(__dirname, './coverage/frontend'),
             reports: ['html', 'lcovonly', 'text-summary'],
@@ -25,13 +46,7 @@ module.exports = function (config) {
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
-        browsers: ['ChromeHeadlessNoSandbox'],
-        customLaunchers: {
-            ChromeHeadlessNoSandbox: {
-                base: "ChromeHeadless",
-                flags: ["--no-sandbox"]
-            }
-        },
+        browsers: ['Chrome'],
         singleRun: false,
         restartOnFileChange: true
     });
