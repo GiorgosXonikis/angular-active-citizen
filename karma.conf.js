@@ -14,12 +14,11 @@ module.exports = function (config) {
             require('karma-jasmine-html-reporter'),
             require('karma-coverage-istanbul-reporter'),
             require('@angular-devkit/build-angular/plugins/karma'),
-            'karma-spec-reporter',
+            // 'karma-spec-reporter',
         ],
         client: {
             clearContext: false // leave Jasmine Spec Runner output visible in browser
         },
-
 
         browsers: ['ChromeHeadlessNoSandbox'],
         customLaunchers: {
@@ -33,16 +32,16 @@ module.exports = function (config) {
             }
         },
 
+        // specReporter: {
+        //     maxLogLines: 10,             // limit number of lines logged per test
+        //     suppressErrorSummary: false, // do not print error summary
+        //     suppressFailed: false,      // do not print information about failed tests
+        //     suppressPassed: false,      // do not print information about passed tests
+        //     suppressSkipped: true,      // do not print information about skipped tests
+        //     showSpecTiming: true,      // print the time elapsed for each spec
+        //     failFast: false              // test would finish with error when a first fail occurs.
+        // },
 
-        specReporter: {
-            maxLogLines: 10,             // limit number of lines logged per test
-            suppressErrorSummary: false, // do not print error summary
-            suppressFailed: false,      // do not print information about failed tests
-            suppressPassed: false,      // do not print information about passed tests
-            suppressSkipped: true,      // do not print information about skipped tests
-            showSpecTiming: true,      // print the time elapsed for each spec
-            failFast: false              // test would finish with error when a first fail occurs.
-        },
         coverageIstanbulReporter: {
             dir: require('path').join(__dirname, './coverage/frontend'),
             reports: ['html', 'lcovonly', 'text-summary'],
