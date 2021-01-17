@@ -1,4 +1,4 @@
-export const AuthEndpoints = {
+export const AuthUrls = {
     signUp: 'auth/signup',
     activate: 'auth/signup/activate',
     login: 'auth/login',
@@ -6,7 +6,7 @@ export const AuthEndpoints = {
     confirmPasswordReset: 'auth/password-reset/confirm'
 }
 
-export const UserEndpoints = {
+export const UserUrls = {
     profile: 'user/profile',
     changePassword: 'user/change-password',
     logout: 'user/logout',

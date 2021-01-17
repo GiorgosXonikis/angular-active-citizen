@@ -1,5 +1,4 @@
 import {Observable} from 'rxjs';
-import {UserEndpoints} from '../../../environments/api-endpoints';
 import {finalize, tap} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
@@ -8,6 +7,7 @@ import {environment} from '../../../environments/environment';
 import {User} from '../../shared/models/auth';
 import {CookieService} from './cookie.service';
 import {AuthService} from './auth-service/auth.service';
+import {UserUrls} from '../../../config/http-urls';
 
 
 @Injectable({
@@ -25,7 +25,7 @@ export class UserService {
     getUser(): Observable<User> {
         this.preloader.show();
 
-        return this.http.get<User>(`${this.mainUrl}/${UserEndpoints.profile}/`)
+        return this.http.get<User>(`${this.mainUrl}/${UserUrls.profile}/`)
             .pipe(
                 tap(_user => this.authService.user = _user),
                 finalize(() => this.preloader.hide())
@@ -35,7 +35,7 @@ export class UserService {
     patchUser(user: User): Observable<User> {
         this.preloader.show();
 
-        return this.http.patch<User>(`${this.mainUrl}/${UserEndpoints.profile}/`, user)
+        return this.http.patch<User>(`${this.mainUrl}/${UserUrls.profile}/`, user)
             .pipe(
                 finalize(() => this.preloader.hide())
             );
@@ -44,7 +44,7 @@ export class UserService {
     changePassword(payload: { password: string, newPassword: string, passwordRepeat: string }): Observable<any> {
         this.preloader.show();
 
-        return this.http.patch(`${this.mainUrl}/${UserEndpoints.changePassword}/`, payload)
+        return this.http.patch(`${this.mainUrl}/${UserUrls.changePassword}/`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );

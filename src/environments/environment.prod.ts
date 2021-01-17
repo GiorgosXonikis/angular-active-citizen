@@ -1,5 +1,8 @@
-export const environment = {
+import {defaultEnv} from './environment.default';
+
+const productionEnv = {
   production: true,
 
-  host: 'http://localhost:3000'
+  host: 'http://aws-url'
 };
+export const environment = Object.assign(defaultEnv, productionEnv);

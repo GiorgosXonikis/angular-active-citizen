@@ -7,7 +7,7 @@ import {Auth, User} from '../../../shared/models/auth';
 import {environment} from '../../../../environments/environment';
 import {PreloaderService} from '../preloader.service';
 import {CookieService} from '../cookie.service';
-import {AuthEndpoints, UserEndpoints} from '../../../../environments/api-endpoints';
+import {AuthUrls, UserUrls} from '../../../../config/http-urls';
 
 
 @Injectable({
@@ -28,7 +28,7 @@ export class AuthService {
     login(email: string, password: string): Observable<User> {
         this.preloader.show();
 
-        return this.http.post<Auth>(`${this.mainUrl}/${AuthEndpoints.login}/`, {email, password})
+        return this.http.post<Auth>(`${this.mainUrl}/${AuthUrls.login}/`, {email, password})
             .pipe(
                 map(_auth => {
                     const {accessToken, user} = <Auth>this._converter.deserialize(_auth, Auth);
@@ -44,7 +44,7 @@ export class AuthService {
 
     logout(): Observable<any> {
         /** Disable the access token in backend */
-        return this.http.post(`${this.mainUrl}/${UserEndpoints.logout}/`, {})
+        return this.http.post(`${this.mainUrl}/${UserUrls.logout}/`, {})
             .pipe(
                 finalize(() => {
                     /** Delete cookie as well as both user and access token from memory */
@@ -63,7 +63,7 @@ export class AuthService {
             password,
         };
 
-        return this.http.post(`${this.mainUrl}/${AuthEndpoints.signUp}/`, payload)
+        return this.http.post(`${this.mainUrl}/${AuthUrls.signUp}/`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );
@@ -77,7 +77,7 @@ export class AuthService {
             activationCode
         };
 
-        return this.http.patch(`${this.mainUrl}/${AuthEndpoints.activate}`, payload)
+        return this.http.patch(`${this.mainUrl}/${AuthUrls.activate}`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );
@@ -86,7 +86,7 @@ export class AuthService {
     passwordReset(email: string): Observable<any> {
         this.preloader.show();
 
-        return this.http.post(`${this.mainUrl}/${AuthEndpoints.passwordReset}/`, {email})
+        return this.http.post(`${this.mainUrl}/${AuthUrls.passwordReset}/`, {email})
             .pipe(
                 finalize(() => this.preloader.hide())
             );
@@ -102,7 +102,7 @@ export class AuthService {
             token
         };
 
-        return this.http.post(`${this.mainUrl}/${AuthEndpoints.confirmPasswordReset}/`, payload)
+        return this.http.post(`${this.mainUrl}/${AuthUrls.confirmPasswordReset}/`, payload)
             .pipe(
                 finalize(() => this.preloader.hide())
             );
