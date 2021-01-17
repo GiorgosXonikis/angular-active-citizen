@@ -1,8 +1,8 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-const process = require('process');
-process.env.CHROME_BIN = require('puppeteer').executablePath();
+const puppeteer = require('puppeteer');
+process.env.CHROME_BIN = puppeteer.executablePath();
 
 module.exports = function (config) {
     config.set({
@@ -15,19 +15,20 @@ module.exports = function (config) {
             require('karma-coverage-istanbul-reporter'),
             require('@angular-devkit/build-angular/plugins/karma'),
             // 'karma-spec-reporter',
+            // npm install karma-spec-reporter --save-dev
         ],
         client: {
             clearContext: false // leave Jasmine Spec Runner output visible in browser
         },
 
-        browsers: ['ChromeHeadlessNoSandbox'],
+        browsers: ['ChromeNoSandbox'],
         customLaunchers: {
             ChromeHeadlessNoSandbox: {      //Custom Launcher for headless Chrome
-                base: 'ChromeHeadless',
+                base: 'Chrome',
                 flags: [
-                    '--headless',
+                    // '--headless',
                     '--no-sandbox',
-                    '--disable-gpu'
+                    // '--disable-gpu'
                 ]
             }
         },
