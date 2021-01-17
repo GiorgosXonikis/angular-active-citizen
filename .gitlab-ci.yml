@@ -6,7 +6,7 @@ variables:
 
 stages:
   - build
-  #  - test
+  - test
   - deploy
 
 build:
@@ -21,15 +21,15 @@ build:
     paths:
       - ./dist
 
-#test:
-#  stage: test
-#  script:
+test:
+  stage: test
+  script:
 #    - apk add --update nodejs nodejs-npm
 #    - npm i -g @angular/cli
 #    - ng --version
 #    - npm install --save-dev @angular-devkit/build-angular
 #    - npm install
-#    - ng test --browsers ChromeHeadlessNoSandbox --watch=false
+    - ng test --browsers ChromeHeadlessNoSandbox --watch=false
 
 deploy:
   stage: deploy
