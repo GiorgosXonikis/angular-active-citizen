@@ -1,4 +1,4 @@
-image: docker pull gxodocker/active-citizen-dockerhub-repo:node14-angular
+image: gxodocker/active-citizen-dockerhub-repo:node14-angular
 
 variables:
   APP_NAME: active-citizen
