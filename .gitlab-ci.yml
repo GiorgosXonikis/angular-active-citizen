@@ -1,4 +1,4 @@
-image: alpine
+image: docker pull gxodocker/active-citizen-dockerhub-repo:node14-angular
 
 variables:
   APP_NAME: active-citizen
@@ -25,11 +25,11 @@ stages:
 test:
   stage: test
   script:
-    - apk add --update nodejs nodejs-npm
-    - npm i -g @angular/cli
+#    - apk add --update nodejs nodejs-npm
+#    - npm i -g @angular/cli
     - ng --version
-    - npm install --save-dev @angular-devkit/build-angular
-    - npm install
+#    - npm install --save-dev @angular-devkit/build-angular
+#    - npm install
     - ng test --watch=false
 
 deploy:
