@@ -59,9 +59,9 @@ docker volume rm $(docker volume ls -q)
     ```docker tag node-angular11 gxodocker/active-citizen-dockerhub-repo:node-angular11```
 
 5. Push image
-    ``` docker push <repo_tag>```
+    ```docker push <repo_tag>```
    
-    ``` docker push gxodocker/active-citizen-dockerhub-repo:node-angular11```
+    ```docker push gxodocker/active-citizen-dockerhub-repo:node-angular11```
 
 6. Pull the image
     ```docker pull <repo_tag>```

@@ -1,19 +1,19 @@
 FROM node:10.23.1-alpine3.9
 MAINTAINER Giorgos Xonikis
 
-RUN apk add chromium
+RUN apk update && apk add bash
 
-WORKDIR /usr/src/app
+RUN apk add chromium
 
 ENV CHROME_BIN=/usr/bin/chromium-browser
 
-COPY package*.json ./
+WORKDIR /app
+
+COPY . ./
 
 RUN npm install -g @angular/cli
 
 RUN npm install
-
-COPY . ./
 
 RUN npm run build:prod
 
