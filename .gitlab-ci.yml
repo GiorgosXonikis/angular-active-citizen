@@ -13,16 +13,16 @@ build:
   stage: build
   script:
     - ng --version
+    - npm --version
+    - npm install
     - ng build --prod
-#  artifacts:
-#    paths:
-#      - ./dist
-#      - ./node_modules
+  artifacts:
+    paths:
+      - ./node_modules
 
 test:
   stage: test
   script:
-    - ng --version
     - ng test --watch=false
 
 #deploy:

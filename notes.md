@@ -51,7 +51,7 @@ docker volume rm $(docker volume ls -q)
 3. Build and tag the image from Dockerfile
    ```docker build . --tag <tag_name>```
    
-   ```docker build . --tag node14-angular```
+   ```docker build . --tag node-angular11```
    
 4. Tag the image with the Dockerhub repo name
    ```docker tag <image_name> <repo_tag>```
