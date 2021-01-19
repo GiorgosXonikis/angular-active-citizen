@@ -20,7 +20,10 @@ stages:
 test:
   stage: test
   script:
+    - ls
     - cat package.json
+    - cd node_modules
+    - ls
     - npm install
     - ng test --watch=false
 
