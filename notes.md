@@ -13,20 +13,20 @@ npm install -g @angular/cli
 # List running containers
 docker ps
 
+# Docker build with tag
+docker build . --tag tag-name
+
 # Start containers with build
 docker-compose up --build
 
 # Start containers from image with bash
 docker run -it <image_id> bash
 
-# Stop containers
-docker-compose down
-
-# Docker build with tag
-docker build . --tag tag-name
-
 # Exec bash in container:
 docker exec -it container_id bash
+
+# Stop containers
+docker-compose down
 
 # List images
 docker images
