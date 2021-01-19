@@ -1,10 +1,23 @@
-### DOCKER
+### Install Angular
+# Enable the NodeSource repository
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 
+# Install node and npm
+sudo apt install nodejs
+
+# Install Angular
+npm install -g @angular/cli
+
+
+### DOCKER
 # List running containers
 docker ps
 
 # Start containers with build
 docker-compose up --build
+
+# Start containers from image with bash
+docker run -it <image_id> bash
 
 # Stop containers
 docker-compose down
@@ -43,14 +56,14 @@ docker volume rm $(docker volume ls -q)
 4. Tag the image with the Dockerhub repo name
    ```docker tag <image_name> <repo_tag>```
 
-    ```docker tag node14-angular gxodocker/active-citizen-dockerhub-repo:node14-angular```
+    ```docker tag node-angular11 gxodocker/active-citizen-dockerhub-repo:node-angular11```
 
 5. Push image
     ``` docker push <repo_tag>```
    
-    ``` docker push gxodocker/active-citizen-dockerhub-repo:node14-angular```
+    ``` docker push gxodocker/active-citizen-dockerhub-repo:node-angular11```
 
 6. Pull the image
     ```docker pull <repo_tag>```
    
-    ```docker pull gxodocker/active-citizen-dockerhub-repo:node14-angular```
+    ```docker pull gxodocker/active-citizen-dockerhub-repo:node-angular11```

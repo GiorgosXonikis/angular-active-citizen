@@ -1,6 +1,11 @@
-FROM node:14-slim
+FROM node:10.23.1-alpine3.9
+MAINTAINER Giorgos Xonikis
+
+RUN apk add chromium
 
 WORKDIR /usr/src/app
+
+ENV CHROME_BIN=/usr/bin/chromium-browser
 
 COPY package*.json ./
 
@@ -10,7 +15,7 @@ RUN npm install
 
 COPY . ./
 
-RUN npm run build
+RUN npm run build:prod
 
 EXPOSE 8080
 
