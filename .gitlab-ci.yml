@@ -5,21 +5,23 @@ variables:
   ENV_NAME: active-citizen-dev
 
 stages:
-  - build
+#  - build
   - test
 #  - deploy
 
-build:
-  stage: build
-  script:
-    - ng --version
-    - npm --version
-    - npm install
-    - ng build --prod
+#build:
+#  stage: build
+#  script:
+#    - ng --version
+#    - npm --version
+#    - npm install
+#    - ng build --prod
 
 test:
   stage: test
   script:
+    - cat package.json
+    - npm install
     - ng test --watch=false
 
 #deploy:
