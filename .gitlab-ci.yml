@@ -16,9 +16,6 @@ build:
     - npm --version
     - npm install
     - ng build --prod
-  artifacts:
-    paths:
-      - ./node_modules
 
 test:
   stage: test
