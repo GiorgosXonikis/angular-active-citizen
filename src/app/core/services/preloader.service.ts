@@ -7,13 +7,14 @@ import {BehaviorSubject} from 'rxjs';
 export class PreloaderService {
 
     private preloaderSubject = new BehaviorSubject<boolean>(false);
-    public preloader$ = this.preloaderSubject.asObservable();
 
-    public show() {
+    preloader$ = this.preloaderSubject.asObservable();
+
+    show(): void {
         this.preloaderSubject.next(true);
     }
 
-    public hide() {
+    hide(): void {
         this.preloaderSubject.next(false);
     }
 

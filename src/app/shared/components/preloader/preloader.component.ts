@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {PreloaderService} from '../../../core/services/preloader.service';
 
 @Component({
@@ -10,5 +10,7 @@ export class PreloaderComponent {
 
     constructor(public preloaderService: PreloaderService) {
     }
+
+
 
 }
