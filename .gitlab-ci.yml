@@ -28,7 +28,7 @@ test:
 #    - apk add --update nodejs nodejs-npm
 #    - npm i -g @angular/cli
     - ng --version
-#    - npm install --save-dev @angular-devkit/build-angular
+    - npm install --save-dev @angular-devkit/build-angular
 #    - npm install
     - ng test --watch=false
 
