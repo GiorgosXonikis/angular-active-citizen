@@ -12,10 +12,7 @@ stages:
 build:
   stage: build
   script:
-    - apk add --update nodejs nodejs-npm
-    - npm i -g @angular/cli
     - ng --version
-    - npm install --save-dev @angular-devkit/build-angular
     - ng build --prod
 #  artifacts:
 #    paths:
@@ -25,11 +22,7 @@ build:
 test:
   stage: test
   script:
-#    - apk add --update nodejs nodejs-npm
-#    - npm i -g @angular/cli
     - ng --version
-    - npm install --save-dev @angular-devkit/build-angular
-#    - npm install
     - ng test --watch=false
 
 #deploy:
