@@ -46,7 +46,7 @@ stages:
 
 deploy:
   stage: deploy
-  image: heroku/heroku:20.nightly
+  image: heroku/heroku:20
   script:
     - apt-get update -qy
     - apt-get install -y ruby-dev
