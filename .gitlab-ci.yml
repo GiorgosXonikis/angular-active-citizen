@@ -5,26 +5,26 @@ variables:
   ENV_NAME: active-citizen-dev
 
 stages:
-  - build
-  - test
+#  - build
+#  - test
   - deploy
 
-build:
-  stage: build
-  script:
-    - ng --version
-    - npm --version
-    - npm install
-    - ng build --prod
-  artifacts:
-    paths:
-      - ./dist
-
-test:
-  stage: test
-  script:
-    - npm install
-    - ng test --watch=false
+#build:
+#  stage: build
+#  script:
+#    - ng --version
+#    - npm --version
+#    - npm install
+#    - ng build --prod
+#  artifacts:
+#    paths:
+#      - ./dist
+#
+#test:
+#  stage: test
+#  script:
+#    - npm install
+#    - ng test --watch=false
 
 #deploy:
 #  stage: deploy
@@ -46,7 +46,11 @@ test:
 
 deploy:
   stage: deploy
+  image: heroku/heroku:20.nightly
   script:
-    - npm install -g heroku
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=active-citizen-staging --api-key=$HEROKU_API_KEY
 
 
