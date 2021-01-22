@@ -17,6 +17,6 @@ RUN npm install
 
 RUN npm run build:prod
 
-EXPOSE 8080
+EXPOSE 5000
 
 CMD [ "node", "server.js" ]
