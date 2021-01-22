@@ -6,10 +6,9 @@
     "npm": "6.14.10"
   },
   "scripts": {
-    "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "ng build --output-path dist --aot --prod && node server.js",
+    "build:prod": "ng build --output-path dist --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
