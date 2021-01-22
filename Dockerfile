@@ -20,3 +20,5 @@ RUN npm postinstall
 EXPOSE 8080
 
 CMD [ "node", "server.js" ]
+
+# "postinstall": "ng build --output-path dist  --aot --prod"

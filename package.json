@@ -14,8 +14,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
-    "postinstall": "ng build --output-path dist  --aot --prod"
+    "cypress:run": "cypress run"
   },
   "private": true,
   "dependencies": {
@@ -36,7 +35,7 @@
     "@fullcalendar/core": "^5.0.0",
     "@fullcalendar/daygrid": "^5.0.1",
     "@fullcalendar/interaction": "^5.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^6.1.0",
+    "@ng-bootstrap/ng-bootstrap": "^9.0.1",
     "@uiowa/date-range-picker": "^3.1.0",
     "angular-archwizard": "^6.1.0",
     "apexcharts": "^3.19.2",
