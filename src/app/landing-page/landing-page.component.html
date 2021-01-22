@@ -36,7 +36,7 @@
                         </ng-template>
                         <ng-template #welcomeUser>
                             <a routerLink="/profile" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex">
-                                Welcome {{userAbbreviation}}
+                                Welcome {{userAbbreviation}}!!!
                             </a>
                         </ng-template>
                     </li>
@@ -241,15 +241,18 @@
                                 <div class="form-group">
                                     <label for="comments">Message</label>
                                     <textarea id="comments" rows="4" class="form-control form-control-light"
-                                              placeholder="Type your message here..."></textarea>
+                                              placeholder="Type your message here...">
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row pb-5 mt-2">
                             <div class="col-12 text-right">
-                                <button class="btn btn-primary">Send a Message <i
-                                        class="mdi mdi-telegram ml-1"></i></button>
+                                <button class="btn btn-primary">
+                                    Send a Message
+                                    <i class="mdi mdi-telegram ml-1"></i>
+                                </button>
                             </div>
                         </div>
                     </form>
