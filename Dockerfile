@@ -15,8 +15,8 @@ RUN npm install -g @angular/cli
 
 RUN npm install
 
-RUN npm run build:prod
+RUN npm postinstall
 
-EXPOSE 5000
+EXPOSE 8080
 
 CMD [ "node", "server.js" ]

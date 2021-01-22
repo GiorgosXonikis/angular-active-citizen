@@ -48,6 +48,5 @@ deploy:
   stage: deploy
   script:
     - npm install -g heroku
-    -
 
 
