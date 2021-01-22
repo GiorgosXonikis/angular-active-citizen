@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
     private getUser(): void {
         this.userService.getUser().subscribe(
             _user => {
-                this.user = this.authService.user = _user;
+                this.user = this.authService.user = _user || null;
 
                 /** Patch model values to form */
                 this.formsService.modelToForm(this.user, this.form);

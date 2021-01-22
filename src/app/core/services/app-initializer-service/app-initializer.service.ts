@@ -16,7 +16,7 @@ export class AppInitializerService {
             return;
         }
 
-        await this.userService.getUser().toPromise();
+        await this.userService.getUser().toPromise().catch(() => null);
     }
 }
 
