@@ -67,3 +67,7 @@ docker volume rm $(docker volume ls -q)
     ```docker pull <repo_tag>```
    
     ```docker pull gxodocker/active-citizen-dockerhub-repo:node-angular11```
+
+
+### HEROKU Deployment
+1. Create App on Heroku
