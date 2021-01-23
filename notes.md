@@ -43,6 +43,9 @@ docker volume ls
 # Delete all volumes using the following command:
 docker volume rm $(docker volume ls -q)
 
+# Copy directory to running container
+docker cp <source_directory> <container_id>:<target_directory>
+
 ## Push image to Docker Hub
 1. Create repo in Dockerhub
    
@@ -72,8 +75,20 @@ docker volume rm $(docker volume ls -q)
 ### HEROKU Deployment
 1. Create App on Heroku
 
-2. heroku authorizations:create
+2. Run 
+   ```heroku authorizations:create```
 
 3. Copy token
 
 4. Store it on GitLab Variables
+
+5. Run
+    ```heroku stack:set heroku-20```
+
+# Prepare deployment
+1. Move dev dependencies to dependencies
+   "@angular/cli": "~11.1.0",
+   "@angular/compiler-cli": "~11.1.0",
+   "typescript": "^4.0.3"
+
+2. Create Procfile to define the start app script

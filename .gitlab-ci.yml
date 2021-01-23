@@ -1,8 +1,8 @@
 image: gxodocker/active-citizen-dockerhub-repo:node-angular11
 
 variables:
-  APP_NAME: active-citizen
-  ENV_NAME: active-citizen-dev
+  APP_STAGING: active-citizen-staging
+  APP_PRODUCTION: active-citizen-dev
 
 stages:
   - build
@@ -15,7 +15,7 @@ building the app:
     - ng --version
     - npm --version
     - npm install
-    - ng build --prod
+    - ng build --output-path dist --aot --prod
   artifacts:
     paths:
       - ./dist
@@ -30,10 +30,12 @@ deploy to staging:
   stage: deploy
   image: heroku/heroku:20
   script:
+    - curl https://cli-assets.heroku.com/install.sh | sh
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
-    - dpl --provider=heroku --app=active-citizen-staging --api-key=$HEROKU_API_KEY
+    - dpl --provider=heroku --app=$APP_STAGING --api-key=$HEROKU_API_KEY
+    - dpl --provider=heroku --app=active-citizen-staging --api-key=09c7301e-2394-4363-801d-9471485fd151
   only:
     - master
 

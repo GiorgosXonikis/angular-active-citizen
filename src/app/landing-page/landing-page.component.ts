@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AuthService} from '../core/services/auth-service/auth.service';
+import {environment} from '../../environments/environment';
 
 @Component({
     selector: 'app-landing-page',
@@ -22,6 +23,10 @@ export class LandingPageComponent {
 
         const user = this.authService.user;
         return user.firstName || user.lastName || user.email;
+    }
+
+    get environmentName(): string {
+        return environment.name;
     }
 
 

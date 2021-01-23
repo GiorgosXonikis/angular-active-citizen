@@ -62,7 +62,7 @@
                 }
               ]
             },
-            "stag": {
+            "staging": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -89,7 +89,6 @@
                 }
               ]
             }
-
           }
         },
         "serve": {

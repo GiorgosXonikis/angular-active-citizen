@@ -1,8 +1,8 @@
 import {defaultEnv} from './environment.default';
 
-const productionEnv = {
-  production: true,
+const stagingEnv = {
+  name: 'Staging',
 
-  host: 'http://aws-url'
+  host: 'http://staging'
 };
-export const environment = Object.assign(defaultEnv, productionEnv);
+export const environment = Object.assign(defaultEnv, stagingEnv);
