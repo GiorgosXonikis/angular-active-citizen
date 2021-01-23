@@ -51,7 +51,6 @@ deploy:
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
-    - heroku config:set NODE_BUILD_FLAGS="--stag"
     - dpl --provider=heroku --app=active-citizen-staging --api-key=$HEROKU_API_KEY
     - dpl --run [ "npm", "run", "build", "--configuration=stag"]
 
