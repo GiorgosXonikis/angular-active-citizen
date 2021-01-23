@@ -84,7 +84,7 @@ docker cp <source_directory> <container_id>:<target_directory>
 
 5. Run
     ```heroku stack:set heroku-20```
-
+   
 # Prepare deployment
 1. Move dev dependencies to dependencies
    "@angular/cli": "~11.1.0",
@@ -92,3 +92,10 @@ docker cp <source_directory> <container_id>:<target_directory>
    "typescript": "^4.0.3"
 
 2. Create Procfile to define the start app script
+
+3. Assign on Heroku variable the appropriate environment  
+   Settings -> Config Vars -> NODE_ENV = staging or production
+
+4. On packages.json set the build to script to run "bash build.sh"
+
+5. On build.sh, assign the build parameters depending on the Heroku NODE_ENV

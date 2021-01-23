@@ -7,7 +7,7 @@ import {environment} from '../../../environments/environment';
 import {User} from '../../shared/models/auth';
 import {CookieService} from './cookie.service';
 import {AuthService} from './auth-service/auth.service';
-import {UserUrls} from '../../../config/http-urls';
+import {UserUrls} from '../../../config/urls';
 
 
 @Injectable({
