@@ -52,7 +52,6 @@ deploy to staging:
     - apt-get install -y ruby-dev
     - gem install dpl
     - dpl --provider=heroku --app=active-citizen-staging --api-key=$HEROKU_API_KEY
-    - dpl --run "npm run build --configuration=stag"
   only:
     - master
 
