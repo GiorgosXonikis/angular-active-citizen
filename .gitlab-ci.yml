@@ -44,7 +44,7 @@ stages:
 #    - aws s3 rm s3://$S3_BUCKET/$APP_NAME --recursive
 #    - eb deploy $ENV_NAME --timeout 30
 
-deploy:
+deploy to staging:
   stage: deploy
   image: heroku/heroku:20
   script:
@@ -52,7 +52,8 @@ deploy:
     - apt-get install -y ruby-dev
     - gem install dpl
     - dpl --provider=heroku --app=active-citizen-staging --api-key=$HEROKU_API_KEY
-    - dpl --run [ "npm", "run", "build", "--configuration=stag"]
-
+    - dpl --run "npm run build --configuration=stag"
+  only:
+    - master
 
 
