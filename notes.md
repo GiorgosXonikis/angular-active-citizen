@@ -71,3 +71,9 @@ docker volume rm $(docker volume ls -q)
 
 ### HEROKU Deployment
 1. Create App on Heroku
+
+2. heroku authorizations:create
+
+3. Copy token
+
+4. Store it on GitLab Variables
