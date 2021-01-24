@@ -73,7 +73,7 @@
 
 2. Run 
    `heroku authorizations:create`
-
+   
 3. Copy token
 
 4. Store it on GitLab Variables

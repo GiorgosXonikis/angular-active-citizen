@@ -5,26 +5,26 @@ variables:
   APP_PRODUCTION: active-citizen-production
 
 stages:
-  - build
-  - test
+#  - build
+#  - test
   - deploy
 
-building the app:
-  stage: build
-  script:
-    - ng --version
-    - npm --version
-    - npm install
-    - ng build --output-path dist --aot --prod
-  artifacts:
-    paths:
-      - ./dist
-
-testing the app:
-  stage: test
-  script:
-    - npm install
-    - ng test --watch=false
+#building the app:
+#  stage: build
+#  script:
+#    - ng --version
+#    - npm --version
+#    - npm install
+#    - ng build --output-path dist --aot --prod
+#  artifacts:
+#    paths:
+#      - ./dist
+#
+#testing the app:
+#  stage: test
+#  script:
+#    - npm install
+#    - ng test --watch=false
 
 deploy to staging:
   stage: deploy

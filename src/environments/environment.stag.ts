@@ -5,6 +5,6 @@ const stagingEnv = {
 
   production: false,
 
-  host: 'http://staging'
+  host: 'https://active-citizen-api-staging.herokuapp.com/'
 };
 export const environment = Object.assign(defaultEnv, stagingEnv);
