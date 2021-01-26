@@ -38,11 +38,13 @@
                                        type="email"
                                        formControlName="email"
                                        class="form-control"
-                                       [ngClass]="{ 'is-invalid': renderValidations && f.email.errors }"
+                                       [ngClass]="{ 'is-invalid': renderValidations && form.get('email').errors }"
                                        placeholder="example@provider.com"/>
-                                <div *ngIf="renderValidations && f.email.errors" class="invalid-field">
-                                    <div *ngIf="f.email.errors.required">Email is required</div>
-                                    <div *ngIf="f.email.getError('email')">Email must be a valid email address</div>
+                                <div *ngIf="renderValidations && form.get('email').errors" class="invalid-field">
+                                    <div *ngIf="form.get('email').hasError('required')">Email is required</div>
+                                    <div *ngIf="form.get('email').hasError('email')">Email must be a valid email
+                                        address
+                                    </div>
                                 </div>
                             </div>
 
@@ -53,11 +55,11 @@
                                        type="password"
                                        formControlName="password"
                                        class="form-control"
-                                       [ngClass]="{ 'is-invalid': renderValidations && f.password.errors }"
+                                       [ngClass]="{ 'is-invalid': renderValidations && form.get('password').errors }"
                                        placeholder="Provide strong password"/>
-                                <div *ngIf="renderValidations && f.password.errors" class="invalid-field">
-                                    <div *ngIf="f.password.errors.required">Password is required</div>
-                                </div>
+                                <app-password-validation *ngIf="renderValidations"
+                                                         [passwordControl]="form.get('password')"
+                                ></app-password-validation>
                             </div>
 
                             <!-- Password Repeat -->
@@ -67,15 +69,13 @@
                                        type="password"
                                        formControlName="passwordRepeat"
                                        class="form-control"
-                                       [ngClass]="{ 'is-invalid': renderValidations && (f.passwordRepeat.errors || form.getError('passwordMatchError'))}"
+                                       [ngClass]="{ 'is-invalid': renderValidations && (form.get('passwordRepeat').errors || form.getError('passwordMatchError'))}"
                                        placeholder="Repeat your password"/>
-                                <div *ngIf="renderValidations && f.passwordRepeat.errors?.required"
-                                     class="invalid-field">
-                                    Password repeat is required
-                                </div>
-                                <div *ngIf="renderValidations && form.getError('passwordMatchError')"
-                                     class="invalid-field">
-                                    Passwords do not match
+
+                                <div *ngIf="renderValidations" class="invalid-field">
+                                    <ng-container *ngIf="form.get('passwordRepeat').errors?.required">Password repeat is required</ng-container>
+                                    <br>
+                                    <ng-container *ngIf="form.hasError('passwordMatchError')">Passwords do not match</ng-container>
                                 </div>
                             </div>
 

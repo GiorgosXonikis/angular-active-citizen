@@ -26,7 +26,7 @@ export class SignUpComponent {
 
     public form = this.formBuilder.group({
         email: ['giorgos.xonikis@gmail.com', [Validators.required, Validators.email]],
-        password: ['Gioxon1985', Validators.required],
+        password: ['Gioxon1985', [Validators.required, FormValidators.weakPassword]],
         passwordRepeat: ['Gioxon1985', Validators.required],
     }, {
         validators: [FormValidators.passwordsMatchValidator()]
@@ -38,7 +38,7 @@ export class SignUpComponent {
             return;
         }
 
-        this.authService.signUp(this.f.email.value, this.f.password.value)
+        this.authService.signUp(this.form.get('email').value, this.form.get('password').value)
             .subscribe(
                 {
                     next: () => this.viewState = viewStateEnum.Success,
@@ -51,10 +51,6 @@ export class SignUpComponent {
                     }
                 }
             );
-    }
-
-    public get f(): any {
-        return this.form.controls;
     }
 
 }

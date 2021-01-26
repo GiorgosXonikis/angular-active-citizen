@@ -12,6 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {CardErrorModule} from '../../shared/components/card-error/card-error.module';
 import {CardSuccessModule} from '../../shared/components/card-success/card-success.module';
 import {SignInLinkModule} from '../../shared/components/sign-in-link/sign-in-link.module';
+import {PasswordValidationModule} from '../../shared/forms/password-validation/password-validation.module';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import {SignInLinkModule} from '../../shared/components/sign-in-link/sign-in-lin
         ReactiveFormsModule,
         CardErrorModule,
         CardSuccessModule,
-        SignInLinkModule
+        SignInLinkModule,
+        PasswordValidationModule
     ],
     declarations: [
         LoginComponent,
