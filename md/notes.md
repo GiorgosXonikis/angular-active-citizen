@@ -30,7 +30,7 @@
 `docker-compose down`
 
 ### List images
-`docker image`s
+`docker images`
 
 ### Delete image (with force -f)
 `docker rmi -f <image_id>`

@@ -6,4 +6,6 @@ then
 elif [[ $NODE_ENV == "production" ]]
 then
   ng build --prod
+else
+  ng build
 fi

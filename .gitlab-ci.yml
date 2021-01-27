@@ -9,7 +9,7 @@ stages:
 #  - test
   - deploy
 
-#building the app:
+#build app:
 #  stage: build
 #  script:
 #    - ng --version
