@@ -6,6 +6,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {PreLoaderModule} from '../shared/components/preloader/preloader.module';
 import {ChangePasswordComponent} from './profile/change-password/change-password.component';
+import {PasswordValidationModule} from '../shared/forms/password-validation/password-validation.module';
+import {CardErrorModule} from '../shared/components/card-error/card-error.module';
+import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -17,7 +20,10 @@ import {ChangePasswordComponent} from './profile/change-password/change-password
         AccountRoutingModule,
         ReactiveFormsModule,
         BrowserModule,
-        PreLoaderModule
+        PreLoaderModule,
+        PasswordValidationModule,
+        CardErrorModule,
+        NgbAlertModule
     ]
 })
 export class AccountModule {

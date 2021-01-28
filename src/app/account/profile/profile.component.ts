@@ -27,30 +27,6 @@ export class ProfileComponent implements OnInit {
         this.getUser();
     }
 
-    saveUser(): void {
-        this.form.disable();
-
-        if (this.form.pristine) {
-            return;
-        }
-
-        /** Extract form values */
-        this.formsService.formToModel(this.form, this.user);
-
-        this.userService.patchUser(this.user).subscribe(
-            () => this.form.markAsPristine()
-        );
-    }
-
-    logout(): void {
-        this.authService.logout().subscribe();
-    }
-
-    enableForm() {
-        this.form.enable();
-        this.bio.nativeElement.focus();
-    }
-
     private createForm(): void {
         this.form = this.formBuilder.group({
             bio: [null],
@@ -75,6 +51,30 @@ export class ProfileComponent implements OnInit {
                 this.formsService.modelToForm(this.user, this.form);
             }
         );
+    }
+
+    saveUser(): void {
+        this.form.disable();
+
+        if (this.form.pristine) {
+            return;
+        }
+
+        /** Extract form values */
+        this.formsService.formToModel(this.form, this.user);
+
+        this.userService.patchUser(this.user).subscribe(
+            () => this.form.markAsPristine()
+        );
+    }
+
+    logout(): void {
+        this.authService.logout().subscribe();
+    }
+
+    enableForm() {
+        this.form.enable();
+        this.bio.nativeElement.focus();
     }
 
 }

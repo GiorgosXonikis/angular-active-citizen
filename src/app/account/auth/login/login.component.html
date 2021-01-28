@@ -20,8 +20,7 @@
                             </div>
 
                             <!-- Sign in Form -->
-                            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation"
-                                  name="loginForm">
+                            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" name="loginForm">
 
                                 <!-- Preloader Spinner -->
                                 <app-preloader></app-preloader>
@@ -35,13 +34,13 @@
                                     <label for="email">Email</label>
 
                                     <input class="form-control"
-                                           [ngClass]="{ 'is-invalid': renderValidations && f.email.errors }"
+                                           [ngClass]="{ 'is-invalid': renderValidations && form.get('email').errors }"
                                            id="email" name="email" type="email" formControlName="email"
                                            placeholder="example@provider.com"/>
 
-                                    <div *ngIf="renderValidations && f.email.errors" class="invalid-field">
-                                        <div *ngIf="f.email.errors.required">Email is required</div>
-                                        <div *ngIf="f.email.errors['email']">Email must be a valid email address</div>
+                                    <div *ngIf="renderValidations && form.get('email').errors" class="invalid-field">
+                                        <div *ngIf="form.get('email').errors.required">Email is required</div>
+                                        <div *ngIf="form.get('email').getError('email')">Email must be a valid email address</div>
                                     </div>
                                 </div>
 
@@ -56,13 +55,13 @@
                                     <label for="password">Password</label>
 
                                     <input type="password" formControlName="password" class="form-control"
-                                           [ngClass]="{ 'is-invalid': renderValidations && f.password.errors }"
+                                           [ngClass]="{ 'is-invalid': renderValidations && form.get('password').errors }"
                                            id="password"
                                            name="password"
                                            placeholder="Password"/>
 
                                     <!-- Password Validators -->
-                                    <div *ngIf="renderValidations && f.password.errors?.required" class="invalid-field">
+                                    <div *ngIf="renderValidations && form.get('password').errors?.required" class="invalid-field">
                                         Password is required
                                     </div>
 

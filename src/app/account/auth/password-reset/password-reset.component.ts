@@ -27,17 +27,13 @@ export class PasswordResetComponent {
                 private authService: AuthService) {
     }
 
-    public get f(): any {
-        return this.form.controls;
-    }
-
     public onSubmit(): void {
         if (this.form.invalid) {
             this.renderValidations = true;
             return;
         }
 
-        this.authService.passwordReset(this.f.email.value)
+        this.authService.passwordReset(this.form.get('email').value)
             .subscribe({
                 next: () => this.viewState = viewStateEnum.Success,
                 error: () => {

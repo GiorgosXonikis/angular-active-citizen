@@ -27,13 +27,20 @@ export class LoginComponent implements OnInit {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
+    private createForm() {
+        this.form = this.formBuilder.group({
+            email: ['giorgos.xonikis@gmail.com', [Validators.required, Validators.email]],
+            password: ['Gioxon1985', Validators.required],
+        });
+    }
+
     onSubmit(): void {
         if (this.form.invalid) {
             this.renderValidations = true;
             return;
         }
 
-        this.authService.login(this.f.email.value, this.f.password.value)
+        this.authService.login(this.form.get('email').value, this.form.get('password').value)
             .subscribe({
                 next: () => this.router.navigateByUrl('/profile'),
                 error: (err) => {
@@ -46,17 +53,6 @@ export class LoginComponent implements OnInit {
                     }
                 }
             });
-    }
-
-    private createForm() {
-        this.form = this.formBuilder.group({
-            email: ['giorgos.xonikis@gmail.com', [Validators.required, Validators.email]],
-            password: ['Gioxon1985', Validators.required],
-        });
-    }
-
-    get f(): any {
-        return this.form.controls;
     }
 
 }

@@ -14,6 +14,8 @@ export class ChangePasswordComponent implements OnInit {
 
     form: FormGroup;
     renderValidations: boolean;
+    error = {code: '', text: ''};
+    success = '';
 
     constructor(private formBuilder: FormBuilder,
                 private userService: UserService) {
@@ -21,6 +23,16 @@ export class ChangePasswordComponent implements OnInit {
 
     ngOnInit(): void {
         this.createForm();
+    }
+
+    private createForm(): void {
+        this.form = this.formBuilder.group({
+            password: ['Gioxon1985', Validators.required],
+            newPassword: ['', [Validators.required, FormValidators.weakPassword]],
+            passwordRepeat: ['', Validators.required]
+        }, {validators: [FormValidators.passwordsMatchValidator()]});
+
+        this.form.disable();
     }
 
     enableForm() {
@@ -41,17 +53,21 @@ export class ChangePasswordComponent implements OnInit {
             passwordRepeat: this.form.get('passwordRepeat').value
         };
 
-        this.userService.changePassword(payload).subscribe(console.log);
-    }
-
-    private createForm(): void {
-        this.form = this.formBuilder.group({
-            password: ['random-password', Validators.required],
-            newPassword: [null, Validators.required],
-            passwordRepeat: [null, Validators.required]
-        }, {validators: [FormValidators.passwordsMatchValidator()]});
-
-        this.form.disable();
+        this.userService.changePassword(payload).subscribe({
+            next: () => {
+                this.success = 'Password changed successfully';
+                this.form.disable();
+                },
+            error: (err) => {
+                if (err.error.statusCode === 401) {
+                    this.error.code = 'incorrect_credentials';
+                    this.error.text = 'Incorrect credentials';
+                } else {
+                    this.error.code = 'server_error';
+                    this.error.text = 'Server error. Please try again in a while.';
+                }
+            }
+        });
     }
 
 }

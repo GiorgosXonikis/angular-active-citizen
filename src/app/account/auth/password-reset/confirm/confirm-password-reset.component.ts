@@ -36,7 +36,7 @@ export class ConfirmPasswordResetComponent {
     }
 
     public form = this.formBuilder.group({
-        password: ['Gioxon1985', Validators.required],
+        password: ['Gioxon1985', [Validators.required, FormValidators.weakPassword]],
         passwordRepeat: ['Gioxon1985', Validators.required],
     }, {
         validators: [FormValidators.passwordsMatchValidator()]
@@ -48,7 +48,7 @@ export class ConfirmPasswordResetComponent {
             return;
         }
 
-        this.authService.confirmPasswordReset(this.f.password.value, this.f.passwordRepeat.value, this._email, this._token)
+        this.authService.confirmPasswordReset(this.form.get('password').value, this.form.get('passwordRepeat').value, this._email, this._token)
             .subscribe({
                 next: () => this.viewState = viewStateEnum.Success,
                 error: () => {
@@ -59,8 +59,5 @@ export class ConfirmPasswordResetComponent {
             });
     }
 
-    public get f(): any {
-        return this.form.controls;
-    }
 
 }
