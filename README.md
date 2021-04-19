@@ -1,6 +1,9 @@
 ## Angular frontend for Active Citizen
 Active Citizen is a project to enhance people's engagement with their communities.
 
+### Demo Page
+https://active-citizen-staging.herokuapp.com/
+
 ### Powered by
 #### 1. Angular
 <a href="http://angular.io/" target="blank"><img src="https://angular.io/assets/images/logos/angular/angular.svg" width="150" alt="Angular Logo" /></a>
