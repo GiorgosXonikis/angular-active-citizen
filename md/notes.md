@@ -76,6 +76,10 @@
    
 3. Copy token
 
+4. Run 
+   `heroku git:remote -a <app_name>`
+   ex: `heroku git:remote -a georgios-xonikis-online-resume`
+
 4. Store it on GitLab Variables
 
 5. Run
